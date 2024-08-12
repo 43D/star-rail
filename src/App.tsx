@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { NavBar } from "./components/menu";
+import { HomeIndex } from "./components/home";
 
-function App() {
-  const [count, setCount] = useState(0)
+export type TabsList = `HOME` | `GUIA` | `CHAR` | `LC` | `RELIC` | `SEARCH`;
+
+type TabMap = {
+  [name in TabsList]: JSX.Element;
+}
+const mapTabs: TabMap = {
+  HOME: <HomeIndex />,
+  GUIA: <HomeIndex />,
+  CHAR: <HomeIndex />,
+  LC: <HomeIndex />,
+  RELIC: <HomeIndex />,
+  SEARCH: <HomeIndex />,
+}
+
+export const App = () => {
+  const [_searchParse, _setSearchParse] = useState<string>(``);
+  const [_tab, _setTab] = useState<TabsList>(`HOME`);
+  const getTab = () => mapTabs[_tab];
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <NavBar _setTab={_setTab} _searchParse={_searchParse} _setSearchParse={_setSearchParse}/>
+      {_tab}
+      {getTab()}
     </>
   )
-}
-
-export default App
+};
