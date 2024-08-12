@@ -58,7 +58,7 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
                         </li>
 
                     </ul>
-                    <div className="d-flex" >
+                    <div className="d-flex justify-content-end">
                         <form onSubmit={submitSearch} className="d-flex" role="search">
                             <input className="form-control me-1" type="search" placeholder="Search" aria-label="Search" onChange={onChangeSearchParse} value={_searchParse} />
                             <button type="submit" className="btn btn-outline-primary">
