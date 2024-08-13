@@ -12,6 +12,13 @@ export const CharacterIndex = ({ _observer }: props) => {
     const getData = () => _setCharList(getCharList());
     const validateId = (id: number) => (id > 8000 && getMCIdList().includes(id)) || id < 8000;
 
+    const sortedCharList = () => _charList.sort((char1, char2) => {
+        const nomeA = char1.name.toLowerCase();
+        const nomeB = char2.name.toLowerCase();
+        return (nomeA < nomeB) ? -1 : (nomeA > nomeB) ? 1 : 0;
+    });
+
+
     useEffect(() => {
         getData();
     }, [_observer]);
@@ -24,13 +31,17 @@ export const CharacterIndex = ({ _observer }: props) => {
                 <p>filter_list</p>
             </div>
 
-            {_charList.map((char, index) =>
+            {sortedCharList().map((char, index) =>
                 validateId(Number(char.id)) &&
                 <div className="p-1 card-char" key={`home-char-index-${index}`}>
-                    <div className="card" >
+                    <div className={`card bg-t${char.rank}`} >
                         <img src={`https://api.yatta.top/hsr/assets/UI//avatar/medium/${char.icon}.png`} className="card-img-top" alt={char.name} />
-                        <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-0 pb-2">
-                            <p className="card-title text-center">{getStringGender(char.name)}</p>
+                        <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-2 pb-1 rounded-bottom">
+                            <p className="card-title text-center mb-0">{getStringGender(char.name)}</p>
+                            <div className="w-100 d-flex align-items-center justify-content-center">
+                                <img src={`https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${char.types.combatType}.png`} className="me-1" alt={char.name} style={{ width: "auto", height: "3rem" }} />
+                                <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${char.types.pathType}Small.png`} className="ms-1" alt={char.name} style={{ width: "auto", height: "2.5rem" }} />
+                            </div>
                         </div>
                     </div>
                 </div>
