@@ -38,19 +38,22 @@
 
 .bg-t3 {
     background-color: #1451d3;
+    background: linear-gradient(180deg, rgba(104, 137, 207,1) 0%, rgba(20,81,211,1) 36%, rgba(17,48,115,1) 100%);
 }
 
 .bg-t4 {
     background-color: #591cbf;
+    background: linear-gradient(180deg, rgba(154, 114, 222, 1) 0%, rgba(89, 28, 191, 1) 36%, rgba(66, 20, 144, 1) 100%);
 }
 
 .bg-t5 {
-    background-color: #d4a46a;
+    background: rgb(242, 143, 21);
+    background: linear-gradient(180deg, rgba(227, 179, 119, 1) 0%, rgba(219, 149, 63, 1) 10%, rgba(175, 143, 104, 1) 100%);
 }
 
-.bg-t5 > div,
-.bg-t4 > div,
-.bg-t3 > div {
+.bg-t5>div,
+.bg-t4>div,
+.bg-t3>div {
     background-color: #212529;
     color: white;
 }
