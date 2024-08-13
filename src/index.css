@@ -1,0 +1,15 @@
+.card-char {
+    max-width: 10rem;
+}
+
+@media (min-width: 600px) {
+    .card-char {
+        max-width: 12rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-char {
+        max-width: 14rem;
+    }
+}

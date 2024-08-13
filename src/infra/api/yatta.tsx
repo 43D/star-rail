@@ -1,1 +1,0 @@
-export const base_url_yatta = `https://api.yatta.top/hsr/v2/`;

@@ -1,6 +1,24 @@
+import { useEffect } from "react";
 
-export const HomeIndex = () => {
+type props = {
+    _observer: number;
+}
+
+export const HomeIndex = ({ _observer }: props) => {
+    _observer;
+
+    useEffect(() => {
+        getData();
+    }, [_observer]);
+
+    const getData = () => ``;
+
     return (<>
-        bb
+        <div className="container-fluid">
+            <div className="row justify-content-center">
+               a
+            </div>
+        </div>
     </>);
 }
+
