@@ -18,11 +18,9 @@ export const CharacterIndex = ({ _observer }: props) => {
         return (nomeA < nomeB) ? -1 : (nomeA > nomeB) ? 1 : 0;
     });
 
-
     useEffect(() => {
         getData();
     }, [_observer]);
-
 
     return (<>
         <div className="row justify-content-center px-2">

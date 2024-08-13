@@ -1,14 +1,11 @@
 import { useState } from "react";
-import { TabsList } from "../../App";
 import { getBetaContent, getLanguage, getMCGender, languageList, MCGender, setBetaContent, setLanguage, setMCGender } from "../../core/localStorage/localStorageManager";
+import { useNavigate } from "react-router-dom";
 
-type props = {
-    _setTab: (value: TabsList) => void;
-    _searchParse: string;
-    _setSearchParse: (value: string) => void;
-}
 
-export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
+export const NavBar = () => {
+    const navigate = useNavigate();
+    const [_searchParse, _setSearchParse] = useState<string>('');
     const [_language, _setLanguage] = useState<languageList>(getLanguage());
     const [_mCGender, _setMCGender] = useState<MCGender>(getMCGender());
     const [_betaContent, _setBetaContent] = useState<boolean>(getBetaContent());
@@ -17,7 +14,7 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
     const onChangeSearchParse = (event: React.ChangeEvent<HTMLInputElement>) => _setSearchParse(event.target.value);
     const submitSearch = (event: React.FormEvent) => {
         event.preventDefault();
-        _setTab("SEARCH");
+        navigate(`/search/${_searchParse}`);
     }
 
     const onChangeLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -45,7 +42,7 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
     return (<>
         <nav className="navbar navbar-expand-sm bg-body-tertiary sticky-top">
             <div className="container-fluid">
-                <p className="navbar-brand mb-0" style={{ cursor: "pointer" }} onClick={() => _setTab("HOME")}>Build Rail</p>
+                <p className="navbar-brand mb-0" style={{ cursor: "pointer" }} onClick={() => navigate("/")}>Build Rail</p>
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -53,7 +50,7 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <button className="nav-link" onClick={() => _setTab("GUIA")}>
+                            <button className="nav-link" onClick={() => navigate("/guides")}>
                                 <i className="bi bi-card-list me-2" />
                                 Meus guias
                             </button>
@@ -65,19 +62,19 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
                             </button>
                             <ul className="dropdown-menu">
                                 <li>
-                                    <button className="dropdown-item" onClick={() => _setTab("CHAR")}>
+                                    <button className="dropdown-item" onClick={() => navigate("/character")}>
                                         <i className="bi bi-person-vcard-fill me-2"></i>
                                         Personagens
                                     </button>
                                 </li>
                                 <li>
-                                    <button className="dropdown-item" onClick={() => _setTab("LC")}>
+                                    <button className="dropdown-item" onClick={() => navigate("/lc")}>
                                         <i className="bi bi-file-image-fill me-2"></i>
                                         Cones de luz
                                     </button>
                                 </li>
                                 <li>
-                                    <button className="dropdown-item" onClick={() => _setTab("RELIC")}>
+                                    <button className="dropdown-item" onClick={() => navigate("/relic")}>
                                         <i className="bi bi-vinyl-fill me-2"></i>
                                         Relíquias
                                     </button>
