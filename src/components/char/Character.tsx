@@ -16,7 +16,7 @@ export const CharacterIndex = ({ _observer }: props) => {
 
     return (<>
         <div className="container-fluid">
-            <div className="row justify-content-center">
+            <div className="row justify-content-center px-2">
                 <div className="col-12 px-5 mb-3 mt-2">
                     <h4>Personagens</h4>
                     <p>filter_list</p>
