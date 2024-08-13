@@ -20,7 +20,7 @@ export type RoutesProps = {
 export const defaultTemplate = (mainElement: JSX.Element, nav: JSX.Element, footer: JSX.Element) => {
   return (<>
     {nav}
-    <div className="container-fluid" style={{ minHeight: "85vh" }}>
+    <div className="container-fluid" style={{ minHeight: "75vh" }}>
       {mainElement}
     </div>
     {footer}
