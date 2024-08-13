@@ -27,7 +27,7 @@ export const CharacterIndex = ({ _observer }: props) => {
                         <div className="card" >
                             <img src={`https://api.yatta.top/hsr/assets/UI//avatar/medium/${char.icon}.png`} className="card-img-top" alt={char.name} />
                             <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-0 pb-2">
-                                <p className="card-title">{char.name}</p>
+                                <p className="card-title text-center">{char.name}</p>
                             </div>
                         </div>
                     </div>
