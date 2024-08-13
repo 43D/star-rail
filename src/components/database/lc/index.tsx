@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { LCItensYattaResponse } from "../../../infra/api/iStarRailApi";
 import { getLCList } from "../../../core/localStorage/localStorageDataManager";
+import { useNavigate } from "react-router-dom";
 
 type props = {
     _observer: number;
 }
 
 export const LCIndex = ({ _observer }: props) => {
+    const navigate = useNavigate();
     const [_lcList, _setLcList] = useState<LCItensYattaResponse[]>([]);
     const getData = () => _setLcList(getLCList());
 
@@ -23,7 +25,7 @@ export const LCIndex = ({ _observer }: props) => {
 
             {_lcList.reverse().map((char, index) =>
                 <div className="p-1 card-char" key={`home-lc-index-${index}`}>
-                    <div className={`card h-100 bg-t${char.rank}`} >
+                    <div className={`card h-100 bg-t${char.rank}`}  onClick={() => navigate(`/lc/${char.id}`)} style={{ cursor: 'pointer' }} >
                         <img src={`https://api.yatta.top/hsr/assets/UI//equipment/medium/${char.icon}.png`} className="card-img-top" alt={char.name} />
                         <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-2 pb-1 rounded-bottom">
                             <p className="card-title text-center mb-0">{char.name}</p>
