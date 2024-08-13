@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { NavBar } from "./components/menu";
 import { HomeIndex } from "./components/home";
 import { StarRailApi } from "./infra/api/StarRailApi";
-import { CharacterIndex } from "./components/char/Character";
+import { CharacterIndex } from "./components/database/char";
 import { FooterIndex } from "./components/footer";
-import { iStarRailApi } from "./infra/api/iStarRailApi";
+import { iYattaStarRailApi } from "./infra/api/iStarRailApi";
 import { getAllDataApi } from "./core/api/dataCollect";
+import { LCIndex } from "./components/database/lc";
+import { RelicIndex } from "./components/database/relic";
 
 export type TabsList = `HOME` | `GUIA` | `CHAR` | `LC` | `RELIC` | `SEARCH`;
 
@@ -14,7 +16,7 @@ type TabMap = {
 }
 
 export type ApiInject = {
-  starRailApi: iStarRailApi;
+  starRailApi: iYattaStarRailApi;
 }
 
 const apis: ApiInject = {
@@ -31,8 +33,8 @@ export const App = () => {
     HOME: <HomeIndex _observer={_observer} />,
     GUIA: <HomeIndex _observer={_observer} />,
     CHAR: <CharacterIndex _observer={_observer} />,
-    LC: <HomeIndex _observer={_observer} />,
-    RELIC: <HomeIndex _observer={_observer} />,
+    LC: <LCIndex _observer={_observer} />,
+    RELIC: <RelicIndex _observer={_observer} />,
     SEARCH: <HomeIndex _observer={_observer} />,
   }
 

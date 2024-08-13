@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { CharItensYattaResponse } from "../../infra/api/iStarRailApi";
-import { getCharList } from "../../core/localStorage/localStorageCharManager";
-import { getMCIdList, getStringGender } from "../../core/util/GenderManipulator";
+import { CharItensYattaResponse } from "../../../infra/api/iStarRailApi";
+import { getCharList } from "../../../core/localStorage/localStorageDataManager";
+import { getMCIdList, getStringGender } from "../../../core/util/GenderManipulator";
 
 type props = {
     _observer: number;
@@ -34,7 +34,7 @@ export const CharacterIndex = ({ _observer }: props) => {
             {sortedCharList().map((char, index) =>
                 validateId(Number(char.id)) &&
                 <div className="p-1 card-char" key={`home-char-index-${index}`}>
-                    <div className={`card bg-t${char.rank}`} >
+                    <div className={`card  h-100 bg-t${char.rank}`} >
                         <img src={`https://api.yatta.top/hsr/assets/UI//avatar/medium/${char.icon}.png`} className="card-img-top" alt={char.name} />
                         <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-2 pb-1 rounded-bottom">
                             <p className="card-title text-center mb-0">{getStringGender(char.name)}</p>

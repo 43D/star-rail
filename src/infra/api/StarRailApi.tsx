@@ -1,7 +1,7 @@
-import { iStarRailApi } from "./iStarRailApi";
+import { iYattaStarRailApi } from "./iStarRailApi";
 import { base_url_yatta } from "./yatta/yatta";
 
-export const StarRailApi = (): iStarRailApi => {
+export const StarRailApi = (): iYattaStarRailApi => {
     const fetchAPIAsync = async (parse: string, requestOptions: RequestInit) => {
         return await fetch(base_url_yatta + parse, requestOptions)
             .then(async response => {
@@ -20,17 +20,25 @@ export const StarRailApi = (): iStarRailApi => {
             });
     }
 
-    const getReleaseChar = () => {
+    const getResponse = (endpoint: string) => {
         const myHeaders = new Headers();
         const requestOptions: RequestInit = {
             method: 'GET',
             headers: myHeaders,
             redirect: 'follow'
         };
-        return fetchAPIAsync(`avatar`, requestOptions);
+        return fetchAPIAsync(endpoint, requestOptions);
     }
 
+    const getReleaseChar = () => getResponse(`avatar`);
+
+    const getReleaseRelics = () => getResponse(`relic`);
+
+    const getReleaseLC = () => getResponse(`equipment`);
+
     return {
-        getReleaseChar
+        getReleaseChar,
+        getReleaseRelics,
+        getReleaseLC
     }
 }

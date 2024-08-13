@@ -1,5 +1,5 @@
 import { ApiInject } from "../../App";
-import { setCharList } from "../localStorage/localStorageCharManager";
+import { setCharList, setLCList, setRelicList } from "../localStorage/localStorageDataManager";
 
 
 export const getAllDataApi = (api: ApiInject) => {
@@ -8,8 +8,20 @@ export const getAllDataApi = (api: ApiInject) => {
         setCharList(Object.values(res.data.items));
     }
 
+    const getRelicData = async () => {
+        const res = await api.starRailApi.getReleaseRelics();
+        setRelicList(Object.values(res.data.items));
+    }
+
+    const getLCData = async () => {
+        const res = await api.starRailApi.getReleaseLC();
+        setLCList(Object.values(res.data.items));
+    }
+
     const init = async () => {
         await getCharData();
+        await getRelicData();
+        await getLCData();
     }
 
     return {
