@@ -38,7 +38,7 @@
 
 .bg-t3 {
     background-color: #1451d3;
-    background: linear-gradient(180deg, rgba(104, 137, 207,1) 0%, rgba(20,81,211,1) 36%, rgba(17,48,115,1) 100%);
+    background: linear-gradient(180deg, rgba(104, 137, 207, 1) 0%, rgba(20, 81, 211, 1) 36%, rgba(17, 48, 115, 1) 100%);
 }
 
 .bg-t4 {
@@ -60,6 +60,15 @@
 
 .card-char {
     max-width: 7rem;
+}
+
+.card {
+    border-width: 2px !important;
+}
+
+.card:hover {
+    border-color: #fff;
+    border-width: 2px !important;
 }
 
 @media (min-width: 600px) {
