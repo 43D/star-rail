@@ -1,4 +1,4 @@
-import { CharItensYattaResponse } from "../infra/api/iStarRailApi";
+import { CharItensYattaResponse } from "../../infra/api/iStarRailApi";
 
 export const setCharList = (list: CharItensYattaResponse[]) => {
     const charListString = JSON.stringify(list);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TabsList } from "../../App";
-import { getBetaContent, getLanguage, languageList, setBetaContent, setLanguage } from "../../core/localStorageManager";
+import { getBetaContent, getLanguage, getMCGender, languageList, MCGender, setBetaContent, setLanguage, setMCGender } from "../../core/localStorage/localStorageManager";
 
 type props = {
     _setTab: (value: TabsList) => void;
@@ -10,7 +10,9 @@ type props = {
 
 export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
     const [_language, _setLanguage] = useState<languageList>(getLanguage());
+    const [_mCGender, _setMCGender] = useState<MCGender>(getMCGender());
     const [_betaContent, _setBetaContent] = useState<boolean>(getBetaContent());
+    const [_refresh, _setRefresh] = useState<boolean>(false);
 
     const onChangeSearchParse = (event: React.ChangeEvent<HTMLInputElement>) => _setSearchParse(event.target.value);
     const submitSearch = (event: React.FormEvent) => {
@@ -22,15 +24,26 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
         const value = event.target.value as languageList;
         setLanguage(value);
         _setLanguage(value);
+        _setRefresh(true);
     }
 
     const onChangeBetaContent = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBetaContent(event.target.checked);
         _setBetaContent(event.target.checked);
+        _setRefresh(true);
     }
 
+    const onChangeGender = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = event.target.value as MCGender;
+        setMCGender(value);
+        _setMCGender(value);
+        _setRefresh(true);
+    }
+
+    const checkNeedRefresh = () => (_refresh) ? location.reload() : null;
+
     return (<>
-        <nav className="navbar navbar-expand-sm bg-body-tertiary">
+        <nav className="navbar navbar-expand-sm bg-body-tertiary sticky-top">
             <div className="container-fluid">
                 <p className="navbar-brand mb-0" style={{ cursor: "pointer" }} onClick={() => _setTab("HOME")}>Build Rail</p>
 
@@ -87,7 +100,7 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
                 </div>
             </div>
         </nav>
-        <div className="modal fade" id="modalSettings" tabIndex={-1}>
+        <div className="modal fade" id="modalSettings" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false" >
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -95,7 +108,7 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
                             <i className="bi bi-gear me-2"></i>
                             Configurações
                         </h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={checkNeedRefresh} />
                     </div>
                     <div className="modal-body">
                         <div className="input-group mb-3">
@@ -105,6 +118,13 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
                                 </div>
                             </div>
                             <label className="input-group-text" htmlFor="checkBoxBetaContent" style={{ width: "calc(100% - 50px)" }}>Ativar conteúdos não lançados</label>
+                        </div>
+                        <div className="input-group mb-3">
+                            <label className="input-group-text" htmlFor="selectMCGender">Gênero</label>
+                            <select className="form-select" id="selectMCGender" onChange={onChangeGender} value={_mCGender}>
+                                <option value="F">Feminino</option>
+                                <option value="M">Masculino</option>
+                            </select>
                         </div>
                         <div className="input-group mb-3">
                             <label className="input-group-text" htmlFor="selectLanguage">Idioma</label>

@@ -3,7 +3,9 @@ import { NavBar } from "./components/menu";
 import { HomeIndex } from "./components/home";
 import { StarRailApi } from "./infra/api/StarRailApi";
 import { CharacterIndex } from "./components/char/Character";
-import { setCharList } from "./core/localStorageCharManager";
+import { FooterIndex } from "./components/footer";
+import { iStarRailApi } from "./infra/api/iStarRailApi";
+import { getAllDataApi } from "./core/api/dataCollect";
 
 export type TabsList = `HOME` | `GUIA` | `CHAR` | `LC` | `RELIC` | `SEARCH`;
 
@@ -11,16 +13,19 @@ type TabMap = {
   [name in TabsList]: JSX.Element;
 }
 
-const apis = {
-  starRailApi: StarRailApi()
+export type ApiInject = {
+  starRailApi: iStarRailApi;
 }
 
-
+const apis: ApiInject = {
+  starRailApi: StarRailApi()
+}
 
 export const App = () => {
   const [_searchParse, _setSearchParse] = useState<string>(``);
   const [_tab, _setTab] = useState<TabsList>(`HOME`);
   const [_observer, _setObserver] = useState<number>(0);
+  const getDataApi = getAllDataApi(apis);
 
   const mapTabs: TabMap = {
     HOME: <HomeIndex _observer={_observer} />,
@@ -33,13 +38,8 @@ export const App = () => {
 
   const getTab = () => mapTabs[_tab];
 
-  const getCharData = async () => {
-    const res = await apis.starRailApi.getReleaseChar();
-    setCharList(Object.values(res.data.items));
-  }
-
   const init = async () => {
-    await getCharData();
+    await getDataApi.init();
     _setObserver(prev => prev += 1);
   }
 
@@ -51,8 +51,11 @@ export const App = () => {
   return (
     <>
       <NavBar _setTab={_setTab} _searchParse={_searchParse} _setSearchParse={_setSearchParse} />
-      {_tab}
-      {getTab()}
+      <div className="container-fluid" style={{ minHeight: "85vh" }}>
+        {_tab}
+        {getTab()}
+      </div>
+      <FooterIndex />
     </>
   )
 };
