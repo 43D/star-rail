@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { TabsList } from "../../App";
+import { getBetaContent, getLanguage, languageList, setBetaContent, setLanguage } from "../../core/localStorageManager";
 
 type props = {
     _setTab: (value: TabsList) => void;
@@ -7,11 +9,24 @@ type props = {
 }
 
 export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
+    const [_language, _setLanguage] = useState<languageList>(getLanguage());
+    const [_betaContent, _setBetaContent] = useState<boolean>(getBetaContent());
 
     const onChangeSearchParse = (event: React.ChangeEvent<HTMLInputElement>) => _setSearchParse(event.target.value);
     const submitSearch = (event: React.FormEvent) => {
         event.preventDefault();
         _setTab("SEARCH");
+    }
+
+    const onChangeLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = event.target.value as languageList;
+        setLanguage(value);
+        _setLanguage(value);
+    }
+
+    const onChangeBetaContent = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setBetaContent(event.target.checked);
+        _setBetaContent(event.target.checked);
     }
 
     return (<>
@@ -26,13 +41,13 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <button className="nav-link" onClick={() => _setTab("GUIA")}>
-                                <i className="bi bi-card-list me-2"></i>
-                                Guias
+                                <i className="bi bi-card-list me-2" />
+                                Meus guias
                             </button>
                         </li>
                         <li className="nav-item dropdown">
                             <button className="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i className="bi bi-database me-2"></i>
+                                <i className="bi bi-database me-2" />
                                 Database
                             </button>
                             <ul className="dropdown-menu">
@@ -86,15 +101,16 @@ export const NavBar = ({ _setTab, _searchParse, _setSearchParse }: props) => {
                         <div className="input-group mb-3">
                             <div className="input-group-text px-1">
                                 <div className="form-check form-switch d-flex align-items-center">
-                                    <input className="form-check-input" type="checkbox" role="switch" id="checkBoxBetaContent" />
+                                    <input className="form-check-input" checked={_betaContent} onChange={onChangeBetaContent} type="checkbox" role="switch" id="checkBoxBetaContent" />
                                 </div>
                             </div>
-                            <label className="input-group-text" htmlFor="checkBoxBetaContent" style={{width: "calc(100% - 50px)"}}>Ativar conteúdos não lançados</label>
+                            <label className="input-group-text" htmlFor="checkBoxBetaContent" style={{ width: "calc(100% - 50px)" }}>Ativar conteúdos não lançados</label>
                         </div>
                         <div className="input-group mb-3">
                             <label className="input-group-text" htmlFor="selectLanguage">Idioma</label>
-                            <select className="form-select" id="selectLanguage">
-                                <option value="1">Português</option>
+                            <select className="form-select" id="selectLanguage" onChange={onChangeLanguage} value={_language}>
+                                <option value="en">English</option>
+                                <option value="pt">Português</option>
                             </select>
                         </div>
                     </div>
