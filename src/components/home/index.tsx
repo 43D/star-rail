@@ -15,7 +15,7 @@ export const HomeIndex = ({ _observer }: props) => {
 
     return (<>
         <div className="container-fluid">
-            <div className="row justify-content-center">
+            <div className="row">
                a
             </div>
         </div>

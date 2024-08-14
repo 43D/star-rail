@@ -4,6 +4,7 @@ import { ApiInject } from "../App";
 import { NavBar } from "../components/menu";
 import { FooterIndex } from "../components/footer";
 import { DatabaseRouteSettings } from "./database/DatabaseRouteSettings";
+import { GuidesRouteSettings } from "./guides/GuidesRouteSettings";
 
 type props = {
   injectAPI: ApiInject;
@@ -33,10 +34,13 @@ function RoutesApp({ injectAPI, _observable: _observable }: props) {
 
   const main = MainRoute({ injectAPI, nav, footer, _observable });
   const dbRoute = DatabaseRouteSettings({ injectAPI, nav, footer, _observable });
+  const gRoute = GuidesRouteSettings({ injectAPI, nav, footer, _observable });
 
   const routes = useRoutes([
     ...main,
     ...dbRoute,
+    ...gRoute,
+
   ]);
 
   return routes;
