@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CharItensYattaResponse } from "../../../infra/api/iStarRailApi";
+import { CharItensYattaResponse, combatType, pathType } from "../../../infra/api/iStarRailApi";
 import { getCharList } from "../../../core/localStorage/localStorageDataManager";
 import { getMCIdList, getStringGender } from "../../../core/util/GenderManipulator";
 import { useNavigate } from "react-router-dom";
@@ -14,24 +14,92 @@ export const CharacterIndex = ({ _observer }: props) => {
     const getData = () => _setCharList(getCharList());
     const validateId = (id: number) => (id > 8000 && getMCIdList().includes(id)) || id < 8000;
 
-    const sortedCharList = () => _charList.sort((char1, char2) => {
-        const nomeA = char1.name.toLowerCase();
-        const nomeB = char2.name.toLowerCase();
-        return (nomeA < nomeB) ? -1 : (nomeA > nomeB) ? 1 : 0;
-    });
+    const [_isFiltered, _setFiltered] = useState<boolean>(false);
+    const [_filterPath, _setFilterPath] = useState<pathType[]>([]);
+    const [_filterCombat, _setFilterCombat] = useState<combatType[]>([]);
+
+    const toggleFilterPath = (path: pathType) =>
+        _setFilterPath(prev => !prev.includes(path) ? [...prev, path] : prev.filter((v) => v != path));
+
+    const toggleFilterCombat = (combat: combatType) =>
+        _setFilterCombat(prev => !prev.includes(combat) ? [...prev, combat] : prev.filter((v) => v != combat));
+
+    const sortedCharList = (list: CharItensYattaResponse[]) =>
+        list.sort((char1, char2) => {
+            const nomeA = char1.name.toLowerCase();
+            const nomeB = char2.name.toLowerCase();
+            return (nomeA < nomeB) ? -1 : (nomeA > nomeB) ? 1 : 0;
+        });
+
+    const getListFiltered = () => {
+        let list = _charList;
+
+        if (_filterPath.length > 0)
+            list = list.filter((char) => _filterPath.includes(char.types.pathType));
+
+        if (_filterCombat.length > 0)
+            list = list.filter((char) => _filterCombat.includes(char.types.combatType));
+
+        return list;
+    }
+
+    const getList = () => (_isFiltered) ? sortedCharList(getListFiltered()) : sortedCharList(_charList);
 
     useEffect(() => {
         getData();
     }, [_observer]);
 
+    useEffect(() => {
+        _setFiltered((_filterPath.length > 0 || _filterCombat.length > 0));
+    }, [_filterPath, _filterCombat]);
+
+    const getButtonPath = (path: pathType) => (
+        <button className={`btn mx-1 ` + ((_filterPath.includes(path)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterPath(path)}>
+            <img style={{ maxWidth: `2rem`, height: `auto` }} src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${path}Small.png`} alt={path} />
+        </button>
+    )
+
+    const getButtonCombat = (combat: combatType) => (
+        <button className={`btn mx-1 ` + ((_filterCombat.includes(combat)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterCombat(combat)}>
+            <img style={{ maxWidth: `2rem`, height: `auto` }} src={`https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${combat}.png`} alt={combat} />
+        </button>
+    )
+
+    const clearFilter = () => {
+        _setFilterCombat([]);
+        _setFilterPath([]);
+    }
+
     return (<>
         <div className="row justify-content-center px-2">
-            <div className="col-12 px-2 mb-3 mt-2">
-                <h4>Personagens</h4>
-                <p>filter_list</p>
+            <div className="col-12 px-2 mb-3 mt-4">
+                <h3 className="text-center mb-4">Personagens</h3>
+                <div className="d-flex justify-content-center flex-wrap mt-2">
+                    {getButtonCombat(`Fire`)}
+                    {getButtonCombat(`Ice`)}
+                    {getButtonCombat(`Imaginary`)}
+                    {getButtonCombat(`Physical`)}
+                    {getButtonCombat(`Quantum`)}
+                    {getButtonCombat(`Thunder`)}
+                    {getButtonCombat(`Wind`)}
+                </div>
+                <div className="d-flex justify-content-center flex-wrap mt-2">
+                    {getButtonPath(`Knight`)}
+                    {getButtonPath(`Mage`)}
+                    {getButtonPath(`Priest`)}
+                    {getButtonPath(`Rogue`)}
+                    {getButtonPath(`Shaman`)}
+                    {getButtonPath(`Warlock`)}
+                    {getButtonPath(`Warrior`)}
+                    {_isFiltered &&
+                        <button className={`btn btn-outline-danger mx-1`} onClick={clearFilter}>
+                            Limpar Filtros
+                        </button>
+                    }
+                </div>
             </div>
 
-            {sortedCharList().map((char, index) =>
+            {getList().map((char, index) =>
                 validateId(Number(char.id)) &&
                 <div className="p-1 card-char" key={`home-char-index-${index}`}>
                     <div className={`card  h-100 bg-t${char.rank}`} onClick={() => navigate(`/character/${char.id}`)} style={{ cursor: 'pointer' }}>
@@ -39,8 +107,8 @@ export const CharacterIndex = ({ _observer }: props) => {
                         <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-2 pb-1 rounded-bottom">
                             <p className="card-title text-center mb-0">{getStringGender(char.name)}</p>
                             <div className="w-100 d-flex align-items-center justify-content-center">
-                                <img src={`https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${char.types.combatType}.png`} className="me-1" alt={char.name} style={{ width: "auto", height: "3rem" }} />
-                                <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${char.types.pathType}Small.png`} className="ms-1" alt={char.name} style={{ width: "auto", height: "2.5rem" }} />
+                                <img src={`https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${char.types.combatType}.png`} className="me-1" alt={char.types.combatType} style={{ width: "auto", height: "3rem" }} />
+                                <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${char.types.pathType}Small.png`} className="ms-1" alt={char.types.pathType} style={{ width: "auto", height: "2.5rem" }} />
                             </div>
                         </div>
                     </div>

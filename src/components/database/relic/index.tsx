@@ -34,7 +34,6 @@ export const RelicIndex = ({ _observer }: props) => {
                         </div>
                     </div>
                 </div>
-
             )}
             <hr />
             {_relicList.reverse().map((char, index) =>

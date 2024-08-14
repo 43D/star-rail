@@ -30,7 +30,7 @@ export const LCIndex = ({ _observer }: props) => {
                         <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-2 pb-1 rounded-bottom">
                             <p className="card-title text-center mb-0">{char.name}</p>
                             <div className="w-100 d-flex align-items-center justify-content-center">
-                                <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${char.types.pathType}Small.png`} className="ms-1" alt={char.name} style={{ width: "auto", height: "2.5rem" }} />
+                                <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${char.types.pathType}Small.png`} className="ms-1" alt={char.types.pathType} style={{ width: "auto", height: "2.5rem" }} />
                             </div>
                         </div>
                     </div>
