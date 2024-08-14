@@ -54,13 +54,13 @@ export const CharacterIndex = ({ _observer }: props) => {
     }, [_filterPath, _filterCombat]);
 
     const getButtonPath = (path: pathType) => (
-        <button className={`btn mx-1 ` + ((_filterPath.includes(path)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterPath(path)}>
+        <button className={`btn  mt-2 mx-1 ` + ((_filterPath.includes(path)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterPath(path)}>
             <img style={{ maxWidth: `2rem`, height: `auto` }} src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${path}Small.png`} alt={path} />
         </button>
     )
 
     const getButtonCombat = (combat: combatType) => (
-        <button className={`btn mx-1 ` + ((_filterCombat.includes(combat)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterCombat(combat)}>
+        <button className={`btn mt-2 mx-1 ` + ((_filterCombat.includes(combat)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterCombat(combat)}>
             <img style={{ maxWidth: `2rem`, height: `auto` }} src={`https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${combat}.png`} alt={combat} />
         </button>
     )
@@ -74,7 +74,7 @@ export const CharacterIndex = ({ _observer }: props) => {
         <div className="row justify-content-center px-2">
             <div className="col-12 px-2 mb-3 mt-4">
                 <h3 className="text-center mb-4">Personagens</h3>
-                <div className="d-flex justify-content-center flex-wrap mt-2">
+                <div className="d-flex justify-content-center flex-wrap">
                     {getButtonCombat(`Fire`)}
                     {getButtonCombat(`Ice`)}
                     {getButtonCombat(`Imaginary`)}
@@ -83,7 +83,7 @@ export const CharacterIndex = ({ _observer }: props) => {
                     {getButtonCombat(`Thunder`)}
                     {getButtonCombat(`Wind`)}
                 </div>
-                <div className="d-flex justify-content-center flex-wrap mt-2">
+                <div className="d-flex justify-content-center flex-wrap">
                     {getButtonPath(`Knight`)}
                     {getButtonPath(`Mage`)}
                     {getButtonPath(`Priest`)}
@@ -92,7 +92,7 @@ export const CharacterIndex = ({ _observer }: props) => {
                     {getButtonPath(`Warlock`)}
                     {getButtonPath(`Warrior`)}
                     {_isFiltered &&
-                        <button className={`btn btn-outline-danger mx-1`} onClick={clearFilter}>
+                        <button className={`btn btn-outline-danger mx-1 mt-2`} onClick={clearFilter}>
                             Limpar Filtros
                         </button>
                     }
