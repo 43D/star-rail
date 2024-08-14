@@ -72,7 +72,7 @@ export const CharacterIndex = ({ _observer }: props) => {
 
     return (<>
         <div className="row justify-content-center px-2">
-            <div className="col-12 px-2 mb-3 mt-4">
+            <div className="col-12 mb-3 mt-4">
                 <h3 className="text-center mb-4">Personagens</h3>
                 <div className="d-flex justify-content-center flex-wrap">
                     {getButtonCombat(`Fire`)}
