@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CharItensYattaResponse, combatType, pathType } from "../../../infra/api/iStarRailApi";
+import { CharItensYattaResponse, combatType, pathType, RankChar } from "../../../infra/api/iStarRailApi";
 import { getCharList } from "../../../core/localStorage/localStorageDataManager";
 import { getMCIdList, getStringGender } from "../../../core/util/GenderManipulator";
 import { useNavigate } from "react-router-dom";
@@ -17,12 +17,16 @@ export const CharacterIndex = ({ _observer }: props) => {
     const [_isFiltered, _setFiltered] = useState<boolean>(false);
     const [_filterPath, _setFilterPath] = useState<pathType[]>([]);
     const [_filterCombat, _setFilterCombat] = useState<combatType[]>([]);
+    const [_filterRank, _setFilterRank] = useState<RankChar[]>([]);
 
     const toggleFilterPath = (path: pathType) =>
         _setFilterPath(prev => !prev.includes(path) ? [...prev, path] : prev.filter((v) => v != path));
 
     const toggleFilterCombat = (combat: combatType) =>
         _setFilterCombat(prev => !prev.includes(combat) ? [...prev, combat] : prev.filter((v) => v != combat));
+
+    const toggleFilterRank = (rank: RankChar) =>
+        _setFilterRank(prev => !prev.includes(rank) ? [...prev, rank] : prev.filter((v) => v != rank));
 
     const sortedCharList = (list: CharItensYattaResponse[]) =>
         list.sort((char1, char2) => {
@@ -40,6 +44,9 @@ export const CharacterIndex = ({ _observer }: props) => {
         if (_filterCombat.length > 0)
             list = list.filter((char) => _filterCombat.includes(char.types.combatType));
 
+        if (_filterRank.length > 0)
+            list = list.filter((char) => _filterRank.includes(char.rank));
+
         return list;
     }
 
@@ -50,8 +57,8 @@ export const CharacterIndex = ({ _observer }: props) => {
     }, [_observer]);
 
     useEffect(() => {
-        _setFiltered((_filterPath.length > 0 || _filterCombat.length > 0));
-    }, [_filterPath, _filterCombat]);
+        _setFiltered((_filterPath.length > 0 || _filterCombat.length > 0 || _filterRank.length > 0));
+    }, [_filterPath, _filterCombat, _filterRank]);
 
     const getButtonPath = (path: pathType) => (
         <button className={`btn  mt-2 mx-1 ` + ((_filterPath.includes(path)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterPath(path)}>
@@ -68,6 +75,7 @@ export const CharacterIndex = ({ _observer }: props) => {
     const clearFilter = () => {
         _setFilterCombat([]);
         _setFilterPath([]);
+        _setFilterRank([]);
     }
 
     return (<>
@@ -91,6 +99,14 @@ export const CharacterIndex = ({ _observer }: props) => {
                     {getButtonPath(`Shaman`)}
                     {getButtonPath(`Warlock`)}
                     {getButtonPath(`Warrior`)}
+                </div>
+                <div className="d-flex justify-content-center flex-wrap">
+                    <button className={'btn mt-2 mx-1  ' + ((_filterRank.includes(5)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(5)}>
+                        <img style={{ maxWidth: `2rem`, height: `auto` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/2/2b/Icon_5_Stars.png" alt={"Rank_5"} />
+                    </button>
+                    <button className={'btn mt-2 mx-1  ' + ((_filterRank.includes(4)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(4)}>
+                        <img style={{ maxWidth: `2rem`, height: `auto` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/Icon_4_Stars.png/" alt={"Rank_4"} />
+                    </button>
                     {_isFiltered &&
                         <button className={`btn btn-outline-danger mx-1 mt-2`} onClick={clearFilter}>
                             Limpar Filtros
