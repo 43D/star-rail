@@ -92,13 +92,13 @@ export const CharacterIndex = ({ _observer }: props) => {
                     {getButtonCombat(`Wind`)}
                 </div>
                 <div className="d-flex justify-content-center flex-wrap">
-                    {getButtonPath(`Knight`)}
-                    {getButtonPath(`Mage`)}
-                    {getButtonPath(`Priest`)}
+                    {getButtonPath(`Warrior`)}
                     {getButtonPath(`Rogue`)}
+                    {getButtonPath(`Mage`)}
                     {getButtonPath(`Shaman`)}
                     {getButtonPath(`Warlock`)}
-                    {getButtonPath(`Warrior`)}
+                    {getButtonPath(`Knight`)}
+                    {getButtonPath(`Priest`)}
                 </div>
                 <div className="d-flex justify-content-center flex-wrap">
                     <button className={'btn mt-2 mx-1  ' + ((_filterRank.includes(5)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(5)}>
