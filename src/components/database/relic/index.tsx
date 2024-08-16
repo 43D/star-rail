@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { RelicItensYattaResponse } from "../../../infra/api/iStarRailApi";
-import { getRelicList } from "../../../core/localStorage/localStorageDataManager";
+import { getRelicsList } from "../../../core/localStorage/localStorageDataManager";
 import { getStringGender } from "../../../core/util/GenderManipulator";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ type props = {
 export const RelicIndex = ({ _observer }: props) => {
     const navigate = useNavigate();
     const [_relicList, _setRelicList] = useState<RelicItensYattaResponse[]>([]);
-    const getData = () => _setRelicList(getRelicList().reverse());
+    const getData = () => _setRelicList(getRelicsList().reverse());
 
     useEffect(() => {
         getData();

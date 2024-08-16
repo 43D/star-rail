@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { LCItensYattaResponse, pathType } from "../../../infra/api/iStarRailApi";
-import { getLCList } from "../../../core/localStorage/localStorageDataManager";
+import { getLCsList } from "../../../core/localStorage/localStorageDataManager";
 import { useNavigate } from "react-router-dom";
 
 type props = {
@@ -10,7 +10,7 @@ type props = {
 export const LCIndex = ({ _observer }: props) => {
     const navigate = useNavigate();
     const [_lcList, _setLcList] = useState<LCItensYattaResponse[]>([]);
-    const getData = () => _setLcList(getLCList().reverse());
+    const getData = () => _setLcList(getLCsList().reverse());
     const [_filterPath, _setFilterPath] = useState<pathType[]>([]);
 
     const toggleFilterPath = (path: pathType) =>

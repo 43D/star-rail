@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CharItensYattaResponse, combatType, pathType } from "../../../infra/api/iStarRailApi";
-import { getCharList } from "../../../core/localStorage/localStorageDataManager";
+import { getCharsList } from "../../../core/localStorage/localStorageDataManager";
 import { getMCIdList, getStringGender } from "../../../core/util/GenderManipulator";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ type props = {
 export const CharacterIndex = ({ _observer }: props) => {
     const navigate = useNavigate();
     const [_charList, _setCharList] = useState<CharItensYattaResponse[]>([]);
-    const getData = () => _setCharList(getCharList());
+    const getData = () => _setCharList(getCharsList());
     const validateId = (id: number) => (id > 8000 && getMCIdList().includes(id)) || id < 8000;
 
     const [_isFiltered, _setFiltered] = useState<boolean>(false);
