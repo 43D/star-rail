@@ -1,10 +1,12 @@
 export type pathType = `Knight` | `Rogue` | `Mage` | `Warlock` | `Priest` | `Warrior` | `Shaman`;
 export type combatType = `Ice` | `Physical` | `Fire` | `Wind` | `Thunder` | `Quantum` | `Imaginary`;
+export type RankChar = 5 | 4;
+export type RankLC = 5 | 4 | 3;
 
 export type CharItensYattaResponse = {
     id: string;
     name: string;
-    rank: number;
+    rank: RankChar;
     types: {
         pathType: pathType;
         combatType: combatType;
@@ -26,7 +28,7 @@ export type RelicItensYattaResponse = {
 export type LCItensYattaResponse = {
     id: string;
     name: string;
-    rank: number;
+    rank: RankLC;
     types: {
         pathType: pathType;
     };
