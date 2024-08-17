@@ -17,7 +17,9 @@ export const RelicItemIndex = ({ _observer }: props) => {
         return <NotFound />
 
 
-    return (<>
-        relic {id}
-    </>);
+    return (
+        <div className="container-fluid" style={{ minHeight: "75vh" }}>
+            relic {id}
+        </div>
+    );
 }

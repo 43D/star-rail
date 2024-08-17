@@ -9,7 +9,6 @@ import { NotFound } from "../../components/NotFound";
 import { RoutesProps, defaultTemplate } from "../routes";
 
 export const DatabaseRouteSettings = ({ injectAPI, nav, footer, _observable }: RoutesProps) => {
-    injectAPI;
     const routes = [
         {
             path: '/character',
@@ -25,7 +24,7 @@ export const DatabaseRouteSettings = ({ injectAPI, nav, footer, _observable }: R
         },
         {
             path: '/character/:id',
-            element: defaultTemplate(<CharacterItemIndex key={4} _observer={_observable} />, nav, footer),
+            element: defaultTemplate(<CharacterItemIndex apiYatta={injectAPI.starRailApi} key={4} _observer={_observable} />, nav, footer),
         },
         {
             path: '/lc/:id',

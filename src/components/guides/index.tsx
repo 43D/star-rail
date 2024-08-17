@@ -5,7 +5,9 @@ type props = {
 export const GuidesIndex = ({ _observer }: props) => {
     _observer;
 
-    return (<>
-        guides
-    </>);
+    return (
+        <div className="container-fluid" style={{ minHeight: "75vh" }}>
+            guides
+        </div>
+    );
 }

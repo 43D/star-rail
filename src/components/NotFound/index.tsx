@@ -1,5 +1,7 @@
 export const NotFound = () => {
-    return(<>
-        404
-    </>)
+    return (
+        <div className="container-fluid" style={{ minHeight: "75vh" }}>
+            404
+        </div>
+    )
 }

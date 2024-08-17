@@ -1,13 +1,11 @@
 export type languageList = `pt` | `en`;
-
 export type MCGender = 'F' | 'M';
+export type CoverCharTheme = 'PALETTE' | 'PATH' | `TRANS`;
 
 export const setLanguage = (language: languageList) => localStorage.setItem('language', language);
-
 export const setBetaContent = (beta: boolean) => localStorage.setItem('beta', String(beta));
-
 export const setMCGender = (mc: MCGender) => localStorage.setItem('MCGender', mc);
-
+export const setCoverCharTheme = (color: CoverCharTheme) => localStorage.setItem('CoverCharTheme', color);
 
 export const getLanguage = () => {
     const language = localStorage.getItem('language') as languageList;
@@ -34,4 +32,13 @@ export const getMCGender = () => {
         return 'F';
     }
     return mc;
+};
+
+export const getCoverCharTheme = () => {
+    const color = localStorage.getItem('CoverCharTheme') as CoverCharTheme;
+    if (color == null) {
+        setCoverCharTheme('PALETTE');
+        return 'PALETTE';
+    }
+    return color;
 };

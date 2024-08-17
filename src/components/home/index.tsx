@@ -14,7 +14,7 @@ export const HomeIndex = ({ _observer }: props) => {
     const getData = () => ``;
 
     return (<>
-        <div className="container-fluid">
+        <div className="container-fluid" style={{ minHeight: "75vh" }}>
             <div className="row">
                a
             </div>

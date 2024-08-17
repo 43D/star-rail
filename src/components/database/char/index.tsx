@@ -78,59 +78,61 @@ export const CharacterIndex = ({ _observer }: props) => {
         _setFilterRank([]);
     }
 
-    return (<>
-        <div className="row justify-content-center px-2">
-            <div className="col-12 mb-3 mt-4">
-                <h3 className="text-center mb-4">Personagens</h3>
-                <div className="d-flex justify-content-center flex-wrap">
-                    {getButtonCombat(`Fire`)}
-                    {getButtonCombat(`Ice`)}
-                    {getButtonCombat(`Imaginary`)}
-                    {getButtonCombat(`Physical`)}
-                    {getButtonCombat(`Quantum`)}
-                    {getButtonCombat(`Thunder`)}
-                    {getButtonCombat(`Wind`)}
-                </div>
-                <div className="d-flex justify-content-center flex-wrap">
-                    {getButtonPath(`Priest`)}
-                    {getButtonPath(`Warrior`)}
-                    {getButtonPath(`Mage`)}
-                    {getButtonPath(`Shaman`)}
-                    {getButtonPath(`Rogue`)}
-                    {getButtonPath(`Warlock`)}
-                    {getButtonPath(`Knight`)}
-                </div>
-                <div className="d-flex justify-content-center flex-wrap">
-                    <button className={'btn mt-2 mx-1  ' + ((_filterRank.includes(5)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(5)}>
-                        <img style={{ maxWidth: `2rem`, height: `auto` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/2/2b/Icon_5_Stars.png" alt={"Rank_5"} />
-                    </button>
-                    <button className={'btn mt-2 mx-1  ' + ((_filterRank.includes(4)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(4)}>
-                        <img style={{ maxWidth: `2rem`, height: `auto` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/Icon_4_Stars.png/" alt={"Rank_4"} />
-                    </button>
-                    {_isFiltered &&
-                        <button className={`btn btn-outline-danger mx-1 mt-2`} onClick={clearFilter}>
-                            Limpar Filtros
+    return (
+        <div className="container-fluid" style={{ minHeight: "75vh" }}>
+            <div className="row justify-content-center px-2">
+                <div className="col-12 mb-3 mt-4">
+                    <h3 className="text-center mb-4">Personagens</h3>
+                    <div className="d-flex justify-content-center flex-wrap">
+                        {getButtonCombat(`Fire`)}
+                        {getButtonCombat(`Ice`)}
+                        {getButtonCombat(`Imaginary`)}
+                        {getButtonCombat(`Physical`)}
+                        {getButtonCombat(`Quantum`)}
+                        {getButtonCombat(`Thunder`)}
+                        {getButtonCombat(`Wind`)}
+                    </div>
+                    <div className="d-flex justify-content-center flex-wrap">
+                        {getButtonPath(`Priest`)}
+                        {getButtonPath(`Warrior`)}
+                        {getButtonPath(`Mage`)}
+                        {getButtonPath(`Shaman`)}
+                        {getButtonPath(`Rogue`)}
+                        {getButtonPath(`Warlock`)}
+                        {getButtonPath(`Knight`)}
+                    </div>
+                    <div className="d-flex justify-content-center flex-wrap">
+                        <button className={'btn mt-2 mx-1  ' + ((_filterRank.includes(5)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(5)}>
+                            <img style={{ maxWidth: `2rem`, height: `auto` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/2/2b/Icon_5_Stars.png" alt={"Rank_5"} />
                         </button>
-                    }
-                </div>
-            </div>
-
-            {getList().map((char, index) =>
-                validateId(Number(char.id)) &&
-                <div className="p-1 card-char" key={`home-char-index-${index}`}>
-                    <div className={`card  h-100 bg-t${char.rank}`} onClick={() => navigate(`/character/${char.id}`)} style={{ cursor: 'pointer' }}>
-                        <img src={`https://api.yatta.top/hsr/assets/UI//avatar/medium/${char.icon}.png`} className="card-img-top" alt={char.name} />
-                        <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-2 pb-1 rounded-bottom">
-                            <p className="card-title text-center mb-0">{getStringGender(char.name)}</p>
-                            <div className="w-100 d-flex align-items-center justify-content-center">
-                                <img src={`https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${char.types.combatType}.png`} className="me-1" alt={char.types.combatType} style={{ width: "auto", height: "3rem" }} />
-                                <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${char.types.pathType}Small.png`} className="ms-1" alt={char.types.pathType} style={{ width: "auto", height: "2.5rem" }} />
-                            </div>
-                        </div>
+                        <button className={'btn mt-2 mx-1  ' + ((_filterRank.includes(4)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(4)}>
+                            <img style={{ maxWidth: `2rem`, height: `auto` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/Icon_4_Stars.png/" alt={"Rank_4"} />
+                        </button>
+                        {_isFiltered &&
+                            <button className={`btn btn-outline-danger mx-1 mt-2`} onClick={clearFilter}>
+                                Limpar Filtros
+                            </button>
+                        }
                     </div>
                 </div>
 
-            )}
+                {getList().map((char, index) =>
+                    validateId(Number(char.id)) &&
+                    <div className="p-1 card-char" key={`home-char-index-${index}`}>
+                        <div className={`card  h-100 bg-t${char.rank}`} onClick={() => navigate(`/character/${char.id}`)} style={{ cursor: 'pointer' }}>
+                            <img src={`https://api.yatta.top/hsr/assets/UI//avatar/medium/${char.icon}.png`} className="card-img-top" alt={char.name} />
+                            <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-2 pb-1 rounded-bottom">
+                                <p className="card-title text-center mb-0">{getStringGender(char.name)}</p>
+                                <div className="w-100 d-flex align-items-center justify-content-center">
+                                    <img src={`https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${char.types.combatType}.png`} className="me-1" alt={char.types.combatType} style={{ width: "auto", height: "3rem" }} />
+                                    <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${char.types.pathType}Small.png`} className="ms-1" alt={char.types.pathType} style={{ width: "auto", height: "2.5rem" }} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                )}
+            </div>
         </div>
-    </>)
+    )
 }

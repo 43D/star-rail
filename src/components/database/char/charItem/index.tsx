@@ -1,14 +1,17 @@
 import { useParams } from "react-router-dom";
 import { getCharsBetaIds, getCharsIds } from "../../../../core/localStorage/localStorageDataManager";
 import { NotFound } from "../../../NotFound";
+import { CSSProperties, useEffect, useState } from "react";
+import useWindowDimensions from "../../../../core/util/getWindowsDimension";
+import { getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
+import { CharByIdItensYattaResponse, RankChar, combatType, iYattaStarRailApi, pathType } from "../../../../infra/api/iStarRailApi";
 
 type props = {
     _observer: number;
+    apiYatta: iYattaStarRailApi;
 }
 
-export const CharacterItemIndex = ({ _observer }: props) => {
-    _observer;
-
+export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
     const { id } = useParams<string>();
     const ids = getCharsIds();
     const betaIds = getCharsBetaIds();
@@ -17,7 +20,201 @@ export const CharacterItemIndex = ({ _observer }: props) => {
     if (!(ids.includes(Number(id)) || betaIds.includes(Number(id))))
         return <NotFound />
 
+    _observer;
+
+    const [path, setPath] = useState<pathType | "">(``);
+    const [combat, setCombat] = useState<combatType | "">(``);
+    const [alturaMax, setAlturaMax] = useState<number>(137);
+    const [alturaMin, setAlturaMin] = useState<number>(190);
+    const [profileOpen, setProfileOpen] = useState<boolean>(false);
+    const [charData, setCharData] = useState<CharByIdItensYattaResponse>();
+    const { height, width } = useWindowDimensions();
+    const themeCover = getCoverCharTheme();
+    const mainImage = `https://api.yatta.top/hsr/assets/UI/avatar/large/${id}.png`;
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const getData = async () => {
+        const res = await apiYatta.getReleaseCharById(id);
+        setPath(res.data.types.pathType.id);
+        setCombat(res.data.types.combatType.id);
+        setCharData(res.data);
+        console.log(res.data.fetter);
+        setAlturaMax(137 + (res.data.fetter.description ? 190 : 0) + (res.data.fetter.cv ? 180 : 0));
+        setAlturaMin((!res.data.fetter.description && !res.data.fetter.cv) ? 137 : 190)
+    }
+
+    const style: CSSProperties = {
+        paddingTop: (height / width) > 0.77 ? `100vw` : `calc( 90vh - ${(profileOpen) ? alturaMax : alturaMin}px)`,
+        backgroundImage: `url("${mainImage}")`,
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        backgroundSize: `contain`,
+        backgroundPositionX: `right`,
+        backgroundPositionY: `64px`,
+        zIndex: `999`
+    }
+
+    const getBackgroundCoverTheme = () => {
+        const styleMain: CSSProperties = {
+            ...style,
+            backgroundPositionX: `80%`,
+            paddingTop: `0px`,
+            filter: `blur(100px)`,
+            transform: `scale(2)`,
+            height: `100vh`,
+            width: `100vw`,
+            overflow: "hidden",
+            position: "fixed",
+            zIndex: `-10`
+        }
+        if (themeCover === "PALETTE")
+            return styleMain;
+
+        if (themeCover === "PATH")
+            return {
+                ...styleMain,
+                backgroundImage:
+                    (combat != "") ?
+                        `url("https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${combat}.png")`
+                        : `url("${mainImage}")`,
+                transform: `scale(2.5)`
+            }
+
+        return {
+            ...styleMain,
+            backgroundImage: `unset`
+        }
+    }
+
+    const style_test: CSSProperties = {
+        backgroundColor: `blue`,
+        border: `1px solid green`
+    }
+
+    const getRankImg = (rank: RankChar) => {
+        return rank === 4 ? "https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/Icon_4_Stars.png/" : "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2b/Icon_5_Stars.png";
+    }
+
+    // <img src={`https://api.yatta.top/hsr/assets/UI/avatar/large/${id}.png`} alt="" />
     return (<>
-        char {id}
+        <div style={{ ...getBackgroundCoverTheme() }}>
+        </div>
+        <div style={{ ...style }}>
+            {charData &&
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="card mb-1" style={{ maxWidth: (height / width) > 0.77 ? `100vw` : '30rem' }}>
+                                <div className="card-body">
+                                    <h1 className="mb-0">{charData.name}</h1>
+                                    <h6>{charData.fetter.faction ? charData.fetter.faction : "???"}</h6>
+                                    <div className="d-flex align-items-center">
+                                        <img style={{ maxWidth: `2rem`, height: `auto` }} src={`https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${combat}.png`} alt={combat} />
+                                        <img className="mx-2" style={{ maxWidth: `1.8rem`, height: `auto` }} src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${path}Small.png`} alt={path} />
+                                        <img style={{ maxWidth: `4rem`, height: `auto` }} src={getRankImg(charData.rank)} alt={`rank_${charData.rank}`} />
+                                    </div>
+                                </div>
+                            </div>
+                            {(charData.fetter.description || charData.fetter.cv) &&
+                                <div className="accordion mb-2" id="profileColapse" style={{ maxWidth: (height / width) > 0.77 ? `100vw` : '30rem' }}>
+                                    <div className="accordion-item">
+                                        <h2 className="accordion-header" onClick={() => setProfileOpen(prev => !prev)}>
+                                            <button className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#profile"
+                                                aria-expanded="false" aria-controls="profile">
+                                                {charData.fetter.description && <>Introdução</>}
+                                                {(charData.fetter.description && charData.fetter.cv) && <> & </>}
+                                                {charData.fetter.cv && <>Dubladores</>}
+                                            </button>
+                                        </h2>
+                                        <div id="profile" className="accordion-collapse collapse" data-bs-parent="#profileColapse">
+                                            <div className="accordion-body">
+                                                {charData.fetter.description && <div>
+                                                    {charData.fetter.description.split("\\n").map((line, index) =>
+                                                        <p className="mb-1" key={`desc-key-${index}`}>{line}</p>
+                                                    )}
+                                                </div>
+                                                }
+                                                {(charData.fetter.description && charData.fetter.cv) && <hr />}
+                                                {charData.fetter.cv &&
+                                                    <div >
+                                                        <div className="d-flex justify-content-between border-bottom">
+                                                            <p className="mb-0 mt-1">Japonês</p>
+                                                            <p className="mb-0 mt-1">{charData.fetter.cv.CV_JP}</p>
+                                                        </div>
+                                                        <div className="d-flex justify-content-between border-bottom">
+                                                            <p className="mb-0 mt-1">Chinês</p>
+                                                            <p className="mb-0 mt-1">{charData.fetter.cv.CV_CN}</p>
+                                                        </div>
+                                                        <div className="d-flex justify-content-between border-bottom">
+                                                            <p className="mb-0 mt-1">Inglês</p>
+                                                            <p className="mb-0 mt-1">{charData.fetter.cv.CV_EN}</p>
+                                                        </div>
+                                                        <div className="d-flex justify-content-between border-bottom">
+                                                            <p className="mb-0 mt-1">Coreano</p>
+                                                            <p className="mb-0 mt-1">{charData.fetter.cv.CV_KR}</p>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div className="col-6" style={{ ...style_test }}>
+                            char {id}
+                            <br />
+                            {height}, {width} {height / width}
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <div className="col-6" style={{ ...style_test }}>
+                            char {id}
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <div className="col-12" style={{ ...style_test }}>
+                            char {id}
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            a
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </>);
 }

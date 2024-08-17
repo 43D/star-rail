@@ -16,7 +16,9 @@ export const LCItemIndex = ({ _observer }: props) => {
     if (!(ids.includes(Number(id)) || betaIds.includes(Number(id))))
         return <NotFound />
 
-    return (<>
-        lc {id}
-    </>);
+    return (
+        <div className="container-fluid" style={{ minHeight: "75vh" }}>
+            lc {id}
+        </div>
+    );
 }

@@ -62,10 +62,12 @@
     max-width: 7rem;
 }
 
+.accordion-item,
 .card {
     border-width: 2px !important;
 }
 
+.accordion-item:hover,
 .card:hover {
     border-color: #fff;
     border-width: 2px !important;
