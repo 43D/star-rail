@@ -5,6 +5,8 @@ import { CSSProperties, useEffect, useState } from "react";
 import useWindowDimensions from "../../../../core/util/getWindowsDimension";
 import { getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
 import { CharByIdItensYattaResponse, RankChar, combatType, iYattaStarRailApi, pathType } from "../../../../infra/api/iStarRailApi";
+import { CharacterStats } from "./components/CharacterStats";
+import { CharacterTraces } from "./components/CharacterTraces";
 
 type props = {
     _observer: number;
@@ -20,8 +22,6 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
     if (!(ids.includes(Number(id)) || betaIds.includes(Number(id))))
         return <NotFound />
 
-    _observer;
-
     const [path, setPath] = useState<pathType | "">(``);
     const [combat, setCombat] = useState<combatType | "">(``);
     const [alturaMax, setAlturaMax] = useState<number>(137);
@@ -34,7 +34,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [_observer, id]);
 
     const getData = async () => {
         const res = await apiYatta.getReleaseCharById(id);
@@ -89,16 +89,10 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
         }
     }
 
-    const style_test: CSSProperties = {
-        backgroundColor: `blue`,
-        border: `1px solid green`
-    }
+    const getRankImg = (rank: RankChar) => rank === 4 ?
+        "https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/Icon_4_Stars.png/"
+        : "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2b/Icon_5_Stars.png";
 
-    const getRankImg = (rank: RankChar) => {
-        return rank === 4 ? "https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/Icon_4_Stars.png/" : "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2b/Icon_5_Stars.png";
-    }
-
-    // <img src={`https://api.yatta.top/hsr/assets/UI/avatar/large/${id}.png`} alt="" />
     return (<>
         <div style={{ ...getBackgroundCoverTheme() }}>
         </div>
@@ -164,53 +158,22 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                                 </div>
                             }
                         </div>
-                        <div className="col-6" style={{ ...style_test }}>
-                            char {id}
-                            <br />
-                            {height}, {width} {height / width}
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                        </div>
-                        <div className="col-6" style={{ ...style_test }}>
-                            char {id}
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                        </div>
-                        <div className="col-12" style={{ ...style_test }}>
-                            char {id}
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            a
+                        <div className="col-12 pt-2 pb-5" style={{ backgroundColor: "#212529" }}>
+                            <div className="row">
+                                {charData && <>
+                                    <CharacterStats charData={charData.upgrade.sort((a, b) => a.level - b.level)} />
+                                    <CharacterTraces skillData={charData.traces.subSkills} />
+                                </>}
+                                <div className="col-12 col-lg-4 mt-2">
+                                    <div className="card h-100">
+                                        <div className="card-body d-flex flex-column flex-md-row flex-lg-column justify-content-center">
+                                            <button className="btn btn-sm btn-outline-secondary w-100 m-1">Download Background</button>
+                                            <button className="btn btn-sm btn-outline-secondary w-100 m-1">Acessar meus guias</button>
+                                            <button className="btn btn-sm btn-outline-secondary w-100 m-1">Criar guia para {charData.name}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

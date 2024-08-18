@@ -86,7 +86,7 @@ type eidolonsType = {
         params: number[] | null;
     };
 }
-type upgradeMathType = {
+export type upgradeMathType = {
     level: 0 | 1 | 2 | 3 | 4 | 5 | 6;
     skillBase: {
         attackBase: number;
@@ -104,8 +104,9 @@ type upgradeMathType = {
     };
 }
 
-type mainSkillType = {
+export type mainSkillType = {
     id: number;
+    name: string;
     pointType: "Skill" | "Attribute" | "Special";
     maxLevel: number;
     isDefault: boolean;
@@ -143,7 +144,7 @@ type mainSkillType = {
         name: string;
         value: number;
         icon: string;
-    };
+    }[];
     params: null | {
         [key: string]: number[];
     }
