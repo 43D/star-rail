@@ -7,6 +7,7 @@ import { getCoverCharTheme } from "../../../../core/localStorage/localStorageMan
 import { CharByIdItensYattaResponse, RankChar, combatType, iYattaStarRailApi, pathType } from "../../../../infra/api/iStarRailApi";
 import { CharacterStats } from "./components/CharacterStats";
 import { CharacterTraces } from "./components/CharacterTraces";
+import { CharacterSkill } from "./components/CharacterSkill";
 
 type props = {
     _observer: number;
@@ -27,6 +28,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
     const [alturaMax, setAlturaMax] = useState<number>(137);
     const [alturaMin, setAlturaMin] = useState<number>(190);
     const [profileOpen, setProfileOpen] = useState<boolean>(false);
+    const [mainSkillsId, setMainSkillsId] = useState<string[]>([]);
     const [charData, setCharData] = useState<CharByIdItensYattaResponse>();
     const { height, width } = useWindowDimensions();
     const themeCover = getCoverCharTheme();
@@ -41,7 +43,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
         setPath(res.data.types.pathType.id);
         setCombat(res.data.types.combatType.id);
         setCharData(res.data);
-        console.log(res.data.fetter);
+        setMainSkillsId(Object.keys(res.data.traces.mainSkills));
         setAlturaMax(137 + (res.data.fetter.description ? 190 : 0) + (res.data.fetter.cv ? 180 : 0));
         setAlturaMin((!res.data.fetter.description && !res.data.fetter.cv) ? 137 : 190)
     }
@@ -173,6 +175,13 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                                         </div>
                                     </div>
                                 </div>
+                                {(charData && mainSkillsId.length > 0) && <>
+                                    {mainSkillsId.map((mSkill, index) =>
+                                        <div key={`main-skills-type-index-${index}`} className="col-12 col-md-6 col-lg-4 mt-2">
+                                            <CharacterSkill skillData={charData.traces.mainSkills[mSkill]} />
+                                        </div>
+                                    )}
+                                </>}
                             </div>
                         </div>
                     </div>

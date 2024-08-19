@@ -131,7 +131,7 @@ export type mainSkillType = {
                 name: string;
                 description: string;
                 icon: string;
-            };
+            }[];
             attackType: string;
             damageType: string;
             icon: string;
