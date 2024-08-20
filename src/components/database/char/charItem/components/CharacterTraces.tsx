@@ -56,7 +56,7 @@ export const CharacterTraces = ({ skillData }: props) => {
                                 <div className="d-flex justify-content-center">
                                     <img style={{ height: `auto`, width: "2rem" }} src={`https://api.yatta.top/hsr/assets/UI/status/${atr.type}.png`} alt={atr.type} />
                                 </div>
-                                <p className="text-center mb-0">{atr.acumulado}% </p>
+                                <p className="text-center mb-0">{(atr.type === "IconSpeed") ? (atr.acumulado / 100) : atr.acumulado}{(atr.type === "IconSpeed") ? "" : "%"}</p>
                                 <p className="text-center">{atr.name}</p>
                             </div>
                         )}

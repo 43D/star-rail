@@ -160,7 +160,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                                 </div>
                             }
                         </div>
-                        <div className="col-12 pt-2 pb-5" style={{ backgroundColor: "#212529" }}>
+                        <div className="col-12 pt-2 pb-3" style={{ backgroundColor: "#212529" }}>
                             <div className="row">
                                 {charData && <>
                                     <CharacterStats charData={charData.upgrade.sort((a, b) => a.level - b.level)} />
@@ -182,6 +182,13 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                                         </div>
                                     )}
                                 </>}
+                            </div>
+                        </div>
+                        <div className="col-12 pb-5" style={{ backgroundColor: "#212529" }}>
+                            <div className="row">
+                                <div>
+                                    a
+                                </div>
                             </div>
                         </div>
                     </div>
