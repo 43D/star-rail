@@ -16,7 +16,7 @@ export const HTMLParagraphConvert = ({ originalText, params, lvl, id }: props) =
         .replace(/<color=(#[0-9a-fA-F]{8})>/g, (_, colorHex) => `<span style="color: ${colorHex}">`)
         .replace(/<\/color>/g, '</span>')
         .replace(/<unbreak>#(\d+)\[i\]%<\/unbreak>/g, (_, id) => {
-            return `<strong>${(params[id][lvl] * 100)}%</strong>`;
+            return `<strong>${(params[id][lvl] * 100).toFixed(0)}% </strong>`;
         })
         .replace(/<unbreak>#(\d+)\[i\]<\/unbreak>/g, (_, id) => {
 

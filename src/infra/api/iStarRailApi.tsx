@@ -115,6 +115,7 @@ export type mainSkillType = {
         [key: string]: {
             name: string;
             tag: string;
+            maxLevel: number;
             type: string;
             skillPoints: {
                 base: number | null;

@@ -178,7 +178,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                                 {(charData && mainSkillsId.length > 0) && <>
                                     {mainSkillsId.map((mSkill, index) =>
                                         <div key={`main-skills-type-index-${index}`} className="col-12 col-md-6 col-lg-4 mt-2">
-                                            <CharacterSkill skillData={charData.traces.mainSkills[mSkill]} />
+                                            <CharacterSkill skillData={charData.traces.mainSkills[mSkill]} id={charData.traces.mainSkills[mSkill].id} />
                                         </div>
                                     )}
                                 </>}
