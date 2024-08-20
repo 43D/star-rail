@@ -27,12 +27,11 @@ export const CharacterSkill = ({ skillData, id }: props) => {
                 {skills.map((skillKey, index) =>
                     <div key={`${id}-skills-type-index-${index}`}>
                         {skillData.skillList && <>
-                            {(index > 0) && <>
-                                <hr />
-                            </>}
-                            <div>
-                                {skillData.skillList[skillKey].icon}
-                                <h5>{skillData.skillList[skillKey].name}</h5>
+                            <hr />
+                            <div className="d-flex align-items-center">
+                                <img src={`https://api.yatta.top/hsr/assets/UI/skill/${skillData.skillList[skillKey].icon}.png`}
+                                    alt={skillData.skillList[skillKey].name} style={{ maxHeight: "3rem" }} />
+                                <h4 className="ms-2">{skillData.skillList[skillKey].name}</h4>
                             </div>
 
 
