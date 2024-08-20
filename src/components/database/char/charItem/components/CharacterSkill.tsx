@@ -27,7 +27,7 @@ export const CharacterSkill = ({ skillData, id }: props) => {
                 {skills.map((skillKey, index) =>
                     <div key={`${id}-skills-type-index-${index}`}>
                         {skillData.skillList && <>
-                            <hr />
+                            {(skillData.maxLevel > 1) && <hr />}
                             <div className="d-flex align-items-center">
                                 <img src={`https://api.yatta.top/hsr/assets/UI/skill/${skillData.skillList[skillKey].icon}.png`}
                                     alt={skillData.skillList[skillKey].name} style={{ maxHeight: "3rem" }} />
