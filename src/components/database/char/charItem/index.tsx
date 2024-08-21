@@ -197,8 +197,8 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                                     <div className="col-12 col-lg-4 mt-2" key={`eidolon-${keyEidolon}`}>
                                         <div className="card h-100">
                                             <div className="card-body">
-                                                <div>
-                                                    <img style={{ maxWidth: `100%`, height: `auto` }} src={`https://api.hakush.in/hsr/UI/rank/_dependencies/textures/${charData.id}/${charData.id}_Rank_${charData.eidolons[keyEidolon].rank}.webp`} alt={`${charData.id}Rank_${charData.eidolons[keyEidolon].rank}`} />
+                                                <div className="d-flex justify-content-center">
+                                                    <img style={{ maxWidth: `60%`, height: `auto` }} src={`https://api.hakush.in/hsr/UI/rank/_dependencies/textures/${charData.id}/${charData.id}_Rank_${charData.eidolons[keyEidolon].rank}.webp`} alt={`${charData.id}Rank_${charData.eidolons[keyEidolon].rank}`} />
                                                 </div>
                                                 <div className="d-flex align-items-center">
                                                     <img src={`https://api.yatta.top/hsr/assets/UI/skill/${charData.eidolons[keyEidolon].icon}.png`}
