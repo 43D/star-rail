@@ -33,7 +33,52 @@ export const CharacterSkill = ({ skillData, id }: props) => {
                                     alt={skillData.skillList[skillKey].name} style={{ maxHeight: "3rem" }} />
                                 <h4 className="ms-2">{skillData.skillList[skillKey].name}</h4>
                             </div>
+                            <p className="my-2">{skillData.skillList[skillKey].type}</p>
 
+                            {skillData.skillList[skillKey].skillPoints &&
+                                <div className="mb-3">
+                                    {skillData.skillList[skillKey].skillPoints.base &&
+                                        <div className="d-flex justify-content-between border-bottom">
+                                            <div>Energia</div>
+                                            <div>
+                                                <span className="me-2">Ganhos:</span>
+                                                {skillData.skillList[skillKey].skillPoints.base}
+                                            </div>
+                                        </div>
+                                    }
+                                    {skillData.skillList[skillKey].skillPoints.need &&
+                                        <div className="d-flex justify-content-between border-bottom">
+                                            <div>Energia</div>
+                                            <div>
+                                                <span className="me-2">Custo:</span>
+                                                {skillData.skillList[skillKey].skillPoints.need}
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            {skillData.skillList[skillKey].weaknessBreak &&
+                                <div className="mb-3">
+                                    {(skillData.skillList[skillKey].weaknessBreak.one) &&
+                                        <div className="d-flex justify-content-between border-bottom">
+                                            <div>Quebra de Fraqueza</div>
+                                            <div>
+                                                <span className="me-2">Alvo único:</span>
+                                                {skillData.skillList[skillKey].weaknessBreak.one}
+                                            </div>
+                                        </div>
+                                    }
+                                    {(skillData.skillList[skillKey].weaknessBreak.spread) &&
+                                        <div className="d-flex justify-content-between border-bottom">
+                                            <div>Quebra de Fraqueza</div>
+                                            <div>
+                                                <span className="me-2">Vários alvos:</span>
+                                                {skillData.skillList[skillKey].weaknessBreak.spread}
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
 
                             <HTMLParagraphConvert id={skillData.skillList[skillKey].icon}
                                 originalText={skillData.skillList[skillKey].description}
@@ -52,6 +97,6 @@ export const CharacterSkill = ({ skillData, id }: props) => {
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     </>)
 }
