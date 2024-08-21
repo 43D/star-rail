@@ -8,6 +8,7 @@ import { CharByIdItensYattaResponse, RankChar, combatType, iYattaStarRailApi, pa
 import { CharacterStats } from "./components/CharacterStats";
 import { CharacterTraces } from "./components/CharacterTraces";
 import { CharacterSkill } from "./components/CharacterSkill";
+import { HTMLParagraphConvertEidolons } from "../../../../core/util/HTMLManipulator/HTMLParagraphConvertEidolons";
 
 type props = {
     _observer: number;
@@ -175,6 +176,9 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-12 mt-5 mb-2">
+                                    <h3 className="ms-1">Habilidades</h3>
+                                </div>
                                 {(charData && mainSkillsId.length > 0) && <>
                                     {mainSkillsId.map((mSkill, index) =>
                                         <div key={`main-skills-type-index-${index}`} className="col-12 col-md-6 col-lg-4 mt-2">
@@ -186,9 +190,29 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                         </div>
                         <div className="col-12 pb-5" style={{ backgroundColor: "#212529" }}>
                             <div className="row">
-                                <div>
-                                    a
+                                <div className="col-12 mt-5 mb-2">
+                                    <h3 className="ms-1">Eidolons</h3>
                                 </div>
+                                {Object.keys(charData.eidolons).map((keyEidolon) =>
+                                    <div className="col-12 col-lg-4 mt-2" key={`eidolon-${keyEidolon}`}>
+                                        <div className="card h-100">
+                                            <div className="card-body">
+                                                <div>
+                                                    <img style={{ maxWidth: `100%`, height: `auto` }} src={`https://api.hakush.in/hsr/UI/rank/_dependencies/textures/${charData.id}/${charData.id}_Rank_${charData.eidolons[keyEidolon].rank}.webp`} alt={`${charData.id}Rank_${charData.eidolons[keyEidolon].rank}`} />
+                                                </div>
+                                                <div className="d-flex align-items-center">
+                                                    <img src={`https://api.yatta.top/hsr/assets/UI/skill/${charData.eidolons[keyEidolon].icon}.png`}
+                                                        alt={charData.eidolons[keyEidolon].name} style={{ maxHeight: "3rem" }} />
+                                                    <h4 className="ms-2">{charData.eidolons[keyEidolon].name}</h4>
+                                                </div>
+                                                <HTMLParagraphConvertEidolons id={keyEidolon}
+                                                    originalText={charData.eidolons[keyEidolon].description}
+                                                    params={charData.eidolons[keyEidolon].params}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
