@@ -59,6 +59,7 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
     }, [_observer, id, lcData, openCollapse]);
 
     const getData = async () => {
+        setLCData(undefined);
         const res = await apiYatta.getReleaseLCById(id);
         setPath(res.data.types.pathType.id);
         setLCData(res.data);
@@ -74,8 +75,15 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
             filter: `blur(100px)`
         };
 
-        if (themeCover === "PALETTE")
-            return background;
+        if (themeCover === "RANK")
+            return {
+                ...background,
+                backgroundImage: `unset`,
+                background: (lcData?.rank === 5) ? 'background: linear-gradient(180deg, rgba(227, 179, 119, 1) 0%, rgba(219, 149, 63, 1) 10%, rgba(175, 143, 104, 1) 100%)' :
+                    (lcData?.rank === 4) ? 'linear-gradient(180deg, rgba(154, 114, 222, 1) 0%, rgba(89, 28, 191, 1) 36%, rgba(66, 20, 144, 1) 100%)' :
+                        'linear-gradient(180deg, rgba(104, 137, 207, 1) 0%, rgba(20, 81, 211, 1) 36%, rgba(17, 48, 115, 1) 100%)',
+                backgroundColor: (lcData?.rank === 5) ? '#f28f15' : (lcData?.rank === 4) ? '#591cbf' : '#1451d3'
+            };
 
         return background;
     }
@@ -86,7 +94,7 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
     }
 
     return (<>
-        {themeCover != "TRANS" &&
+        {(themeCover != "TRANS" && lcData) &&
             <div style={{ ...getBackgroundCoverTheme() }}>
             </div>
         }

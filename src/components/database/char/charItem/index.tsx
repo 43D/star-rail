@@ -4,7 +4,7 @@ import { NotFound } from "../../../NotFound";
 import { CSSProperties, useEffect, useState } from "react";
 import useWindowDimensions from "../../../../core/util/getWindowsDimension";
 import { getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
-import { CharByIdItensYattaResponse, RankChar, combatType, iYattaStarRailApi, pathType } from "../../../../infra/api/iStarRailApi";
+import { CharByIdItensYattaResponse, combatType, iYattaStarRailApi, pathType } from "../../../../infra/api/iStarRailApi";
 import { CharacterStats } from "./components/CharacterStats";
 import { CharacterTraces } from "./components/CharacterTraces";
 import { CharacterSkill } from "./components/CharacterSkill";
@@ -41,6 +41,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
     }, [_observer, id]);
 
     const getData = async () => {
+        setCharData(undefined);
         const res = await apiYatta.getReleaseCharById(id);
         setPath(res.data.types.pathType.id);
         setCombat(res.data.types.combatType.id);
@@ -87,6 +88,14 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                 transform: `scale(2.5)`
             }
 
+        if (themeCover === "RANK")
+            return {
+                ...styleMain,
+                backgroundImage: `unset`,
+                background: (charData?.rank === 5) ? 'background: linear-gradient(180deg, rgba(227, 179, 119, 1) 0%, rgba(219, 149, 63, 1) 10%, rgba(175, 143, 104, 1) 100%)' : 'linear-gradient(180deg, rgba(154, 114, 222, 1) 0%, rgba(89, 28, 191, 1) 36%, rgba(66, 20, 144, 1) 100%)',
+                backgroundColor: (charData?.rank === 5) ? '#f28f15' : '#591cbf'
+            } as CSSProperties;
+
         return {
             ...styleMain,
             backgroundImage: `unset`
@@ -94,8 +103,10 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
     }
 
     return (<>
-        <div style={{ ...getBackgroundCoverTheme() }}>
-        </div>
+        {charData &&
+            <div style={{ ...getBackgroundCoverTheme() }}>
+            </div>
+        }
         <div style={{ ...style }}>
             {charData &&
                 <div className="container-fluid">

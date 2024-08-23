@@ -1,6 +1,6 @@
 export type languageList = `pt` | `en`;
 export type MCGender = 'F' | 'M';
-export type CoverCharTheme = 'PALETTE' | 'PATH' | `TRANS`;
+export type CoverCharTheme = 'PALETTE' | 'PATH' | `TRANS` | `RANK`;
 
 export const setLanguage = (language: languageList) => localStorage.setItem('language', language);
 export const setBetaContent = (beta: boolean) => localStorage.setItem('beta', String(beta));

@@ -58,7 +58,7 @@ export const ModalMenuConfigs = () => {
                             <label className="input-group-text" htmlFor="checkBoxBetaContent" style={{ width: "calc(100% - 50px)" }}>Ativar conteúdos não lançados</label>
                         </div>
                         <div className="input-group mb-3 justify-content-center">
-                            <span className="input-group-text">Estilo da capa de personagem</span>
+                            <span className="input-group-text">Estilo de fundo</span>
                             <button className={'btn btn-sm ' + (_coverTheme === "PALETTE" ? "btn-success" : "btn-outline-secondary")}
                                 onClick={() => onChangeThemeCover("PALETTE")}>
                                 Paleta
@@ -70,6 +70,10 @@ export const ModalMenuConfigs = () => {
                             <button className={'btn btn-sm ' + (_coverTheme === "TRANS" ? "btn-success" : "btn-outline-secondary")}
                                 onClick={() => onChangeThemeCover("TRANS")}>
                                 Transparente
+                            </button>
+                            <button className={'btn btn-sm ' + (_coverTheme === "RANK" ? "btn-success" : "btn-outline-secondary")}
+                                onClick={() => onChangeThemeCover("RANK")}>
+                                Raridade
                             </button>
                         </div>
                         <div className="input-group mb-3">
