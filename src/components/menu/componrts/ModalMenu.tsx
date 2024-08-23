@@ -49,16 +49,10 @@ export const ModalMenuConfigs = () => {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={checkNeedRefresh} />
                     </div>
                     <div className="modal-body">
-                        <div className="input-group mb-3">
-                            <div className="input-group-text px-1">
-                                <div className="form-check form-switch d-flex align-items-center">
-                                    <input className="form-check-input" checked={_betaContent} onChange={onChangeBetaContent} type="checkbox" role="switch" id="checkBoxBetaContent" />
-                                </div>
-                            </div>
-                            <label className="input-group-text" htmlFor="checkBoxBetaContent" style={{ width: "calc(100% - 50px)" }}>Ativar conteúdos não lançados</label>
+                        <div className="input-group justify-content-center">
+                            <span className="input-group-text w-100 justify-content-center" style={{ maxWidth: '350px' }}>Estilo de fundo</span>
                         </div>
                         <div className="input-group mb-3 justify-content-center">
-                            <span className="input-group-text">Estilo de fundo</span>
                             <button className={'btn btn-sm ' + (_coverTheme === "PALETTE" ? "btn-success" : "btn-outline-secondary")}
                                 onClick={() => onChangeThemeCover("PALETTE")}>
                                 Paleta
@@ -76,6 +70,15 @@ export const ModalMenuConfigs = () => {
                                 Raridade
                             </button>
                         </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-text px-1">
+                                <div className="form-check form-switch d-flex align-items-center">
+                                    <input className="form-check-input" checked={_betaContent} onChange={onChangeBetaContent} type="checkbox" role="switch" id="checkBoxBetaContent" />
+                                </div>
+                            </div>
+                            <label className="input-group-text" htmlFor="checkBoxBetaContent" style={{ width: "calc(100% - 50px)" }}>Ativar conteúdos não lançados</label>
+                        </div>
+
                         <div className="input-group mb-3">
                             <label className="input-group-text" htmlFor="selectMCGender">Gênero</label>
                             <select className="form-select" id="selectMCGender" onChange={onChangeGender} value={_mCGender}>
