@@ -70,7 +70,7 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
             ...style,
             transform: ratio < DrRatio ? `rotate(15deg) scale(2)` : `scale(2)`,
             zIndex: `-2`,
-            backgroundPositionY: "center",
+            backgroundPositionY: ratio < DrRatio ? "center" : "33%",
             backgroundPositionX: ratio < DrRatio ? "66%" : "center",
             filter: `blur(100px)`
         };
