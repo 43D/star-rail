@@ -28,7 +28,7 @@ export const DatabaseRouteSettings = ({ injectAPI, nav, footer, _observable }: R
         },
         {
             path: '/lc/:id',
-            element: defaultTemplate(<LCItemIndex key={5} _observer={_observable} />, nav, footer),
+            element: defaultTemplate(<LCItemIndex apiYatta={injectAPI.starRailApi} key={5} _observer={_observable} />, nav, footer),
         },
         {
             path: '/relic/:id',

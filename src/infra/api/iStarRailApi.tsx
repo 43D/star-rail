@@ -186,9 +186,39 @@ type CharByIdYattaResponse = {
     data: CharByIdItensYattaResponse;
 }
 
+
+export type LCByIdItensYattaResponse = {
+    id: number;
+    name: string;
+    rank: RankChar;
+    types: {
+        pathType: {
+            id: pathType;
+            name: string;
+        };
+    };
+    icon: string;
+    route: string;
+    description: string;
+    upgrade: upgradeMathType[];
+    skill: {
+        name: string;
+        description: string;
+        params: {
+            [key: string]: number[];
+        };
+    }
+}
+
+type LCByIdYattaResponse = {
+    response: number;
+    data: LCByIdItensYattaResponse;
+}
+
 export type iYattaStarRailApi = {
     getReleaseChar: () => Promise<CharYattaResponse>;
     getReleaseRelics: () => Promise<RelicYattaResponse>; // https://api.yatta.top/hsr/v2/pt/relic
     getReleaseLC: () => Promise<LCYattaResponse>; //https://api.yatta.top/hsr/v2/en/equipment 
     getReleaseCharById: (id: string) => Promise<CharByIdYattaResponse>;
+    getReleaseLCById: (id: string) => Promise<LCByIdYattaResponse>;
 }

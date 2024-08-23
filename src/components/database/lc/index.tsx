@@ -64,14 +64,14 @@ export const LCIndex = ({ _observer }: props) => {
                         {getButtonPath(`Knight`)}
                     </div>
                     <div className="d-flex justify-content-center flex-wrap">
-                        <button className={'btn mt-2 mx-1  ' + ((_filterRank.includes(5)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(5)}>
-                            <img style={{ maxWidth: `2rem`, height: `auto` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/2/2b/Icon_5_Stars.png" alt={"Rank_5"} />
+                        <button className={'d-flex justify-content-center align-items-center py-3 btn mt-2 mx-1  ' + ((_filterRank.includes(5)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(5)}>
+                            <img style={{ width: `auto`, height: `0.8rem` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/2/2b/Icon_5_Stars.png" alt={"Rank_5"} />
                         </button>
-                        <button className={'btn mt-2 mx-1  ' + ((_filterRank.includes(4)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(4)}>
-                            <img style={{ maxWidth: `2rem`, height: `auto` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/Icon_4_Stars.png/" alt={"Rank_4"} />
+                        <button className={'d-flex justify-content-center align-items-center py-3 btn mt-2 mx-1  ' + ((_filterRank.includes(4)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(4)}>
+                            <img style={{ width: `auto`, height: `0.8rem` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/Icon_4_Stars.png/" alt={"Rank_4"} />
                         </button>
-                        <button className={'btn mt-2 mx-1  ' + ((_filterRank.includes(3)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(3)}>
-                            <img style={{ maxWidth: `2rem`, height: `auto` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/1/11/Icon_3_Stars.png/" alt={"Rank_3"} />
+                        <button className={'d-flex justify-content-center align-items-center py-3 btn mt-2 mx-1  ' + ((_filterRank.includes(3)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(3)}>
+                            <img style={{ width: `auto`, height: `0.8rem` }} src="https://static.wikia.nocookie.net/houkai-star-rail/images/1/11/Icon_3_Stars.png/" alt={"Rank_3"} />
                         </button>
                         {(_filterPath.length > 0 || _filterRank.length > 0) &&
                             <button className={`btn btn-outline-danger mx-1 mt-2`} onClick={clearFilters}>
@@ -88,7 +88,7 @@ export const LCIndex = ({ _observer }: props) => {
                             <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-2 pb-1 rounded-bottom">
                                 <p className="card-title text-center mb-0">{char.name}</p>
                                 <div className="w-100 d-flex align-items-center justify-content-center">
-                                    <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${char.types.pathType}Small.png`} className="ms-1" alt={char.types.pathType} style={{ width: "auto", height: "2.5rem" }} />
+                                    <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${char.types.pathType}Small.png`} className="ms-1 my-2" alt={char.types.pathType} style={{ width: "auto", height: "2rem" }} />
                                 </div>
                             </div>
                         </div>

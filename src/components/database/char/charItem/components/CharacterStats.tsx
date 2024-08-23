@@ -44,7 +44,7 @@ export const CharacterStats = ({ charData }: props) => {
 
     useEffect(() => {
         getCacls();
-    }, [lvl]);
+    }, [lvl, charData]);
 
     return (<>
         <div className="col-12 col-md-6 col-lg-4 mt-2">

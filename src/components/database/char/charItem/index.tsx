@@ -9,6 +9,7 @@ import { CharacterStats } from "./components/CharacterStats";
 import { CharacterTraces } from "./components/CharacterTraces";
 import { CharacterSkill } from "./components/CharacterSkill";
 import { HTMLParagraphConvertEidolons } from "../../../../core/util/HTMLManipulator/HTMLParagraphConvertEidolons";
+import { getRankImg } from "../../../../core/util/getRankURLImage";
 
 type props = {
     _observer: number;
@@ -63,10 +64,10 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
     const getBackgroundCoverTheme = () => {
         const styleMain: CSSProperties = {
             ...style,
-            backgroundPositionX: `80%`,
             paddingTop: `0px`,
             filter: `blur(100px)`,
             transform: `scale(2)`,
+            backgroundPositionX: `80%`,
             height: `100vh`,
             width: `100vw`,
             overflow: "hidden",
@@ -92,10 +93,6 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
         }
     }
 
-    const getRankImg = (rank: RankChar) => rank === 4 ?
-        "https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/Icon_4_Stars.png/"
-        : "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2b/Icon_5_Stars.png";
-
     return (<>
         <div style={{ ...getBackgroundCoverTheme() }}>
         </div>
@@ -111,7 +108,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                                     <div className="d-flex align-items-center">
                                         <img style={{ maxWidth: `2rem`, height: `auto` }} src={`https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${combat}.png`} alt={combat} />
                                         <img className="mx-2" style={{ maxWidth: `1.8rem`, height: `auto` }} src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${path}Small.png`} alt={path} />
-                                        <img style={{ maxWidth: `4rem`, height: `auto` }} src={getRankImg(charData.rank)} alt={`rank_${charData.rank}`} />
+                                        <img style={{ width: `auto`, height: `1.2rem` }} src={getRankImg(charData.rank)} alt={`rank_${charData.rank}`} />
                                     </div>
                                 </div>
                             </div>

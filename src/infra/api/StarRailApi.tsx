@@ -34,11 +34,13 @@ export const StarRailApi = (): iYattaStarRailApi => {
     const getReleaseRelics = () => getResponse(`relic`);
     const getReleaseLC = () => getResponse(`equipment`);
     const getReleaseCharById = (id: string) => getResponse(`avatar/${id}`);
+    const getReleaseLCById = (id: string) => getResponse(`equipment/${id}`);
 
     return {
         getReleaseChar,
         getReleaseRelics,
         getReleaseLC,
-        getReleaseCharById
+        getReleaseCharById,
+        getReleaseLCById
     }
 }
