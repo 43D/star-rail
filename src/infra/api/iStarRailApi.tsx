@@ -124,6 +124,7 @@ export type mainSkillType = {
             weaknessBreak: {
                 one: number | null;
                 spread: number | null;
+                all: number | null;
             };
             description: string;
             descriptionSimple: string;

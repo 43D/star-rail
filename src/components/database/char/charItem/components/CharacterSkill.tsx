@@ -77,6 +77,15 @@ export const CharacterSkill = ({ skillData, id }: props) => {
                                             </div>
                                         </div>
                                     }
+                                    {(skillData.skillList[skillKey].weaknessBreak.all) &&
+                                        <div className="d-flex justify-content-between border-bottom">
+                                            <div>Quebra de Fraqueza</div>
+                                            <div>
+                                                <span className="me-2">Todos os alvos:</span>
+                                                {skillData.skillList[skillKey].weaknessBreak.all}
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             }
 
