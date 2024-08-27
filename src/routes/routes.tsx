@@ -19,10 +19,12 @@ export type RoutesProps = {
 }
 
 export const defaultTemplate = (mainElement: JSX.Element, nav: JSX.Element, footer: JSX.Element) => {
+  footer;
+
   return (<>
     {nav}
     {mainElement}
-    {footer}
+
   </>)
 }
 

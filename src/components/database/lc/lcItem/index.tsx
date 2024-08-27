@@ -27,8 +27,6 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
     const [lcData, setLCData] = useState<LCByIdItensYattaResponse>();
     const { height, width } = useWindowDimensions();
     const themeCover = getCoverCharTheme();
-    const [openCollapse, setCollapse] = useState<boolean>(false);
-    const [heightStatus, setHeightStatus] = useState<number>(0);
 
     const mainImage = `https://api.yatta.top/hsr/assets/UI/equipment/large/${id}.png`;
     const ratio = (height / width);
@@ -53,10 +51,6 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
     useEffect(() => {
         getData();
     }, [_observer, id]);
-
-    useEffect(() => {
-        setHeightStatus(getHeightStatus());
-    }, [_observer, id, lcData, openCollapse]);
 
     const getData = async () => {
         setLCData(undefined);
@@ -88,11 +82,6 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
         return background;
     }
 
-    const getHeightStatus = () => {
-        const element = document.querySelector("#card-lc-status");
-        return element ? element.clientHeight : 0;
-    }
-
     return (<>
         {(themeCover != "TRANS" && lcData) &&
             <div style={{ ...getBackgroundCoverTheme() }}>
@@ -105,7 +94,7 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
                 <div className="row">
                     <div className="col-12" style={{
                         zIndex: 10, paddingTop:
-                            (ratio < DrRatio) ? openCollapse ? `15px` : `calc( 100vh - 235px - ${(heightStatus + 15)}px )` :
+                            (ratio < DrRatio) ? `15px` : 
                                 ratio > DrEscala ? "calc(75vw + 84px)" : `calc(60vh + 84px)`
                     }}>
                         {lcData && <>
@@ -127,7 +116,7 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
                                     <div className="accordion-item">
                                         <h2 className="accordion-header">
                                             <button className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#profileLC"
-                                                aria-expanded="false" aria-controls="profileLC" onClick={() => setCollapse(prev => !prev)}>
+                                                aria-expanded="false" aria-controls="profileLC">
                                                 Introdução
                                             </button>
                                         </h2>
