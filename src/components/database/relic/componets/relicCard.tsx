@@ -10,7 +10,7 @@ type prop = {
 
 export const RelicCard = ({ relic, r4pc, r2pc }: prop) => {
     const navigate = useNavigate();
-
+    
     if(relic.isPlanarSuit && !(r2pc))
         return(<></>)
 

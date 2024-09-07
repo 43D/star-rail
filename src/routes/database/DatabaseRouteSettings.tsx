@@ -32,7 +32,7 @@ export const DatabaseRouteSettings = ({ injectAPI, nav, footer, _observable }: R
         },
         {
             path: '/relic/:id',
-            element: defaultTemplate(<RelicItemIndex key={6} _observer={_observable} />, nav, footer),
+            element: defaultTemplate(<RelicItemIndex key={6} _observer={_observable} apiYatta={injectAPI.starRailApi} />, nav, footer),
         },
         {
             path: '/search',

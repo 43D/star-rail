@@ -62,10 +62,10 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
     const getBackgroundCoverTheme = () => {
         const background = {
             ...style,
-            transform: ratio < DrRatio ? `rotate(15deg) scale(2)` : `scale(2)`,
-            zIndex: `-2`,
             backgroundPositionY: ratio < DrRatio ? "center" : "33%",
             backgroundPositionX: ratio < DrRatio ? "66%" : "center",
+            zIndex: `-2`,
+            transform: ratio < DrRatio ? `rotate(15deg) scale(2)` : `scale(2)`,
             filter: `blur(100px)`
         };
 
@@ -73,7 +73,7 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
             return {
                 ...background,
                 backgroundImage: `unset`,
-                background: (lcData?.rank === 5) ? 'background: linear-gradient(180deg, rgba(227, 179, 119, 1) 0%, rgba(219, 149, 63, 1) 10%, rgba(175, 143, 104, 1) 100%)' :
+                background: (lcData?.rank === 5) ? 'linear-gradient(180deg, rgba(227, 179, 119, 1) 0%, rgba(219, 149, 63, 1) 10%, rgba(175, 143, 104, 1) 100%)' :
                     (lcData?.rank === 4) ? 'linear-gradient(180deg, rgba(154, 114, 222, 1) 0%, rgba(89, 28, 191, 1) 36%, rgba(66, 20, 144, 1) 100%)' :
                         'linear-gradient(180deg, rgba(104, 137, 207, 1) 0%, rgba(20, 81, 211, 1) 36%, rgba(17, 48, 115, 1) 100%)',
                 backgroundColor: (lcData?.rank === 5) ? '#f28f15' : (lcData?.rank === 4) ? '#591cbf' : '#1451d3'
@@ -110,7 +110,6 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
                                     </div>
                                 </div>
                             </div>
-                            { }
                             {lcData.description &&
                                 <div className="accordion mb-2" id="profileColapseLC" style={{ maxWidth: (height / width) > 0.77 ? `100vw` : '30rem' }}>
                                     <div className="accordion-item">

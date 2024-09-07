@@ -3,6 +3,8 @@ export type combatType = `Ice` | `Physical` | `Fire` | `Wind` | `Thunder` | `Qua
 export type RankChar = 5 | 4;
 export type RankLC = 5 | 4 | 3;
 export type rankEidolon = 1 | 2 | 3 | 4 | 5 | 6;
+export type relictPlanPiece = "NECK" | "OBJECT";
+export type relictCavernaPiece = "HEAD" | "BODY" | "HAND" | "FOOT";
 
 export type CharItensYattaResponse = {
     id: string;
@@ -211,10 +213,105 @@ export type LCByIdItensYattaResponse = {
     }
 }
 
+type RelicPassive = {
+    description: string;
+    params: null | {
+        [key: string]: number[];
+    };
+}
+
+type RelicPc = {
+    description: string;
+    name: string;
+    icon: string;
+    story: string;
+}
+
+type RelicPcConfigMainStatus = {
+    affixAdd: number;
+    affixBase: number;
+}
+
+export type RelicByIdItensYattaResponse = {
+    id: number;
+    name: string;
+    icon: string;
+    levelList: number[];
+    isPlanarSuit: boolean;
+    skillList: {
+        "2": RelicPassive;
+        "4"?: RelicPassive;
+    };
+    suite: {
+        "HEAD": RelicPc;
+        "BODY": RelicPc;
+        "HAND": RelicPc;
+        "FOOT": RelicPc;
+        "NECK": RelicPc;
+        "OBJECT": RelicPc;
+    };
+    suiteConfig: {
+        "HEAD": {
+            [key: string]: {
+                maxLevel: number;
+                mainAffix: {
+                    [key: string]: RelicPcConfigMainStatus;
+                }
+            }
+        };
+        "BODY": {
+            [key: string]: {
+                maxLevel: number;
+                mainAffix: {
+                    [key: string]: RelicPcConfigMainStatus;
+                }
+            }
+        };
+        "HAND": {
+            [key: string]: {
+                maxLevel: number;
+                mainAffix: {
+                    [key: string]: RelicPcConfigMainStatus;
+                }
+            }
+        };
+        "FOOT": {
+            [key: string]: {
+                maxLevel: number;
+                mainAffix: {
+                    [key: string]: RelicPcConfigMainStatus;
+                }
+            }
+        };
+        "NECK": {
+            [key: string]: {
+                maxLevel: number;
+                mainAffix: {
+                    [key: string]: RelicPcConfigMainStatus;
+                }
+            }
+        };
+        "OBJECT": {
+            [key: string]: {
+                maxLevel: number;
+                mainAffix: {
+                    [key: string]: RelicPcConfigMainStatus;
+                }
+            }
+        };
+    };
+}
+
 type LCByIdYattaResponse = {
     response: number;
     data: LCByIdItensYattaResponse;
 }
+
+type RelicByIdYattaResponse = {
+    response: number;
+    data: RelicByIdItensYattaResponse;
+}
+
 
 export type iYattaStarRailApi = {
     getReleaseChar: () => Promise<CharYattaResponse>;
@@ -222,4 +319,6 @@ export type iYattaStarRailApi = {
     getReleaseLC: () => Promise<LCYattaResponse>; //https://api.yatta.top/hsr/v2/en/equipment 
     getReleaseCharById: (id: string) => Promise<CharByIdYattaResponse>;
     getReleaseLCById: (id: string) => Promise<LCByIdYattaResponse>;
+    getReleaseRelicsById: (id: string) => Promise<RelicByIdYattaResponse>; // https://https://api.yatta.top/hsr/v2/pt/relic/
+
 }
