@@ -47,7 +47,7 @@ export const RelicItemIndex = ({ _observer, apiYatta }: props) => {
     const [relic, setRelic] = useState<RelicByIdItensYattaResponse>();
     const [rank, setRank] = useState<number>(5);
     const [atualType, setActualType] = useState<relictCavernaPiece | relictPlanPiece>("HEAD");
-    const relicListCaverna: relictCavernaPiece[] = ["HEAD", "BODY", "HAND", "FOOT"];
+    const relicListCaverna: relictCavernaPiece[] = ["HEAD", "HAND", "BODY", "FOOT"];
     const relicListPlan: relictPlanPiece[] = ["NECK", "OBJECT"];
     const [lvl, setLvl] = useState<number>(20);
     const [maxLvl, setMaxLvl] = useState<number>(20);
@@ -133,8 +133,6 @@ export const RelicItemIndex = ({ _observer, apiYatta }: props) => {
                     (rank === 3) ? 'linear-gradient(180deg, rgba(104, 137, 207, 1) 0%, rgba(20, 81, 211, 1) 36%, rgba(17, 48, 115, 1) 100%)'
                         : "#bbb"
         };
-        console.log(rank);
-        console.log(bg);
         return bg;
     }
 
