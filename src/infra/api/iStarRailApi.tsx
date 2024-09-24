@@ -109,6 +109,7 @@ export type upgradeMathType = {
 export type mainSkillType = {
     id: number;
     name: string;
+    description: string;
     pointType: "Skill" | "Attribute" | "Special";
     maxLevel: number;
     isDefault: boolean;
