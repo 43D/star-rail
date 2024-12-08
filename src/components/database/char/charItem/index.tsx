@@ -10,6 +10,7 @@ import { CharacterTraces } from "./components/CharacterTraces";
 import { CharacterSkill } from "./components/CharacterSkill";
 import { HTMLParagraphConvertEidolons } from "../../../../core/util/HTMLManipulator/HTMLParagraphConvertEidolons";
 import { getRankImg } from "../../../../core/util/getRankURLImage";
+import { TraceSkill } from "./components/TraceSkill";
 
 type props = {
     _observer: number;
@@ -31,6 +32,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
     const [alturaMin, setAlturaMin] = useState<number>(190);
     const [profileOpen, setProfileOpen] = useState<boolean>(false);
     const [mainSkillsId, setMainSkillsId] = useState<string[]>([]);
+    const [traceSkillsId, setTraceSkillsId] = useState<string[]>([]);
     const [charData, setCharData] = useState<CharByIdItensYattaResponse>();
     const { height, width } = useWindowDimensions();
     const themeCover = getCoverCharTheme();
@@ -47,6 +49,11 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
         setCombat(res.data.types.combatType.id);
         setCharData(res.data);
         setMainSkillsId(Object.keys(res.data.traces.mainSkills));
+        setTraceSkillsId(
+            Object.keys(res.data.traces.subSkills)
+                .filter((id) => res.data.traces.subSkills[id].pointType === "Special")
+                .map((id) => id)
+        );
         setAlturaMax(137 + (res.data.fetter.description ? 190 : 0) + (res.data.fetter.cv ? 180 : 0));
         setAlturaMin((!res.data.fetter.description && !res.data.fetter.cv) ? 137 : 190)
     }
@@ -191,6 +198,20 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                                     {mainSkillsId.map((mSkill, index) =>
                                         <div key={`main-skills-type-index-${index}`} className="col-12 col-md-6 col-lg-4 mt-2">
                                             <CharacterSkill skillData={charData.traces.mainSkills[mSkill]} id={charData.traces.mainSkills[mSkill].id} />
+                                        </div>
+                                    )}
+                                </>}
+                            </div>
+                        </div>
+                        <div className="col-12 pb-5" style={{ backgroundColor: "#212529" }}>
+                            <div className="row">
+                                <div className="col-12 mt-5 mb-2">
+                                    <h3 className="ms-1">Traços</h3>
+                                </div>
+                                {(charData && traceSkillsId.length > 0) && <>
+                                    {traceSkillsId.map((mSkill, index) =>
+                                        <div key={`trace-skills-type-index-${index}`} className="col-12 col-md-6 col-lg-4 mt-2">
+                                            <TraceSkill skillData={charData.traces.subSkills[mSkill]}/>
                                         </div>
                                     )}
                                 </>}
