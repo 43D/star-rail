@@ -62,6 +62,7 @@ export const LCIndex = ({ _observer }: props) => {
                         {getButtonPath(`Rogue`)}
                         {getButtonPath(`Warlock`)}
                         {getButtonPath(`Knight`)}
+                        {getButtonPath(`Memory`)}
                     </div>
                     <div className="d-flex justify-content-center flex-wrap">
                         <button className={'d-flex justify-content-center align-items-center py-3 btn mt-2 mx-1  ' + ((_filterRank.includes(5)) ? 'btn-success' : 'btn-outline-secondary')} onClick={() => toggleFilterRank(5)}>
