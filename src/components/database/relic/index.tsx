@@ -1,22 +1,33 @@
 import { useEffect, useState } from "react";
-import { RelicItensYattaResponse } from "../../../infra/api/iStarRailApi";
-import { getRelicsList } from "../../../core/localStorage/localStorageDataManager";
+import { RelicHakusResponse, RelicItensYattaResponse } from "../../../infra/api/iStarRailApi";
+import { getRelicsBetaIds, getRelicsBetaList, getRelicsList } from "../../../core/localStorage/localStorageDataManager";
 import { RelicCard } from "./componets/relicCard";
+import { getBetaContent } from "../../../core/localStorage/localStorageManager";
+import { RelicBetaCard } from "./componets/relicBetaCard";
 
 type props = {
     _observer: number;
 }
 
 export const RelicIndex = ({ _observer }: props) => {
+    const _betaUnlock = getBetaContent();
     const [_relicList, _setRelicList] = useState<RelicItensYattaResponse[]>([]);
+    const [_relicBetaList, _setRelicBetaList] = useState<RelicHakusResponse>();
     const getData = () => _setRelicList(getRelicsList().reverse());
+    const getBetaData = () => _setRelicBetaList(getRelicsBetaList());
+
     const [_4Pc, _set4Pc] = useState<boolean>(true);
     const [_2Pc, _set2Pc] = useState<boolean>(true);
 
     useEffect(() => {
+        if (_betaUnlock)
+            getBetaData();
         getData();
     }, [_observer]);
 
+
+    // getRelicList
+    
     return (
         <div className="container-fluid" style={{ minHeight: "75vh" }}>
             <div className="row justify-content-center px-2">
@@ -33,8 +44,14 @@ export const RelicIndex = ({ _observer }: props) => {
                 </div>
                 <div className="col-12 mb-5">
                     <div className="row justify-content-center px-1">
-                        {_relicList.map((relic, index) =>
-                            <RelicCard r2pc={_2Pc} r4pc={_4Pc} relic={relic} key={`home-char-index-${index}`} />
+                        {(_betaUnlock && _relicBetaList !== undefined) && <>
+                            {getRelicsBetaIds().map((id) =>
+                                <RelicBetaCard r2pc={_2Pc} r4pc={_4Pc} id={id} relic={_relicBetaList[id]} key={`home-char-beta-index-${id}`} />
+                            )}
+                        </>}
+
+                        {_relicList.map((relic) =>
+                            <RelicCard r2pc={_2Pc} r4pc={_4Pc} relic={relic} key={`home-char-index-${relic.id}`} />
                         )}
                     </div>
                 </div>

@@ -11,6 +11,7 @@ import { CharacterSkill } from "./components/CharacterSkill";
 import { HTMLParagraphConvertEidolons } from "../../../../core/util/HTMLManipulator/HTMLParagraphConvertEidolons";
 import { getRankImg } from "../../../../core/util/getRankURLImage";
 import { TraceSkill } from "./components/TraceSkill";
+import { getStringGender } from "../../../../core/util/GenderManipulator";
 
 type props = {
     _observer: number;
@@ -121,7 +122,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                         <div className="col-12">
                             <div className="card mb-1" style={{ maxWidth: (height / width) > 0.77 ? `100vw` : '30rem' }}>
                                 <div className="card-body">
-                                    <h1 className="mb-0">{charData.name}</h1>
+                                    <h1 className="mb-0">{getStringGender(charData.name)}</h1>
                                     <h6>{charData.fetter.faction ? charData.fetter.faction : "???"}</h6>
                                     <div className="d-flex align-items-center">
                                         <img style={{ maxWidth: `2rem`, height: `auto` }} src={`https://api.yatta.top/hsr/assets/UI//attribute/IconAttribute${combat}.png`} alt={combat} />

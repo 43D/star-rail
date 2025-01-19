@@ -1,4 +1,4 @@
-import { CharItensYattaResponse, LCItensYattaResponse, RelicItensYattaResponse } from "../../infra/api/iStarRailApi";
+import { CharHakushResponse, CharItensYattaResponse, LCHakusResponse, LCItensYattaResponse, RelicHakusResponse, RelicItensYattaResponse } from "../../infra/api/iStarRailApi";
 
 const getList = (id: string): any[] => {
     const charListString = localStorage.getItem(id);
@@ -39,24 +39,24 @@ export const setLCs = (list: LCItensYattaResponse[]) => {
 // ----------------------------------------------------------------------------------------------------------------------------------
 // BETA DATA
 
-export const getCharsBetaList = (): CharItensYattaResponse[] => getList('charsBeta');
+export const getCharsBetaList = (): CharHakushResponse => getList('charsBeta');
 export const getCharsBetaIds = (): number[] => getList('charsBetaIds');
-export const getRelicsBetaList = (): RelicItensYattaResponse[] => getList('relicsBeta');
+export const getRelicsBetaList = (): RelicHakusResponse => getList('relicsBeta');
 export const getRelicsBetaIds = (): number[] => getList('relicsBetaIds');
-export const getLCsBetaList = (): LCItensYattaResponse[] => getList('lcsBeta');
+export const getLCsBetaList = (): LCHakusResponse => getList('lcsBeta');
 export const getLCsBetaIds = (): number[] => getList('lcsBetaIds');
 
-export const setCharsBeta = (list: CharItensYattaResponse[]) => {
+export const setCharsBeta = (listId: number[], list: CharHakushResponse) => {
     setList(list, 'charsBeta');
-    setList(list.map((char) => Number(char.id)), 'charsBetaIds');
+    setList(listId, 'charsBetaIds');
 };
 
-export const setRelicsBeta = (list: RelicItensYattaResponse[]) => {
+export const setRelicsBeta = (listId: number[], list: RelicHakusResponse) => {
     setList(list, 'relicsBeta');
-    setList(list.map((relic) => Number(relic.id)), 'relicsBetaIds');
+    setList(listId, 'relicsBetaIds');
 };
 
-export const setLCsBeta = (list: LCItensYattaResponse[]) => {
+export const setLCsBeta = (listId: number[], list: LCHakusResponse) => {
     setList(list, 'lcsBeta');
-    setList(list.map((lc) => Number(lc.id)), 'lcsBetaIds');
+    setList(listId, 'lcsBetaIds');
 };

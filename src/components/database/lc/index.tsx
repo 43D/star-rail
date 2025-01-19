@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
-import { LCItensYattaResponse, pathType, RankLC } from "../../../infra/api/iStarRailApi";
-import { getLCsList } from "../../../core/localStorage/localStorageDataManager";
+import { LCHakusResponse, LCItensHakusResponse, LCItensYattaResponse, pathType, RankLC } from "../../../infra/api/iStarRailApi";
+import { getLCsBetaIds, getLCsBetaList, getLCsList } from "../../../core/localStorage/localStorageDataManager";
 import { useNavigate } from "react-router-dom";
+import { getBetaContent } from "../../../core/localStorage/localStorageManager";
 
 type props = {
     _observer: number;
 }
 
 export const LCIndex = ({ _observer }: props) => {
+    const _betaUnlock = getBetaContent();
     const navigate = useNavigate();
     const [_lcList, _setLcList] = useState<LCItensYattaResponse[]>([]);
+    const [_lcBetaList, _setLcBetaList] = useState<LCHakusResponse>();
     const getData = () => _setLcList(getLCsList().reverse());
+    const getBetaData = () => _setLcBetaList(getLCsBetaList());
+
     const [_filterPath, _setFilterPath] = useState<pathType[]>([]);
     const [_filterRank, _setFilterRank] = useState<RankLC[]>([]);
 
@@ -34,7 +39,32 @@ export const LCIndex = ({ _observer }: props) => {
 
     const getList = () => (_filterPath.length > 0 || _filterRank.length > 0) ? getListFiltered() : _lcList;
 
+    const getListBeta = () => {
+        const list: LCItensHakusResponse[] = [];
+        const ids = getLCsBetaIds();
+        if (_lcBetaList === undefined) return list;
+
+        const checkFilteredLc = (lc: LCItensHakusResponse) => {
+            if (_filterPath.length > 0)
+                if (_filterPath.includes(lc.baseType))
+                    return list.push(lc);
+
+            if (_filterRank.length > 0)
+                if (_filterRank.includes(Number(lc.rank.split("CombatPowerLightconeRarity")[1]) as RankLC))
+                    return list.push(lc);
+
+            return -1;
+        }
+        ids.forEach((id) => {
+            _lcBetaList[id].id = id;
+            (_filterPath.length > 0 || _filterRank.length > 0) ? checkFilteredLc(_lcBetaList[id]) : list.push(_lcBetaList[id])
+        });
+        return list;
+    }
+
     useEffect(() => {
+        if (_betaUnlock)
+            getBetaData();
         getData();
     }, [_observer]);
 
@@ -81,15 +111,29 @@ export const LCIndex = ({ _observer }: props) => {
                         }
                     </div>
                 </div>
-
-                {getList().map((char, index) =>
-                    <div className="p-1 card-char" key={`home-lc-index-${index}`}>
-                        <div className={`card h-100 bg-t${char.rank}`} onClick={() => navigate(`/lc/${char.id}`)} style={{ cursor: 'pointer' }} >
-                            <img src={`https://api.yatta.top/hsr/assets/UI//equipment/medium/${char.icon}.png`} className="card-img-top" alt={char.name} />
+                {_betaUnlock && <>
+                    {getListBeta().map((lc) =>
+                        <div className="p-1 card-char" key={`home-lc-beta-index-${lc.id}`}>
+                            <div className={`card h-100 bg-t${lc.rank.split("CombatPowerLightconeRarity")[1]}`} onClick={() => navigate(`/lc/${lc.id}`)} style={{ cursor: 'pointer' }} >
+                                <img src={`https://api.hakush.in/hsr/UI/lightconemediumicon/${lc.id}.webp`} className="card-img-top" alt={lc.en} />
+                                <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-2 pb-1 rounded-bottom">
+                                    <p className="card-title text-center mb-0">{lc.en}</p>
+                                    <div className="w-100 d-flex align-items-center justify-content-center">
+                                        <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${lc.baseType}Small.png`} className="ms-1 my-2" alt={lc.baseType} style={{ width: "auto", height: "2rem" }} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </>}
+                {getList().map((lc) =>
+                    <div className="p-1 card-char" key={`home-lc-index-${lc.id}`}>
+                        <div className={`card h-100 bg-t${lc.rank}`} onClick={() => navigate(`/lc/${lc.id}`)} style={{ cursor: 'pointer' }} >
+                            <img src={`https://api.yatta.top/hsr/assets/UI//equipment/medium/${lc.icon}.png`} className="card-img-top" alt={lc.name} />
                             <div className="card-body d-flex justify-content-center align-items-center flex-column px-0 pt-2 pb-1 rounded-bottom">
-                                <p className="card-title text-center mb-0">{char.name}</p>
+                                <p className="card-title text-center mb-0">{lc.name}</p>
                                 <div className="w-100 d-flex align-items-center justify-content-center">
-                                    <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${char.types.pathType}Small.png`} className="ms-1 my-2" alt={char.types.pathType} style={{ width: "auto", height: "2rem" }} />
+                                    <img src={`https://api.yatta.top/hsr/assets/UI//profession/IconProfession${lc.types.pathType}Small.png`} className="ms-1 my-2" alt={lc.types.pathType} style={{ width: "auto", height: "2rem" }} />
                                 </div>
                             </div>
                         </div>

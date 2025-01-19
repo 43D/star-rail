@@ -1,6 +1,6 @@
 import { getMCGender } from "../localStorage/localStorageManager"
 
-export const getMCIdList = () => (getMCGender() === "F") ? [8002, 8004, 8006] : [8001, 8003, 8005];
+export const getMCIdList = () => (getMCGender() === "F") ? [8002, 8004, 8006, 8008] : [8001, 8003, 8005, 8007];
 
 export const getStringGender = (name: string) => {
     const gender = getMCGender();

@@ -1,7 +1,9 @@
 export type pathType = `Knight` | `Rogue` | `Mage` | `Warlock` | `Priest` | `Warrior` | `Shaman` | "Memory";
 export type combatType = `Ice` | `Physical` | `Fire` | `Wind` | `Thunder` | `Quantum` | `Imaginary`;
 export type RankChar = 5 | 4;
+export type RankCharHakush = "CombatPowerAvatarRarityType5" | "CombatPowerAvatarRarityType4";
 export type RankLC = 5 | 4 | 3;
+export type RankLCHakush = "CombatPowerLightconeRarity3" | "CombatPowerLightconeRarity4" | "CombatPowerLightconeRarity5";
 export type rankEidolon = 1 | 2 | 3 | 4 | 5 | 6;
 export type relictPlanPiece = "NECK" | "OBJECT";
 export type relictCavernaPiece = "HEAD" | "BODY" | "HAND" | "FOOT";
@@ -321,5 +323,60 @@ export type iYattaStarRailApi = {
     getReleaseCharById: (id: string) => Promise<CharByIdYattaResponse>;
     getReleaseLCById: (id: string) => Promise<LCByIdYattaResponse>;
     getReleaseRelicsById: (id: string) => Promise<RelicByIdYattaResponse>; // https://https://api.yatta.top/hsr/v2/pt/relic/
+}
 
+type HakushBetaIdsType = {
+    character: number[];
+    lightcone: number[];
+    relicset: number[];
+}
+
+export type CharItemHakushResponse = {
+    id?: number;
+    baseType: pathType;
+    damageType: combatType;
+    desc: string;
+    en: string;
+    icon: string;
+    rank: RankCharHakush;
+    release: number;
+}
+
+export type CharHakushResponse = {
+    [key: number]: CharItemHakushResponse;
+}
+
+export type LCItensHakusResponse = {
+    id?: number;
+    baseType: pathType;
+    desc: string;
+    en: string;
+    rank: RankLCHakush
+}
+
+export type LCHakusResponse = {
+    [key: number]: LCItensHakusResponse;
+}
+
+export type RelicItensHakusResponse = {
+    en: string;
+    icon: string;
+    set: {
+        2: {
+            en: string;
+        },
+        4?: {
+            en: string;
+        }
+    }
+}
+export type RelicHakusResponse = {
+    [key: number]: RelicItensHakusResponse;
+}
+
+export type iHakushStarRailApi = {
+    getBetaIds: () => Promise<HakushBetaIdsType>;
+    getCharList: () => Promise<CharHakushResponse>;
+    getLCList: () => Promise<LCHakusResponse>;
+    getRelicList: () => Promise<RelicHakusResponse>;
 }
