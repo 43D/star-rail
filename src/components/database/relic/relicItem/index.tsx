@@ -37,6 +37,7 @@ const describleStatus: { [key: string]: string; } = {
 }
 
 export const RelicItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
+    apiBeta;
     const { id } = useParams<string>();
     const ids = getRelicsIds();
     const betaIds = getRelicsBetaIds();

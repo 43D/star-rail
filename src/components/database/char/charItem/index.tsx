@@ -20,6 +20,7 @@ type props = {
 }
 
 export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
+    apiBeta;
     const { id } = useParams<string>();
     const ids = getCharsIds();
     const betaIds = getCharsBetaIds();
@@ -36,6 +37,8 @@ export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
     const [profileOpen, setProfileOpen] = useState<boolean>(false);
     const [mainSkillsId, setMainSkillsId] = useState<string[]>([]);
     const [traceSkillsId, setTraceSkillsId] = useState<string[]>([]);
+    const [ServantSkillsId, setServantSkillsId] = useState<string[]>([]);
+    const [ServantTalentId, setServantTalentId] = useState<string[]>([]);
     const [charData, setCharData] = useState<CharByIdItensYattaResponse>();
     const { height, width } = useWindowDimensions();
     const themeCover = getCoverCharTheme();
@@ -62,6 +65,8 @@ export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
                 .filter((id) => res.data.traces.subSkills[id].pointType === "Special")
                 .map((id) => id)
         );
+        setServantSkillsId(Object.keys(res.data.traces.servantSkills.skills));
+        setServantTalentId(Object.keys(res.data.traces.servantSkills.talents));
         setAlturaMax(137 + (res.data.fetter.description ? 190 : 0) + (res.data.fetter.cv ? 180 : 0));
         setAlturaMin((!res.data.fetter.description && !res.data.fetter.cv) ? 137 : 190)
     }
@@ -225,6 +230,28 @@ export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
                                 </>}
                             </div>
                         </div>
+                        <div className="col-12 pb-5" style={{ backgroundColor: "#212529" }}>
+                            <div className="row">
+                                <div className="col-12 mt-5 mb-2">
+                                    <h3 className="ms-1">Memoespírito</h3>
+                                </div>
+                                {(charData && ServantSkillsId.length > 0) && <>
+                                    {ServantSkillsId.map((sSkill, index) =>
+                                        <div key={`servant-skills-type-index-${index}`} className="col-12 col-md-6 mt-2">
+                                            <CharacterSkill id={Number(sSkill)} skillData={charData.traces.servantSkills.skills[sSkill]} />
+                                        </div>
+                                    )}
+                                </>}
+                                {(charData && ServantTalentId.length > 0) && <>
+                                    {ServantTalentId.map((tSkill, index) =>
+                                        <div key={`servant-skills-type-index-${index}`} className="col-12 col-md-6 mt-2">
+                                            <CharacterSkill id={Number(tSkill)} skillData={charData.traces.servantSkills.talents[tSkill]} />
+                                        </div>
+                                    )}
+                                </>}
+                            </div>
+                        </div>
+
                         <div className="col-12 pb-5" style={{ backgroundColor: "#212529" }}>
                             <div className="row">
                                 <div className="col-12 mt-5 mb-2">

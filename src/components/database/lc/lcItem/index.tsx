@@ -15,7 +15,7 @@ type props = {
 }
 
 export const LCItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
-    _observer;
+    apiBeta;
     const { id } = useParams<string>();
     const ids = getLCsIds();
     const betaIds = getLCsBetaIds();

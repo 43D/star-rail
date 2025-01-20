@@ -112,7 +112,7 @@ export type mainSkillType = {
     id: number;
     name: string;
     description: string;
-    pointType: "Skill" | "Attribute" | "Special";
+    pointType: "Skill" | "Attribute" | "Special" | "Servant";
     maxLevel: number;
     isDefault: boolean;
     icon: string;
@@ -157,6 +157,12 @@ export type mainSkillType = {
     }
 }
 
+type CharServantType = {
+    id: number
+    name: string;
+    servantSkills: number[];
+}
+
 export type CharByIdItensYattaResponse = {
     id: number;
     name: string;
@@ -177,12 +183,21 @@ export type CharByIdItensYattaResponse = {
     fetter: profileCharType;
     eidolons: eidolonsType;
     upgrade: upgradeMathType[];
+    servant: CharServantType | null;
     traces: {
         mainSkills: {
             [key: string]: mainSkillType;
         };
         subSkills: {
             [key: string]: mainSkillType;
+        };
+        servantSkills: {
+            skills: {
+                [key: string]: mainSkillType;
+            };
+            talents: {
+                [key: string]: mainSkillType;
+            };
         };
     };
 }
