@@ -230,27 +230,29 @@ export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
                                 </>}
                             </div>
                         </div>
-                        <div className="col-12 pb-5" style={{ backgroundColor: "#212529" }}>
-                            <div className="row">
-                                <div className="col-12 mt-5 mb-2">
-                                    <h3 className="ms-1">Memoespírito</h3>
+                        {(charData && (ServantSkillsId.length > 0 || ServantTalentId.length > 0)) &&
+                            <div className="col-12 pb-5" style={{ backgroundColor: "#212529" }}>
+                                <div className="row">
+                                    <div className="col-12 mt-5 mb-2">
+                                        <h3 className="ms-1">Memoespírito</h3>
+                                    </div>
+                                    {(ServantSkillsId.length > 0) && <>
+                                        {ServantSkillsId.map((sSkill, index) =>
+                                            <div key={`servant-skills-type-index-${index}`} className="col-12 col-md-6 mt-2">
+                                                <CharacterSkill id={Number(sSkill)} skillData={charData.traces.servantSkills.skills[sSkill]} />
+                                            </div>
+                                        )}
+                                    </>}
+                                    {(ServantTalentId.length > 0) && <>
+                                        {ServantTalentId.map((tSkill, index) =>
+                                            <div key={`servant-skills-type-index-${index}`} className="col-12 col-md-6 mt-2">
+                                                <CharacterSkill id={Number(tSkill)} skillData={charData.traces.servantSkills.talents[tSkill]} />
+                                            </div>
+                                        )}
+                                    </>}
                                 </div>
-                                {(charData && ServantSkillsId.length > 0) && <>
-                                    {ServantSkillsId.map((sSkill, index) =>
-                                        <div key={`servant-skills-type-index-${index}`} className="col-12 col-md-6 mt-2">
-                                            <CharacterSkill id={Number(sSkill)} skillData={charData.traces.servantSkills.skills[sSkill]} />
-                                        </div>
-                                    )}
-                                </>}
-                                {(charData && ServantTalentId.length > 0) && <>
-                                    {ServantTalentId.map((tSkill, index) =>
-                                        <div key={`servant-skills-type-index-${index}`} className="col-12 col-md-6 mt-2">
-                                            <CharacterSkill id={Number(tSkill)} skillData={charData.traces.servantSkills.talents[tSkill]} />
-                                        </div>
-                                    )}
-                                </>}
                             </div>
-                        </div>
+                        }
 
                         <div className="col-12 pb-5" style={{ backgroundColor: "#212529" }}>
                             <div className="row">
