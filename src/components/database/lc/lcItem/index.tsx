@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { getLCsBetaIds, getLCsIds } from "../../../../core/localStorage/localStorageDataManager";
 import { NotFound } from "../../../NotFound";
 import { CSSProperties, useEffect, useState } from "react";
-import { iYattaStarRailApi, LCByIdItensYattaResponse, pathType } from "../../../../infra/api/iStarRailApi";
+import { iHakushStarRailApi, iYattaStarRailApi, LCByIdItensYattaResponse, pathType } from "../../../../infra/api/iStarRailApi";
 import useWindowDimensions from "../../../../core/util/getWindowsDimension";
 import { getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
 import { getRankImg } from "../../../../core/util/getRankURLImage";
@@ -11,16 +11,19 @@ import { LightConeStats } from "./componets/LightConeStats";
 type props = {
     _observer: number;
     apiYatta: iYattaStarRailApi;
+    apiBeta: iHakushStarRailApi;
 }
 
-export const LCItemIndex = ({ _observer, apiYatta }: props) => {
+export const LCItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
     _observer;
     const { id } = useParams<string>();
     const ids = getLCsIds();
     const betaIds = getLCsBetaIds();
+    const _isBetaContent = betaIds.includes(Number(id));
+
     if (!id)
         return <NotFound />
-    if (!(ids.includes(Number(id)) || betaIds.includes(Number(id))))
+    if (!(ids.includes(Number(id)) || _isBetaContent))
         return <NotFound />
 
     const [path, setPath] = useState<pathType | "">(``);
@@ -49,8 +52,13 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
     }
 
     useEffect(() => {
-        getData();
+        (_isBetaContent) ?  getBetaData() : getData();
     }, [_observer, id]);
+
+    const getBetaData = async () => {
+        setLCData(undefined);
+
+    }
 
     const getData = async () => {
         setLCData(undefined);
@@ -94,7 +102,7 @@ export const LCItemIndex = ({ _observer, apiYatta }: props) => {
                 <div className="row">
                     <div className="col-12" style={{
                         zIndex: 10, paddingTop:
-                            (ratio < DrRatio) ? `15px` : 
+                            (ratio < DrRatio) ? `15px` :
                                 ratio > DrEscala ? "calc(75vw + 84px)" : `calc(60vh + 84px)`
                     }}>
                         {lcData && <>

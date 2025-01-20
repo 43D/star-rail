@@ -374,9 +374,170 @@ export type RelicHakusResponse = {
     [key: number]: RelicItensHakusResponse;
 }
 
+type CharItemHakushDataRank = {
+    Id: number;
+    Name: string;
+    Desc: string;
+    ParamList: number[];
+}
+
+type CharItemHakushDataSkill = {
+    Name: string;
+    Desc: string;
+    Type: string;
+    Tag: string;
+    SPBase: number;
+    ShowStanceList: number[];
+    SkillComboValueDelta: null | number;
+    Level: {
+        [key: string]: {
+            Level: number;
+            ParamList: number[];
+        };
+    }
+}
+
+type CharItemHakushDataSkillTree = {
+    Icon: string;
+    ParamList: number[];
+    PointID: number;
+    PointName: string | null;
+    PointDesc: string | null;
+    PointType: 1 | 2 | 3;
+    StatusAddList: {
+        $type: string;
+        PropertyType: string;
+        Value: number;
+        Name: string;
+    }[];
+}
+
+type CharItemHakushDataMemosprite = {
+    Name: string;
+    Icon: string;
+    HPBase: string;
+    HPInherit: string;
+    HPSkill: number;
+    SpeedBase: string;
+    SpeedInherit: string;
+    SpeedSkill: number;
+    Aggro: number;
+    Skills: {
+        [key: string]: CharItemHakushDataSkill;
+    };
+    Talent: {
+        [key: string]: {};
+    };
+}
+type CharItemHakushDataStatus = {
+    [key: string]: {
+        AttackBase: number;
+        AttackAdd: number;
+        DefenceBase: number;
+        DefenceAdd: number;
+        HPBase: number;
+        HPAdd: number;
+        SpeedBase: number;
+        CriticalChance: number;
+        CriticalDamage: number;
+        BaseAggro: number;
+    };
+}
+
+export type CharItemHakushData = {
+    Name: string;
+    Desc: string;
+    CharaInfo: {
+        Camp: null | string;
+        VA: {
+            Chinese: null | string;
+            Japanese: null | string;
+            Korean: null | string;
+            English: null | string;
+        };
+    };
+    Rarity: "CombatPowerAvatarRarityType5" | "CombatPowerAvatarRarityType4";
+    AvatarVOTag: string;
+    SPNeed: number;
+    BaseType: pathType;
+    DamageType: combatType;
+    Ranks: {
+        "1": CharItemHakushDataRank;
+        "2": CharItemHakushDataRank;
+        "3": CharItemHakushDataRank;
+        "4": CharItemHakushDataRank;
+        "5": CharItemHakushDataRank;
+        "6": CharItemHakushDataRank;
+    };
+    Skills: {
+        [key: string]: CharItemHakushDataSkill;
+    };
+    SkillTrees: {
+        [keyPointer: string]: {
+            [key: string]: CharItemHakushDataSkillTree;
+        };
+    };
+    Memosprite: CharItemHakushDataMemosprite;
+    Stats: CharItemHakushDataStatus;
+}
+
+export type RelicItemHakushData = {
+    Name: string;
+    Icon: string;
+    Parts: {
+        [key: string]: {
+            Name: string;
+            Desc: string;
+            Story: string;
+        };
+    };
+
+    RequireNum: {
+        2: {
+            Desc: string;
+            ParamList: number[]
+        };
+        4: {
+            Desc: string;
+            ParamList: number[]
+        };
+    };
+};
+
+export type LCItemHakushData = {
+    Name: string;
+    Desc: string;
+    Rarity: "CombatPowerLightconeRarity5" | "CombatPowerLightconeRarity4" | "CombatPowerLightconeRarity3" | "CombatPowerLightconeRarity2";
+    BaseType: pathType;
+    Refinements: {
+        Name: string;
+        Desc: string;
+        Level: {
+            "1": { ParamList: number[]; };
+            "2": { ParamList: number[]; };
+            "3": { ParamList: number[]; };
+            "4": { ParamList: number[]; };
+            "5": { ParamList: number[]; };
+        };
+    };
+    Stats: {
+        EquipmentID: number;
+        MaxLevel: number;
+        BaseHP: number;
+        BaseHPAdd: number;
+        BaseAttack: number;
+        BaseAttackAdd: number;
+        BaseDefence: number;
+        BaseDefenceAdd: number;
+    }[];
+}
+
 export type iHakushStarRailApi = {
     getBetaIds: () => Promise<HakushBetaIdsType>;
     getCharList: () => Promise<CharHakushResponse>;
     getLCList: () => Promise<LCHakusResponse>;
     getRelicList: () => Promise<RelicHakusResponse>;
+    getBetaCharById: (id: string) => Promise<CharItemHakushData>;
+    getBetaLCById: (id: string) => Promise<LCItemHakushData>;
+    getBetaRelicsById: (id: string) => Promise<RelicItemHakushData>;
 }

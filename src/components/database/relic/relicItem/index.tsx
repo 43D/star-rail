@@ -3,7 +3,7 @@ import { getRelicsBetaIds, getRelicsIds } from "../../../../core/localStorage/lo
 import { NotFound } from "../../../NotFound";
 import useWindowDimensions from "../../../../core/util/getWindowsDimension";
 import { getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
-import { iYattaStarRailApi, RelicByIdItensYattaResponse, relictCavernaPiece, relictPlanPiece } from "../../../../infra/api/iStarRailApi";
+import { iHakushStarRailApi, iYattaStarRailApi, RelicByIdItensYattaResponse, relictCavernaPiece, relictPlanPiece } from "../../../../infra/api/iStarRailApi";
 import { CSSProperties, useEffect, useState } from "react";
 import { HTMLParagraphConvertEidolons } from "../../../../core/util/HTMLManipulator/HTMLParagraphConvertEidolons";
 import { HTMLParagraphConvert } from "../../../../core/util/HTMLManipulator/HTMLParagraphConvert";
@@ -11,6 +11,7 @@ import { HTMLParagraphConvert } from "../../../../core/util/HTMLManipulator/HTML
 type props = {
     _observer: number;
     apiYatta: iYattaStarRailApi;
+    apiBeta: iHakushStarRailApi;
 }
 
 const describleStatus: { [key: string]: string; } = {
@@ -35,13 +36,15 @@ const describleStatus: { [key: string]: string; } = {
     sPRatioBase: "Taxa de regeneração de energia"
 }
 
-export const RelicItemIndex = ({ _observer, apiYatta }: props) => {
+export const RelicItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
     const { id } = useParams<string>();
     const ids = getRelicsIds();
     const betaIds = getRelicsBetaIds();
+    const _isBetaContent = betaIds.includes(Number(id));
+
     if (!id)
         return <NotFound />
-    if (!(ids.includes(Number(id)) || betaIds.includes(Number(id))))
+    if (!(ids.includes(Number(id)) || _isBetaContent))
         return <NotFound />
 
     const [relic, setRelic] = useState<RelicByIdItensYattaResponse>();
@@ -59,8 +62,13 @@ export const RelicItemIndex = ({ _observer, apiYatta }: props) => {
     const DrRatio = 0.77;
 
     useEffect(() => {
-        getData();
+        (_isBetaContent) ? getBetaData() : getData();
     }, [_observer, id]);
+
+    const getBetaData = async () => {
+        setRelic(undefined);
+
+    }
 
     const getData = async () => {
         setRelic(undefined);

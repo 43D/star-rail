@@ -4,7 +4,7 @@ import { NotFound } from "../../../NotFound";
 import { CSSProperties, useEffect, useState } from "react";
 import useWindowDimensions from "../../../../core/util/getWindowsDimension";
 import { getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
-import { CharByIdItensYattaResponse, combatType, iYattaStarRailApi, pathType } from "../../../../infra/api/iStarRailApi";
+import { CharByIdItensYattaResponse, combatType, iHakushStarRailApi, iYattaStarRailApi, pathType } from "../../../../infra/api/iStarRailApi";
 import { CharacterStats } from "./components/CharacterStats";
 import { CharacterTraces } from "./components/CharacterTraces";
 import { CharacterSkill } from "./components/CharacterSkill";
@@ -16,16 +16,18 @@ import { getStringGender } from "../../../../core/util/GenderManipulator";
 type props = {
     _observer: number;
     apiYatta: iYattaStarRailApi;
+    apiBeta: iHakushStarRailApi;
 }
 
-export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
+export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
     const { id } = useParams<string>();
     const ids = getCharsIds();
     const betaIds = getCharsBetaIds();
+    const _isBetaContent = betaIds.includes(Number(id));
     if (!id)
-        return <NotFound />
-    if (!(ids.includes(Number(id)) || betaIds.includes(Number(id))))
-        return <NotFound />
+        return <NotFound />;
+    if (!(ids.includes(Number(id)) || _isBetaContent))
+        return <NotFound />;
 
     const [path, setPath] = useState<pathType | "">(``);
     const [combat, setCombat] = useState<combatType | "">(``);
@@ -40,8 +42,13 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
     const mainImage = `https://api.yatta.top/hsr/assets/UI/avatar/large/${id}.png`;
 
     useEffect(() => {
-        getData();
+        (_isBetaContent) ? getBetaData() : getData();
     }, [_observer, id]);
+
+    const getBetaData = async () => {
+        setCharData(undefined);
+
+    }
 
     const getData = async () => {
         setCharData(undefined);
@@ -212,7 +219,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta }: props) => {
                                 {(charData && traceSkillsId.length > 0) && <>
                                     {traceSkillsId.map((mSkill, index) =>
                                         <div key={`trace-skills-type-index-${index}`} className="col-12 col-md-6 col-lg-4 mt-2">
-                                            <TraceSkill skillData={charData.traces.subSkills[mSkill]}/>
+                                            <TraceSkill skillData={charData.traces.subSkills[mSkill]} />
                                         </div>
                                     )}
                                 </>}

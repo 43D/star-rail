@@ -81,21 +81,27 @@ export const StarRailApiBeta = (): iHakushStarRailApi => {
         const requestOptions = getHeader();
         return fetchAPIAsync(`${base_url_hakush_data}${endpoint}`, requestOptions);
     }
-    base_url_hakush_data_language;
-    // const getResponseDataLanguage = (endpoint: string) => {
-    //     const requestOptions = getHeader();
-    //     return fetchAPIAsync(`${base_url_hakush_data_language}${endpoint}`, requestOptions);
-    // }
+
+    const getResponseDataLanguage = (endpoint: string) => {
+        const requestOptions = getHeader();
+        return fetchAPIAsync(`${base_url_hakush_data_language}${endpoint}`, requestOptions);
+    }
 
     const getBetaIds = () => getResponseBase("new.json");
     const getCharList = () => getResponseData("character.json");
     const getLCList = () => getResponseData("lightcone.json");
     const getRelicList = () => getResponseData("relicset.json");
-    
+    const getBetaCharById = (id: string) => getResponseDataLanguage(`character/${id}.json`);
+    const getBetaLCById = (id: string) => getResponseDataLanguage(`lightcone/${id}.json`);
+    const getBetaRelicsById = (id: string) => getResponseDataLanguage(`relicset/${id}.json`);
+
     return {
         getBetaIds,
         getCharList,
         getLCList,
-        getRelicList
+        getRelicList,
+        getBetaCharById,
+        getBetaLCById,
+        getBetaRelicsById
     }
 }
