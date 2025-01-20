@@ -9,6 +9,5 @@ export const getStringGender = (name: string) => {
 
     if (!match) return name;
 
-    const nameParse = name.replace(/\{F#.*?\}/g, '').replace(/\{M#.*?\}/g, '');
-    return `${nameParse}${match[1]}`;
+    return (gender === "F") ? name.replace(/\{F#.*?\}/g, match[1]).replace(/\{M#.*?\}/g, '') : name.replace(/\{F#.*?\}/g, '').replace(/\{M#.*?\}/g, match[1]);
 }

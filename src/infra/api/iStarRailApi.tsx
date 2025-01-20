@@ -131,7 +131,7 @@ export type mainSkillType = {
                 spread: number | null;
                 all: number | null;
             };
-            description: string;
+            description: string | null;
             descriptionSimple: string;
             "requiredParams": null;
             extraEffects: null | {

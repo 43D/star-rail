@@ -1,6 +1,7 @@
 import { mainSkillType } from "../../../../../infra/api/iStarRailApi";
 import { HTMLParagraphConvert } from "../../../../../core/util/HTMLManipulator/HTMLParagraphConvert";
 import { useState } from "react";
+import { getStringGender } from "../../../../../core/util/GenderManipulator";
 
 type props = {
     skillData: mainSkillType;
@@ -31,7 +32,7 @@ export const CharacterSkill = ({ skillData, id }: props) => {
                             <div className="d-flex align-items-center">
                                 <img src={`https://api.yatta.top/hsr/assets/UI/skill/${skillData.skillList[skillKey].icon}.png`}
                                     alt={skillData.skillList[skillKey].name} style={{ maxHeight: "3rem" }} />
-                                <h4 className="ms-2">{skillData.skillList[skillKey].name}</h4>
+                                <h4 className="ms-2">{getStringGender(skillData.skillList[skillKey].name) }</h4>
                             </div>
                             <p className="my-2">{skillData.skillList[skillKey].type}</p>
 
@@ -90,7 +91,7 @@ export const CharacterSkill = ({ skillData, id }: props) => {
                             }
 
                             <HTMLParagraphConvert id={skillData.skillList[skillKey].icon}
-                                originalText={skillData.skillList[skillKey].description}
+                                originalText={skillData.skillList[skillKey].description ? skillData.skillList[skillKey].description : skillData.skillList[skillKey].descriptionSimple}
                                 params={skillData.skillList[skillKey].params}
                                 lvl={lvl - 1} />
 

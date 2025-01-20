@@ -6,9 +6,8 @@ type props = {
 }
 
 export const TraceSkill = ({ skillData }: props) => {
-    if (!skillData.description && skillData.pointType !== "Servant"){
-        console.log(skillData)
-        return;}
+    if (!skillData.description)
+        return;
 
     return (<>
         <div className="card h-100">

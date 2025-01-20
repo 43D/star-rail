@@ -266,8 +266,8 @@ export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
                                                 </div>
                                                 <div className="d-flex align-items-center">
                                                     <img src={`https://api.yatta.top/hsr/assets/UI/skill/${charData.eidolons[keyEidolon].icon}.png`}
-                                                        alt={charData.eidolons[keyEidolon].name} style={{ maxHeight: "3rem" }} />
-                                                    <h4 className="ms-2">{charData.eidolons[keyEidolon].name}</h4>
+                                                        alt={getStringGender(charData.eidolons[keyEidolon].name)} style={{ maxHeight: "3rem" }} />
+                                                    <h4 className="ms-2">{getStringGender(charData.eidolons[keyEidolon].name)}</h4>
                                                 </div>
                                                 <HTMLParagraphConvertEidolons id={keyEidolon}
                                                     originalText={charData.eidolons[keyEidolon].description}

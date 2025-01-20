@@ -1,3 +1,4 @@
+import { getStringGender } from "../GenderManipulator";
 
 type props = {
     originalText: string;
@@ -11,8 +12,8 @@ type props = {
 export const HTMLParagraphConvert = ({ originalText, params, lvl, id }: props) => {
     if (!originalText)
         return (<></>);
-
-    const formattedText = originalText
+    const modfiText = getStringGender(originalText);
+    const formattedText = modfiText
         .replace(/<color=(#[0-9a-fA-F]{8})>/g, (_, colorHex) => `<span style="color: ${colorHex}">`)
         .replace(/<\/color>/g, '</span>')
         .replace(/<unbreak>#(\d+)\[i\]%<\/unbreak>/g, (_, id) => {
