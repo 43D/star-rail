@@ -24,15 +24,15 @@ export const DatabaseRouteSettings = ({ injectAPI, nav, footer, _observable }: R
         },
         {
             path: '/character/:id',
-            element: defaultTemplate(<CharacterItemIndex apiYatta={injectAPI.starRailApi} key={4} _observer={_observable} />, nav, footer),
+            element: defaultTemplate(<CharacterItemIndex apiBeta={injectAPI.starRailApiBeta} apiYatta={injectAPI.starRailApi} key={4} _observer={_observable} />, nav, footer),
         },
         {
             path: '/lc/:id',
-            element: defaultTemplate(<LCItemIndex apiYatta={injectAPI.starRailApi} key={5} _observer={_observable} />, nav, footer),
+            element: defaultTemplate(<LCItemIndex  apiBeta={injectAPI.starRailApiBeta} apiYatta={injectAPI.starRailApi} key={5} _observer={_observable} />, nav, footer),
         },
         {
             path: '/relic/:id',
-            element: defaultTemplate(<RelicItemIndex key={6} _observer={_observable} apiYatta={injectAPI.starRailApi} />, nav, footer),
+            element: defaultTemplate(<RelicItemIndex  apiBeta={injectAPI.starRailApiBeta} key={6} _observer={_observable} apiYatta={injectAPI.starRailApi} />, nav, footer),
         },
         {
             path: '/search',
