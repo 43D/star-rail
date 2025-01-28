@@ -8,7 +8,7 @@ import { SearchIndex } from "../../components/database/search";
 import { NotFound } from "../../components/NotFound";
 import { RoutesProps, defaultTemplate } from "../routes";
 
-export const DatabaseRouteSettings = ({ injectAPI, nav, footer, _observable }: RoutesProps) => {
+export const DatabaseRouteSettings = ({ injectAPI, nav, footer, _observable, injectAdapter }: RoutesProps) => {
     const routes = [
         {
             path: '/character',
@@ -28,7 +28,7 @@ export const DatabaseRouteSettings = ({ injectAPI, nav, footer, _observable }: R
         },
         {
             path: '/lc/:id',
-            element: defaultTemplate(<LCItemIndex  apiBeta={injectAPI.starRailApiBeta} apiYatta={injectAPI.starRailApi} key={5} _observer={_observable} />, nav, footer),
+            element: defaultTemplate(<LCItemIndex lcBetaAdapter={injectAdapter.lcBetaAdapter} apiBeta={injectAPI.starRailApiBeta} apiYatta={injectAPI.starRailApi} key={5} _observer={_observable} />, nav, footer),
         },
         {
             path: '/relic/:id',

@@ -211,7 +211,7 @@ type CharByIdYattaResponse = {
 export type LCByIdItensYattaResponse = {
     id: number;
     name: string;
-    rank: RankChar;
+    rank: RankLC;
     types: {
         pathType: {
             id: pathType;

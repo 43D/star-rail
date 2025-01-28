@@ -49,7 +49,7 @@ export const LightConeStats = ({ lcData }: props) => {
     }, [lvl, lcData]);
 
     const onChangeRefino = (event: React.ChangeEvent<HTMLSelectElement>) => setRefino(Number(event.target.value));
-
+    console.log(lcData)
     return (<>
         <h4>{lcData.skill.name}</h4>
         <div className="d-flex align-items-center mb-3">

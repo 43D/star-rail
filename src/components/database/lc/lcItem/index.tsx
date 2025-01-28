@@ -7,14 +7,16 @@ import useWindowDimensions from "../../../../core/util/getWindowsDimension";
 import { getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
 import { getRankImg } from "../../../../core/util/getRankURLImage";
 import { LightConeStats } from "./componets/LightConeStats";
+import { iLcBetaAdapter } from "../../../../core/adapter/LcBetaAdapter";
 
 type props = {
     _observer: number;
     apiYatta: iYattaStarRailApi;
     apiBeta: iHakushStarRailApi;
+    lcBetaAdapter: iLcBetaAdapter
 }
 
-export const LCItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
+export const LCItemIndex = ({ _observer, apiYatta, apiBeta, lcBetaAdapter }: props) => {
     apiBeta;
     const { id } = useParams<string>();
     const ids = getLCsIds();
@@ -31,7 +33,8 @@ export const LCItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
     const { height, width } = useWindowDimensions();
     const themeCover = getCoverCharTheme();
 
-    const mainImage = `https://api.yatta.top/hsr/assets/UI/equipment/large/${id}.png`;
+
+    const mainImage = _isBetaContent ? `https://api.hakush.in/hsr/UI/lightconemaxfigures/${id}.webp` : `https://api.yatta.top/hsr/assets/UI/equipment/large/${id}.png`;
     const ratio = (height / width);
     const DrRatio = 0.77;
     const DrEscala = 1.65;
@@ -52,12 +55,14 @@ export const LCItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
     }
 
     useEffect(() => {
-        (_isBetaContent) ?  getBetaData() : getData();
+        (_isBetaContent) ? getBetaData() : getData();
     }, [_observer, id]);
 
     const getBetaData = async () => {
         setLCData(undefined);
-
+        const res = await apiBeta.getBetaLCById(id);
+        setPath(res.BaseType);
+        setLCData(lcBetaAdapter.HakushToYatta(res));
     }
 
     const getData = async () => {
@@ -130,7 +135,7 @@ export const LCItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
                                         <div id="profileLC" className="accordion-collapse collapse" data-bs-parent="#profileColapseLC">
                                             <div className="accordion-body">
                                                 {lcData.description.split("\\n").map((line, index) =>
-                                                    <p className="mb-1" key={`desc-lc-key-${index}`}>{line}</p>
+                                                    <p className="mb-1" key={`desc-lc-key-${index}`}>{line.replace("</i>", "").replace("<i>", "")}</p>
                                                 )}
                                             </div>
                                         </div>
