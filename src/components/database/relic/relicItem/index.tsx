@@ -7,11 +7,13 @@ import { iHakushStarRailApi, iYattaStarRailApi, RelicByIdItensYattaResponse, rel
 import { CSSProperties, useEffect, useState } from "react";
 import { HTMLParagraphConvertEidolons } from "../../../../core/util/HTMLManipulator/HTMLParagraphConvertEidolons";
 import { HTMLParagraphConvert } from "../../../../core/util/HTMLManipulator/HTMLParagraphConvert";
+import { iRelicBetaAdapter } from "../../../../core/adapter/RelicBetaAdapter";
 
 type props = {
     _observer: number;
     apiYatta: iYattaStarRailApi;
     apiBeta: iHakushStarRailApi;
+    relicBetaAdapter: iRelicBetaAdapter;
 }
 
 const describleStatus: { [key: string]: string; } = {
@@ -36,8 +38,7 @@ const describleStatus: { [key: string]: string; } = {
     sPRatioBase: "Taxa de regeneração de energia"
 }
 
-export const RelicItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
-    apiBeta;
+export const RelicItemIndex = ({ _observer, apiYatta, apiBeta, relicBetaAdapter }: props) => {
     const { id } = useParams<string>();
     const ids = getRelicsIds();
     const betaIds = getRelicsBetaIds();
@@ -68,7 +69,18 @@ export const RelicItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
 
     const getBetaData = async () => {
         setRelic(undefined);
-
+        const data = await apiBeta.getBetaRelicsById(id);
+        const res = relicBetaAdapter.HakushToYatta(data, Number(id))
+        res.isPlanarSuit ? setActualType("NECK") : setActualType("HEAD");
+        const maxRank = Math.max.apply(null, res.levelList);
+        const level = (res.isPlanarSuit) ?
+            res.suiteConfig.NECK[String(maxRank)].maxLevel :
+            res.suiteConfig.HEAD[String(maxRank)].maxLevel;
+        setMainImage(`https://api.hakush.in/hsr/UI/itemfigures/${res.icon.replace("SpriteOutput/ItemIcon/", "").replace(".png", '.webp')}`);
+        setRank(maxRank);
+        setMaxLvl(level);
+        setLvl(level);
+        setRelic(res);
     }
 
     const getData = async () => {
@@ -185,7 +197,7 @@ export const RelicItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
                                                     style={{ width: "21.15%" }}
                                                     onClick={() => setActualType(piece)}>
                                                     {piece in relic.suite && <>
-                                                        <img style={{ height: "auto", width: "100%" }} src={`https://api.yatta.top/hsr/assets/UI/relic/${relic.suite[piece].icon}.png`} alt={piece} />
+                                                        <img style={{ height: "auto", width: "100%" }} src={_isBetaContent ? `https://api.hakush.in/hsr/UI/relicfigures/${relic.suite[piece].icon}` : `https://api.yatta.top/hsr/assets/UI/relic/${relic.suite[piece].icon}.png`} alt={piece} />
                                                     </>}
                                                 </button>
                                             )}
@@ -197,7 +209,7 @@ export const RelicItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
                                                     className={"btn mx-1" + (atualType === piece ? " btn-success" : " btn-outline-secondary")}
                                                     onClick={() => setActualType(piece)}>
                                                     {piece in relic.suite && <>
-                                                        <img style={{ height: "auto", width: "100%" }} src={`https://api.yatta.top/hsr/assets/UI/relic/${relic.suite[piece].icon}.png`} alt={piece} />
+                                                        <img style={{ height: "auto", width: "100%" }} src={_isBetaContent ? `https://api.hakush.in/hsr/UI/relicfigures/${relic.suite[piece].icon}` : `https://api.yatta.top/hsr/assets/UI/relic/${relic.suite[piece].icon}.png`} alt={piece} />
                                                     </>}
                                                 </button>
                                             )}
