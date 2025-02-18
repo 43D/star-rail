@@ -506,13 +506,12 @@ export type RelicItemHakushData = {
             Story: string;
         };
     };
-
     RequireNum: {
-        2: {
+        "2": {
             Desc: string;
             ParamList: number[]
         };
-        4: {
+        "4"?: {
             Desc: string;
             ParamList: number[]
         };

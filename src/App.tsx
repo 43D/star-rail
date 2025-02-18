@@ -5,6 +5,7 @@ import { getAllDataApi } from "./core/api/dataCollect";
 import { HashRouter } from "react-router-dom";
 import RoutesApp from "./routes/routes";
 import { iLcBetaAdapter, LcBetaAdapter } from "./core/adapter/LcBetaAdapter";
+import { iRelicBetaAdapter, RelicBetaAdapter } from "./core/adapter/RelicBetaAdapter";
 
 export type ApiInject = {
   starRailApi: iYattaStarRailApi;
@@ -13,6 +14,7 @@ export type ApiInject = {
 
 export type AdapterInject = {
   lcBetaAdapter: iLcBetaAdapter;
+  relicBetaAdapter: iRelicBetaAdapter;
 }
 
 export const App = () => {
@@ -24,7 +26,8 @@ export const App = () => {
   }
 
   const adapters: AdapterInject = {
-    lcBetaAdapter: LcBetaAdapter()
+    lcBetaAdapter: LcBetaAdapter(),
+    relicBetaAdapter: RelicBetaAdapter()
   }
 
   const getDataApi = getAllDataApi(apis);
