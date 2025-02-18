@@ -65,8 +65,10 @@ export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
                 .filter((id) => res.data.traces.subSkills[id].pointType === "Special")
                 .map((id) => id)
         );
-        setServantSkillsId(Object.keys(res.data.traces.servantSkills.skills));
-        setServantTalentId(Object.keys(res.data.traces.servantSkills.talents));
+        if (res.data.traces.servantSkills) {
+            setServantSkillsId(Object.keys(res.data.traces.servantSkills.skills));
+            setServantTalentId(Object.keys(res.data.traces.servantSkills.talents));
+        }
         setAlturaMax(137 + (res.data.fetter.description ? 190 : 0) + (res.data.fetter.cv ? 180 : 0));
         setAlturaMin((!res.data.fetter.description && !res.data.fetter.cv) ? 137 : 190)
     }
@@ -239,14 +241,18 @@ export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
                                     {(ServantSkillsId.length > 0) && <>
                                         {ServantSkillsId.map((sSkill, index) =>
                                             <div key={`servant-skills-type-index-${index}`} className="col-12 col-md-6 mt-2">
-                                                <CharacterSkill id={Number(sSkill)} skillData={charData.traces.servantSkills.skills[sSkill]} />
+                                                {charData.traces.servantSkills &&
+                                                    <CharacterSkill id={Number(sSkill)} skillData={charData.traces.servantSkills.skills[sSkill]} />
+                                                }
                                             </div>
                                         )}
                                     </>}
                                     {(ServantTalentId.length > 0) && <>
                                         {ServantTalentId.map((tSkill, index) =>
                                             <div key={`servant-skills-type-index-${index}`} className="col-12 col-md-6 mt-2">
-                                                <CharacterSkill id={Number(tSkill)} skillData={charData.traces.servantSkills.talents[tSkill]} />
+                                                {charData.traces.servantSkills &&
+                                                    <CharacterSkill id={Number(tSkill)} skillData={charData.traces.servantSkills.talents[tSkill]} />
+                                                }
                                             </div>
                                         )}
                                     </>}

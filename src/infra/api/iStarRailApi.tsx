@@ -198,7 +198,7 @@ export type CharByIdItensYattaResponse = {
             talents: {
                 [key: string]: mainSkillType;
             };
-        };
+        } | null;
     };
 }
 
