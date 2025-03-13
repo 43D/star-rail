@@ -80,7 +80,7 @@ type profileCharType = {
     };
 }
 
-type eidolonsType = {
+export type eidolonsType = {
     [key: string]: {
         id: number;
         rank: rankEidolon;
@@ -157,7 +157,7 @@ export type mainSkillType = {
     }
 }
 
-type CharServantType = {
+export type CharServantType = {
     id: number
     name: string;
     servantSkills: number[];
@@ -389,7 +389,7 @@ export type RelicHakusResponse = {
     [key: number]: RelicItensHakusResponse;
 }
 
-type CharItemHakushDataRank = {
+export type CharItemHakushDataRank = {
     Id: number;
     Name: string;
     Desc: string;
@@ -397,6 +397,7 @@ type CharItemHakushDataRank = {
 }
 
 type CharItemHakushDataSkill = {
+    Id: number;
     Name: string;
     Desc: string;
     Type: string;
@@ -427,7 +428,7 @@ type CharItemHakushDataSkillTree = {
     }[];
 }
 
-type CharItemHakushDataMemosprite = {
+export type CharItemHakushDataMemosprite = {
     Name: string;
     Icon: string;
     HPBase: string;
@@ -444,19 +445,17 @@ type CharItemHakushDataMemosprite = {
         [key: string]: {};
     };
 }
-type CharItemHakushDataStatus = {
-    [key: string]: {
-        AttackBase: number;
-        AttackAdd: number;
-        DefenceBase: number;
-        DefenceAdd: number;
-        HPBase: number;
-        HPAdd: number;
-        SpeedBase: number;
-        CriticalChance: number;
-        CriticalDamage: number;
-        BaseAggro: number;
-    };
+export type CharItemHakushDataStatus = {
+    AttackBase: number;
+    AttackAdd: number;
+    DefenceBase: number;
+    DefenceAdd: number;
+    HPBase: number;
+    HPAdd: number;
+    SpeedBase: number;
+    CriticalChance: number;
+    CriticalDamage: number;
+    BaseAggro: number;
 }
 
 export type CharItemHakushData = {
@@ -471,7 +470,7 @@ export type CharItemHakushData = {
             English: null | string;
         };
     };
-    Rarity: "CombatPowerAvatarRarityType5" | "CombatPowerAvatarRarityType4";
+    Rarity: RankCharHakush;
     AvatarVOTag: string;
     SPNeed: number;
     BaseType: pathType;
@@ -492,8 +491,24 @@ export type CharItemHakushData = {
             [key: string]: CharItemHakushDataSkillTree;
         };
     };
-    Memosprite: CharItemHakushDataMemosprite;
-    Stats: CharItemHakushDataStatus;
+    Memosprite: CharItemHakushDataMemosprite | {};
+    Stats: {
+        "0": CharItemHakushDataStatus;
+        "1": CharItemHakushDataStatus;
+        "2": CharItemHakushDataStatus;
+        "3": CharItemHakushDataStatus;
+        "4": CharItemHakushDataStatus;
+        "5": CharItemHakushDataStatus;
+        "6": CharItemHakushDataStatus;
+    };
+    Unique: {
+        [key: string]: {
+            Tag: string;
+            Name: string;
+            Desc: string;
+            Param: number[];
+        }
+    };
 }
 
 export type RelicItemHakushData = {

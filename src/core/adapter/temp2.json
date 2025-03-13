@@ -1,0 +1,1765 @@
+{
+  "response": 200,
+  "data": {
+    "id": 1402,
+    "name": "Aglaea",
+    "rank": 5,
+    "types": {
+      "pathType": {
+        "id": "Memory",
+        "name": "A Recordação"
+      },
+      "combatType": {
+        "id": "Thunder",
+        "name": "Raio"
+      }
+    },
+    "icon": "1402",
+    "release": 1738749600,
+    "route": "Aglaea",
+    "fetter": {
+      "faction": "Amphoreus",
+      "description": "Naquela pólis sagrada beijada pelo amanhecer, a tecelã acaricia os fios dourados, tecendo destinos.\\nA Herdeira de Chrysos que porta a Chama Primordial do \"Romance\" reuniu os heróis do mundo, liderando-os em uma longa jornada uma vez mais\\n- superar as divindades, reconquistar a chama divina e conceder o renascimento à Amphoreus quase caída.",
+      "cv": {
+        "CV_CN": "楚越",
+        "CV_JP": "遠藤綾",
+        "CV_KR": "오로아",
+        "CV_EN": "Morgan Lauré"
+      }
+    },
+    "upgrade": [
+      
+      {
+        "level": 1,
+        "costItems": {
+          "2": 8000,
+          "115001": 10
+        },
+        "maxLevel": 30,
+        "playerLevelRequire": null,
+        "worldLevelRequire": 1,
+        "skillBase": {
+          "attackBase": 133.056,
+          "defenceBase": 92.4,
+          "hPBase": 236.544,
+          "speedBase": 102,
+          "criticalChance": 0.05,
+          "criticalDamage": 0.5,
+          "baseAggro": 100
+        },
+        "skillAdd": {
+          "attackAdd": 4.752,
+          "defenceAdd": 3.3,
+          "hPAdd": 8.448
+        }
+      },
+      {
+        "level": 2,
+        "costItems": {
+          "2": 16000,
+          "110424": 3,
+          "115002": 6
+        },
+        "maxLevel": 40,
+        "playerLevelRequire": null,
+        "worldLevelRequire": 2,
+        "skillBase": {
+          "attackBase": 171.072,
+          "defenceBase": 118.8,
+          "hPBase": 304.128,
+          "speedBase": 102,
+          "criticalChance": 0.05,
+          "criticalDamage": 0.5,
+          "baseAggro": 100
+        },
+        "skillAdd": {
+          "attackAdd": 4.752,
+          "defenceAdd": 3.3,
+          "hPAdd": 8.448
+        }
+      },
+      {
+        "level": 3,
+        "costItems": {
+          "2": 40000,
+          "110424": 7,
+          "115002": 9
+        },
+        "maxLevel": 50,
+        "playerLevelRequire": null,
+        "worldLevelRequire": 3,
+        "skillBase": {
+          "attackBase": 209.088,
+          "defenceBase": 145.2,
+          "hPBase": 371.712,
+          "speedBase": 102,
+          "criticalChance": 0.05,
+          "criticalDamage": 0.5,
+          "baseAggro": 100
+        },
+        "skillAdd": {
+          "attackAdd": 4.752,
+          "defenceAdd": 3.3,
+          "hPAdd": 8.448
+        }
+      },
+      {
+        "level": 4,
+        "costItems": {
+          "2": 80000,
+          "110424": 20,
+          "115003": 6
+        },
+        "maxLevel": 60,
+        "playerLevelRequire": null,
+        "worldLevelRequire": 4,
+        "skillBase": {
+          "attackBase": 247.104,
+          "defenceBase": 171.6,
+          "hPBase": 439.296,
+          "speedBase": 102,
+          "criticalChance": 0.05,
+          "criticalDamage": 0.5,
+          "baseAggro": 100
+        },
+        "skillAdd": {
+          "attackAdd": 4.752,
+          "defenceAdd": 3.3,
+          "hPAdd": 8.448
+        }
+      },
+      {
+        "level": 5,
+        "costItems": {
+          "2": 160000,
+          "110424": 35,
+          "115003": 9
+        },
+        "maxLevel": 70,
+        "playerLevelRequire": null,
+        "worldLevelRequire": 5,
+        "skillBase": {
+          "attackBase": 285.12,
+          "defenceBase": 198,
+          "hPBase": 506.88,
+          "speedBase": 102,
+          "criticalChance": 0.05,
+          "criticalDamage": 0.5,
+          "baseAggro": 100
+        },
+        "skillAdd": {
+          "attackAdd": 4.752,
+          "defenceAdd": 3.3,
+          "hPAdd": 8.448
+        }
+      },
+      {
+        "level": 6,
+        "costItems": null,
+        "maxLevel": 80,
+        "playerLevelRequire": null,
+        "worldLevelRequire": 5,
+        "skillBase": {
+          "attackBase": 323.136,
+          "defenceBase": 224.4,
+          "hPBase": 574.464,
+          "speedBase": 102,
+          "criticalChance": 0.05,
+          "criticalDamage": 0.5,
+          "baseAggro": 100
+        },
+        "skillAdd": {
+          "attackAdd": 4.752,
+          "defenceAdd": 3.3,
+          "hPAdd": 8.448
+        }
+      }
+    ],
+    "traces": {
+      "mainSkills": {
+        "1402001": {
+          "id": 1402001,
+          "name": null,
+          "description": null,
+          "pointType": "Skill",
+          "pointPosition": "Point01",
+          "maxLevel": 6,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": null,
+          "isDefault": true,
+          "skillList": {
+            "140201": {
+              "name": "Néctar Espinhoso",
+              "tag": "Alvo Único",
+              "type": "ATQ Básico",
+              "maxLevel": 9,
+              "skillPoints": {
+                "base": 20,
+                "need": null
+              },
+              "weaknessBreak": {
+                "one": 30
+              },
+              "description": "Causa Dano de Raio igual a \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#1[i]%\u003C/unbreak\u003E\u003C/color\u003E do ATQ de Aglaea a um inimigo designado.",
+              "descriptionSimple": "Causa Dano de Raio leve a um único inimigo.",
+              "requiredParams": null,
+              "traces": null,
+              "eidolons": null,
+              "extraEffects": null,
+              "attackType": "Normal",
+              "damageType": "Thunder",
+              "icon": "SkillIcon_1402_Normal",
+              "params": {
+                "1": [0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3],
+                "2": [1, 1, 1, 1, 1, 1, 1, 1, 1]
+              }
+            },
+            "140208": {
+              "name": "Talho de Mil Beijos",
+              "tag": "Explosão",
+              "type": "ATQ Básico",
+              "maxLevel": 9,
+              "skillPoints": {
+                "base": 20,
+                "need": null
+              },
+              "weaknessBreak": {
+                "one": 60,
+                "spread": 30
+              },
+              "description": "Aglaea e a Confeccionadora realizam um \u003Cu\u003EAtaque Conjunto\u003C/u\u003E no alvo, causando respectivamente Dano de Raio igual a \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E\u003C/color\u003E do ATQ de Aglaea e \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#3[f1]%\u003C/unbreak\u003E\u003C/color\u003E do ATQ da Confeccionadora ao alvo. Além disso, causa Dano de Raio igual a \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#2[i]%\u003C/unbreak\u003E\u003C/color\u003E do ATQ de Aglaea e \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#4[i]%\u003C/unbreak\u003E\u003C/color\u003E do ATQ da Confeccionadora aos alvos adjacentes.\\n\"Talho de Mil Beijos\" não pode recuperar Pontos de Perícia.",
+              "descriptionSimple": "Aglaea e a Confeccionadora realizam um \u003Ccolor=#f29e38ff\u003E\u003Cu\u003EAtaque Conjunto\u003C/u\u003E\u003C/color\u003E no alvo. Causa Dano de Raio a um inimigo e Dano de Raio leve aos alvos adjacentes.",
+              "requiredParams": null,
+              "traces": null,
+              "eidolons": null,
+              "extraEffects": [
+                {
+                  "name": "Ataque Conjunto",
+                  "description": "Múltiplos alvos usam ataques respectivamente nos inimigos-alvo em uma única ação.",
+                  "icon": ""
+                }
+              ],
+              "attackType": "Normal",
+              "damageType": "Thunder",
+              "icon": "SkillIcon_1402_Normal02",
+              "params": {
+                "1": [1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6],
+                "2": [0.45, 0.54, 0.63, 0.72, 0.81, 0.9, 0.99, 1.08, 1.17],
+                "3": [1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6],
+                "4": [0.45, 0.54, 0.63, 0.72, 0.81, 0.9, 0.99, 1.08, 1.17]
+              }
+            }
+          },
+          "statusList": null,
+          "icon": "SkillIcon_1402_Normal",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": null
+            },
+            "2": {
+              "costItems": {
+                "2": 3500,
+                "110251": 2,
+                "115001": 4
+              }
+            },
+            "3": {
+              "costItems": {
+                "2": 7000,
+                "110252": 2,
+                "115002": 2
+              }
+            },
+            "4": {
+              "costItems": {
+                "2": 16000,
+                "110252": 4,
+                "115002": 3
+              }
+            },
+            "5": {
+              "costItems": {
+                "2": 35000,
+                "110253": 2,
+                "115003": 2
+              }
+            },
+            "6": {
+              "costItems": {
+                "2": 140000,
+                "110253": 6,
+                "115003": 2
+              }
+            }
+          }
+        },
+        "1402002": {
+          "id": 1402002,
+          "name": null,
+          "description": null,
+          "pointType": "Skill",
+          "pointPosition": "Point02",
+          "maxLevel": 10,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": null,
+          "isDefault": true,
+          "skillList": {
+            "140202": {
+              "name": "Ascensão, Renome Exaltado",
+              "tag": "Invocar",
+              "type": "Perícia",
+              "maxLevel": 15,
+              "skillPoints": {
+                "base": 20,
+                "need": null
+              },
+              "weaknessBreak": null,
+              "description": "Restaura PV da Confeccionadora em \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#1[i]%\u003C/unbreak\u003E\u003C/color\u003E dos seus PV máximos. Se a Confeccionadora estiver ausente, invoca o Memoespírito da Confeccionadora, e esta unidade age imediatamente.",
+              "descriptionSimple": "Restaura PV da Confeccionadora. Se a Confeccionadora estiver ausente, \u003Ccolor=#f29e38ff\u003E\u003Cu\u003Einvoca o Memoespírito\u003C/u\u003E\u003C/color\u003E da Confeccionadora, e esta unidade age imediatamente.",
+              "requiredParams": null,
+              "traces": null,
+              "eidolons": null,
+              "extraEffects": [
+                {
+                  "name": "Invocar Memoespírito",
+                  "description": "Invoca o Memoespírito para o campo. Se o Memoespírito já estiver no campo, dissipa todas as penalidades de Controle Negativo que o Memoespírito está sofrendo.",
+                  "icon": "IconBuffCommon"
+                }
+              ],
+              "attackType": "BPSkill",
+              "damageType": null,
+              "icon": "SkillIcon_1402_BP",
+              "params": {
+                "1": [0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.40625, 0.4375, 0.46875, 0.5, 0.525, 0.55, 0.575, 0.6, 0.625],
+                "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "3": [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+              }
+            },
+            "140209": {
+              "name": "Ascensão, Renome Exaltado",
+              "tag": "Restauração",
+              "type": "Perícia",
+              "maxLevel": 15,
+              "skillPoints": {
+                "base": 20,
+                "need": null
+              },
+              "weaknessBreak": null,
+              "description": null,
+              "descriptionSimple": "Restaura PV da Confeccionadora. Se a Confeccionadora estiver ausente, invoca o Memoespírito da Confeccionadora, e esta unidade age imediatamente.",
+              "requiredParams": null,
+              "traces": null,
+              "eidolons": null,
+              "extraEffects": null,
+              "attackType": "BPSkill",
+              "damageType": null,
+              "icon": "SkillIcon_1402_BP",
+              "params": {
+                "1": [0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.40625, 0.4375, 0.46875, 0.5, 0.525, 0.55, 0.575, 0.6, 0.625]
+              }
+            }
+          },
+          "statusList": null,
+          "icon": "SkillIcon_1402_BP",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": null
+            },
+            "2": {
+              "costItems": {
+                "2": 2500,
+                "115001": 3
+              }
+            },
+            "3": {
+              "costItems": {
+                "2": 3500,
+                "110251": 2,
+                "115001": 4
+              }
+            },
+            "4": {
+              "costItems": {
+                "2": 7000,
+                "110252": 2,
+                "115002": 2
+              }
+            },
+            "5": {
+              "costItems": {
+                "2": 16000,
+                "110252": 4,
+                "115002": 3
+              }
+            },
+            "6": {
+              "costItems": {
+                "2": 25000,
+                "110252": 6,
+                "115002": 6
+              }
+            },
+            "7": {
+              "costItems": {
+                "2": 35000,
+                "110253": 2,
+                "115003": 2
+              }
+            },
+            "8": {
+              "costItems": {
+                "2": 70000,
+                "110253": 5,
+                "110506": 1,
+                "115003": 4
+              }
+            },
+            "9": {
+              "costItems": {
+                "2": 140000,
+                "241": 1,
+                "110253": 6,
+                "110506": 1
+              }
+            },
+            "10": {
+              "costItems": {
+                "2": 240000,
+                "241": 1,
+                "110253": 13,
+                "110506": 1
+              }
+            }
+          }
+        },
+        "1402003": {
+          "id": 1402003,
+          "name": null,
+          "description": null,
+          "pointType": "Skill",
+          "pointPosition": "Point03",
+          "maxLevel": 10,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": null,
+          "isDefault": true,
+          "skillList": {
+            "140203": {
+              "name": "Dance, \u003Cunbreak\u003ETecelã Destinada\u003C/unbreak\u003E",
+              "tag": "Aprimoramento",
+              "type": "Perícia Suprema",
+              "maxLevel": 15,
+              "skillPoints": {
+                "base": 5,
+                "need": 350
+              },
+              "weaknessBreak": null,
+              "description": "Invoca o Memoespírito da Confeccionadora. Se a Confeccionadora já estiver no campo, restaura seus PV ao máximo. Aglaea entra no estado de \"Postura Suprema\" e age imediatamente.\\nEnquanto está no estado de \"Postura Suprema\", Aglaea ganha os acúmulos de Bônus de VEL do Talento do Memoespírito da Confeccionadora, com cada acúmulo aumentando sua VEL em \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E\u003C/color\u003E. O ATQ Básico é aprimorado para \"Talho de Mil Beijos\" e a Perícia não pode ser utilizada. A Confeccionadora torna-se imune a penalidades de Controle Negativo.\\nUma contagem regressiva aparece na Ordem de Ação, com sua própria VEL definida em \u003Cunbreak\u003E#4[i]\u003C/unbreak\u003E. Usar a Perícia Suprema novamente quando a contagem regressiva estiver na Ordem de Ação fará com que a contagem regressiva seja reiniciada. Quando a rodada da contagem regressiva começar, a Confeccionadora se autodestrói. Quando a Confeccionadora desaparece, o estado de \"Postura Suprema\" de Aglaea é removido.",
+              "descriptionSimple": "\u003Ccolor=#f29e38ff\u003EInvoca o Memoespírito\u003C/color\u003E da Confeccionadora, permitindo que Aglaea entre no estado de \"Postura Suprema\", aja imediatamente e ganhe ATQ Básico Aprimorado.",
+              "requiredParams": null,
+              "traces": [1402101],
+              "eidolons": [140206],
+              "extraEffects": [
+                {
+                  "name": "Invocar Memoespírito",
+                  "description": "Invoca o Memoespírito para o campo. Se o Memoespírito já estiver no campo, dissipa todas as penalidades de Controle Negativo que o Memoespírito está sofrendo.",
+                  "icon": "IconBuffCommon"
+                },
+                {
+                  "name": "Penalidade de Controle Negativo",
+                  "description": "Congelamento, Embaraço, Aprisionamento, Dominação, Injúria, Reverberação Forte, Sonho Alienígena, Arapuca, Em Pânico.",
+                  "icon": "IconBuffCommon"
+                }
+              ],
+              "attackType": "Ultra",
+              "damageType": null,
+              "icon": "SkillIcon_1402_Ultra",
+              "params": {
+                "1": [0.1, 0.105, 0.11, 0.115, 0.12, 0.125, 0.13125, 0.1375, 0.14375, 0.15, 0.155, 0.16, 0.165, 0.17, 0.175],
+                "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "4": [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+              }
+            }
+          },
+          "statusList": null,
+          "icon": "SkillIcon_1402_Ultra",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": null
+            },
+            "2": {
+              "costItems": {
+                "2": 2500,
+                "115001": 3
+              }
+            },
+            "3": {
+              "costItems": {
+                "2": 3500,
+                "110251": 2,
+                "115001": 4
+              }
+            },
+            "4": {
+              "costItems": {
+                "2": 7000,
+                "110252": 2,
+                "115002": 2
+              }
+            },
+            "5": {
+              "costItems": {
+                "2": 16000,
+                "110252": 4,
+                "115002": 3
+              }
+            },
+            "6": {
+              "costItems": {
+                "2": 25000,
+                "110252": 6,
+                "115002": 6
+              }
+            },
+            "7": {
+              "costItems": {
+                "2": 35000,
+                "110253": 2,
+                "115003": 2
+              }
+            },
+            "8": {
+              "costItems": {
+                "2": 70000,
+                "110253": 5,
+                "110506": 1,
+                "115003": 4
+              }
+            },
+            "9": {
+              "costItems": {
+                "2": 140000,
+                "241": 1,
+                "110253": 6,
+                "110506": 1
+              }
+            },
+            "10": {
+              "costItems": {
+                "2": 240000,
+                "241": 1,
+                "110253": 13,
+                "110506": 1
+              }
+            }
+          }
+        },
+        "1402004": {
+          "id": 1402004,
+          "name": null,
+          "description": null,
+          "pointType": "Skill",
+          "pointPosition": "Point04",
+          "maxLevel": 10,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": null,
+          "isDefault": true,
+          "skillList": {
+            "140204": {
+              "name": "Dedo da Rosa Dourada",
+              "tag": "Aprimoramento",
+              "type": "Talento",
+              "maxLevel": 15,
+              "skillPoints": {
+                "base": 10,
+                "need": null
+              },
+              "weaknessBreak": null,
+              "description": "O Memoespírito da \"Confeccionadora\" possui VEL inicial igual a \u003Cunbreak\u003E#4[i]%\u003C/unbreak\u003E da VEL de Aglaea e PV máximos iguais a \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#5[i]%\u003C/unbreak\u003E\u003C/color\u003E dos PV máximos de Aglaea + \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#6[i]\u003C/unbreak\u003E\u003C/color\u003E. Enquanto a \"Confeccionadora\" estiver em campo, os ataques de Aglaea infligem o estado \"Costura Vinculante\" no alvo. Após atacar inimigos no estado de \"Costura Vinculante\", causa \u003Cu\u003EDano Adicional\u003C/u\u003E de Raio igual a \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#1[i]%\u003C/unbreak\u003E\u003C/color\u003E do ATQ de Aglaea. \"Costura Vinculante\" entra em efeito apenas no alvo afligido mais recentemente.",
+              "descriptionSimple": "Enquanto a Confeccionadora estiver em campo, os ataques de Aglaea infligem o estado de \"Costura Vinculante\" no alvo. Após atacar inimigos no estado de \"Costura Vinculante\", causa \u003Cu\u003EDano de Raio leve Adicional\u003C/u\u003E.",
+              "requiredParams": null,
+              "traces": [1402103],
+              "eidolons": [140201, 140202, 140204],
+              "extraEffects": [
+                {
+                  "name": "Dano adicional",
+                  "description": "Faz o alvo atacado receber Dano extra, e não é considerado um ataque.",
+                  "icon": "IconBuffCommon"
+                }
+              ],
+              "attackType": null,
+              "damageType": "Thunder",
+              "icon": "SkillIcon_1402_Passive",
+              "params": {
+                "1": [0.12, 0.138, 0.156, 0.174, 0.192, 0.21, 0.2325, 0.255, 0.2775, 0.3, 0.318, 0.336, 0.354, 0.372, 0.39],
+                "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "4": [0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35],
+                "5": [0.44, 0.4675, 0.495, 0.5225, 0.55, 0.572, 0.594, 0.616, 0.638, 0.66, 0.682, 0.704, 0.726, 0.748, 0.77],
+                "6": [180, 247.5, 315, 382.5, 450, 504, 558, 612, 666, 720, 774, 828, 882, 936, 990]
+              }
+            }
+          },
+          "statusList": null,
+          "icon": "SkillIcon_1402_Passive",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": null
+            },
+            "2": {
+              "costItems": {
+                "2": 2500,
+                "115001": 3
+              }
+            },
+            "3": {
+              "costItems": {
+                "2": 3500,
+                "110251": 2,
+                "115001": 4
+              }
+            },
+            "4": {
+              "costItems": {
+                "2": 7000,
+                "110252": 2,
+                "115002": 2
+              }
+            },
+            "5": {
+              "costItems": {
+                "2": 16000,
+                "110252": 4,
+                "115002": 3
+              }
+            },
+            "6": {
+              "costItems": {
+                "2": 25000,
+                "110252": 6,
+                "115002": 6
+              }
+            },
+            "7": {
+              "costItems": {
+                "2": 35000,
+                "110253": 2,
+                "115003": 2
+              }
+            },
+            "8": {
+              "costItems": {
+                "2": 70000,
+                "110253": 5,
+                "110506": 1,
+                "115003": 4
+              }
+            },
+            "9": {
+              "costItems": {
+                "2": 140000,
+                "241": 1,
+                "110253": 6,
+                "110506": 1
+              }
+            },
+            "10": {
+              "costItems": {
+                "2": 240000,
+                "241": 1,
+                "110253": 13,
+                "110506": 1
+              }
+            }
+          }
+        },
+        "1402007": {
+          "id": 1402007,
+          "name": null,
+          "description": null,
+          "pointType": "Skill",
+          "pointPosition": "Point05",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": null,
+          "isDefault": true,
+          "skillList": {
+            "140207": {
+              "name": "Divisão Meteórica",
+              "tag": null,
+              "type": "Técnica",
+              "maxLevel": 1,
+              "skillPoints": {
+                "base": null,
+                "need": null
+              },
+              "weaknessBreak": {
+                "one": 60
+              },
+              "description": "Invoca o Memoespírito da Confeccionadora e realiza um \u003Cu\u003EAtaque Conjunto\u003C/u\u003E. Após entrar em batalha, regenera \u003Cunbreak\u003E#2[i]\u003C/unbreak\u003E de Energia e causa Dano de Raio igual a \u003Cunbreak\u003E#1[i]%\u003C/unbreak\u003E do ATQ de Aglaea a todos os inimigos-alvo. Então, inflige aleatoriamente o estado de \"Costura Vinculante\" a um inimigo-alvo aleatório.",
+              "descriptionSimple": "\u003Ccolor=#f29e38ff\u003EInvoca o Memoespírito\u003C/color\u003E da \"Confeccionadora\" e realiza um \u003Cu\u003EAtaque Conjunto\u003C/u\u003E. Após entrar em batalha, regenera Energia e causa Dano de Raio leve a todos os inimigos. Então, inflige aleatoriamente o estado de \"Costura Vinculante\" a um inimigo-alvo aleatório.",
+              "requiredParams": null,
+              "traces": null,
+              "eidolons": null,
+              "extraEffects": [
+                {
+                  "name": "Invocar Memoespírito",
+                  "description": "Invoca o Memoespírito para o campo. Se o Memoespírito já estiver no campo, dissipa todas as penalidades de Controle Negativo que o Memoespírito está sofrendo.",
+                  "icon": "IconBuffCommon"
+                }
+              ],
+              "attackType": "Maze",
+              "damageType": "Thunder",
+              "icon": "SkillIcon_1402_Maze",
+              "params": {
+                "1": [1],
+                "2": [30]
+              }
+            }
+          },
+          "statusList": null,
+          "icon": "SkillIcon_1402_Maze",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": null
+            }
+          }
+        }
+      },
+      "servantSkills": {
+        "skills": {
+          "1402301": {
+            "id": 1402301,
+            "name": "Armadilha de Espinhos",
+            "description": null,
+            "pointType": "Servant",
+            "pointPosition": "Point19",
+            "maxLevel": 6,
+            "avatarLevelLimit": null,
+            "avatarPromotionLimit": null,
+            "isDefault": true,
+            "skillList": {
+              "1140201": {
+                "name": "Armadilha de Espinhos",
+                "tag": "Explosão",
+                "type": "Perícia do Memoespírito",
+                "maxLevel": 10,
+                "skillPoints": {
+                  "base": 10,
+                  "need": null
+                },
+                "weaknessBreak": {
+                  "one": 30,
+                  "spread": 15
+                },
+                "description": "Causa Dano de Raio equivalente a \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#1[i]%\u003C/unbreak\u003E\u003C/color\u003E do ATQ a um inimigo e Dano de Raio equivalente a \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#2[i]%\u003C/unbreak\u003E\u003C/color\u003E do ATQ a alvos adjacentes.",
+                "descriptionSimple": "Causa Dano de Raio leve a um inimigo-alvo e a unidades adjacentes.",
+                "requiredParams": null,
+                "traces": null,
+                "eidolons": null,
+                "extraEffects": null,
+                "attackType": "Servant",
+                "damageType": "Thunder",
+                "icon": "SkillIcon_11402_Servant01",
+                "params": {
+                  "1": [0.55, 0.66, 0.77, 0.88, 0.99, 1.1, 1.21, 1.32, 1.43, 1.54],
+                  "2": [0.33, 0.396, 0.462, 0.528, 0.594, 0.66, 0.726, 0.792, 0.858, 0.924],
+                  "3": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+                }
+              }
+            },
+            "statusList": null,
+            "icon": "SkillIcon_11402_Servant01",
+            "params": null,
+            "promote": {
+              "1": {
+                "costItems": null
+              },
+              "2": {
+                "costItems": {
+                  "2": 3500,
+                  "110251": 2,
+                  "115001": 4
+                }
+              },
+              "3": {
+                "costItems": {
+                  "2": 7000,
+                  "110252": 2,
+                  "115002": 2
+                }
+              },
+              "4": {
+                "costItems": {
+                  "2": 16000,
+                  "110252": 4,
+                  "115002": 3
+                }
+              },
+              "5": {
+                "costItems": {
+                  "2": 35000,
+                  "110253": 2,
+                  "115003": 2
+                }
+              },
+              "6": {
+                "costItems": {
+                  "2": 140000,
+                  "110253": 6,
+                  "115003": 2
+                }
+              }
+            }
+          }
+        },
+        "talents": {
+          "1402302": {
+            "id": 1402302,
+            "name": "Um Corpo Feito de Lágrimas",
+            "description": null,
+            "pointType": "Servant",
+            "pointPosition": "Point20",
+            "maxLevel": 6,
+            "avatarLevelLimit": null,
+            "avatarPromotionLimit": null,
+            "isDefault": true,
+            "skillList": {
+              "1140203": {
+                "name": "Um Corpo Feito de Lágrimas",
+                "tag": "Aprimoramento",
+                "type": "Talento do Memoespírito",
+                "maxLevel": 10,
+                "skillPoints": {
+                  "base": null,
+                  "need": null
+                },
+                "weaknessBreak": null,
+                "description": "Após atacar um inimigo afetado por \"Costura Vinculante\", aumenta a VEL desta unidade em \u003Ccolor=#f29e38ff\u003E\u003Cunbreak\u003E#1[i]\u003C/unbreak\u003E\u003C/color\u003E, acumulando até \u003Cunbreak\u003E#3[i]\u003C/unbreak\u003E vez(es). Quando a Confeccionadora age, usa automaticamente \"Armadilha de Espinhos\", priorizando inimigos no estado de \"Costura Vinculante\".",
+                "descriptionSimple": "Após atacar um inimigo afligido com \"Costura Vinculante\", \u003Ccolor=#f29e38ff\u003Eaumenta a VEL desta unidade\u003C/color\u003E. Enquanto estiver em ação, usa ataques automaticamente, priorizando inimigos no estado de \"Costura Vinculante\".",
+                "requiredParams": null,
+                "traces": [1402102],
+                "eidolons": null,
+                "extraEffects": null,
+                "attackType": null,
+                "damageType": null,
+                "icon": "SkillIcon_11402_ServantPassive",
+                "params": {
+                  "1": [44, 46.2, 48.4, 50.6, 52.8, 55, 57.2, 59.4, 61.6, 63.8],
+                  "2": [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+                  "3": [6, 6, 6, 6, 6, 6, 6, 6, 6, 6]
+                }
+              },
+              "1140205": {
+                "name": "O Verão Acelerado",
+                "tag": "Aprimoramento",
+                "type": "Talento do Memoespírito",
+                "maxLevel": 10,
+                "skillPoints": {
+                  "base": null,
+                  "need": null
+                },
+                "weaknessBreak": null,
+                "description": "Quando a Confeccionadora é invocada, a ação dessa unidade é Avançada Adiante em \u003Cunbreak\u003E#1[i]%\u003C/unbreak\u003E.",
+                "descriptionSimple": "Ao ser invocada, a ação dessa unidade é Avançada Adiante.",
+                "requiredParams": null,
+                "traces": null,
+                "eidolons": null,
+                "extraEffects": [
+                  {
+                    "name": "Ação Avançada Adiante",
+                    "description": "Reduz o intervalo de espera do alvo antes da próxima ação.",
+                    "icon": "IconBuffCommon"
+                  }
+                ],
+                "attackType": null,
+                "damageType": null,
+                "icon": "SkillIcon_11402_ServantPassive",
+                "params": {
+                  "1": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+                }
+              },
+              "1140206": {
+                "name": "Florescer da Grama Seca",
+                "tag": "Aprimoramento",
+                "type": "Talento do Memoespírito",
+                "maxLevel": 10,
+                "skillPoints": {
+                  "base": null,
+                  "need": null
+                },
+                "weaknessBreak": null,
+                "description": "Quando a Confeccionadora desaparece, regenera \u003Cunbreak\u003E#1[i]\u003C/unbreak\u003E de Energia para Aglaea.",
+                "descriptionSimple": "Regenera Energia para Aglaea ao desaparecer.",
+                "requiredParams": null,
+                "traces": null,
+                "eidolons": null,
+                "extraEffects": null,
+                "attackType": null,
+                "damageType": null,
+                "icon": "SkillIcon_11402_ServantPassive",
+                "params": {
+                  "1": [20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
+                }
+              }
+            },
+            "statusList": null,
+            "icon": "SkillIcon_11402_ServantPassive",
+            "params": null,
+            "promote": {
+              "1": {
+                "costItems": null
+              },
+              "2": {
+                "costItems": {
+                  "2": 3500,
+                  "110251": 2,
+                  "115001": 4
+                }
+              },
+              "3": {
+                "costItems": {
+                  "2": 7000,
+                  "110252": 2,
+                  "115002": 2
+                }
+              },
+              "4": {
+                "costItems": {
+                  "2": 16000,
+                  "110252": 4,
+                  "115002": 3
+                }
+              },
+              "5": {
+                "costItems": {
+                  "2": 35000,
+                  "110253": 2,
+                  "115003": 2
+                }
+              },
+              "6": {
+                "costItems": {
+                  "2": 140000,
+                  "110253": 6,
+                  "115003": 2
+                }
+              }
+            }
+          }
+        }
+      },
+      "subSkills": {
+        "1402101": {
+          "id": 1402101,
+          "name": "A Ruína do Míope",
+          "description": "Enquanto em \"Postura Suprema\", aumenta o ATQ de Aglaea e da \"Confeccionadora\" em um valor igual a \u003Cunbreak\u003E#1[i]%\u003C/unbreak\u003E da VEL de Aglaea + \u003Cunbreak\u003E#2[i]%\u003C/unbreak\u003E da VEL da \"Confeccionadora\".",
+          "pointType": "Special",
+          "pointPosition": "Point06",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": 2,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": null,
+          "icon": "SkillIcon_1402_SkillTree1",
+          "params": {
+            "1": [7.2],
+            "2": [3.6]
+          },
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 5000,
+                "110251": 3,
+                "110506": 1
+              }
+            }
+          }
+        },
+        "1402102": {
+          "id": 1402102,
+          "name": "Último Fio do Destino",
+          "description": "Quando a Confeccionadora desaparece, até \u003Cunbreak\u003E#1[i]\u003C/unbreak\u003E acúmulo(s) do Bônus de VEL do Talento do Memoespírito pode(m) ser retido(s). Quando a Confeccionadora for invocada novamente, ganha o número correspondente de acúmulos de Bônus de VEL.",
+          "pointType": "Special",
+          "pointPosition": "Point07",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": 4,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": null,
+          "icon": "SkillIcon_1402_SkillTree2",
+          "params": {
+            "1": [1]
+          },
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 20000,
+                "241": 1,
+                "110252": 5,
+                "110506": 1
+              }
+            }
+          }
+        },
+        "1402103": {
+          "id": 1402103,
+          "name": "O Amanhecer Acelerado",
+          "description": "No início da batalha, se a Energia desta unidade for inferior a \u003Cunbreak\u003E#1[i]%\u003C/unbreak\u003E, regenera a Energia desta unidade até \u003Cunbreak\u003E#2[i]%\u003C/unbreak\u003E.",
+          "pointType": "Special",
+          "pointPosition": "Point08",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": 6,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": null,
+          "icon": "SkillIcon_1402_SkillTree3",
+          "params": {
+            "1": [0.5],
+            "2": [0.5]
+          },
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 160000,
+                "241": 1,
+                "110253": 8,
+                "110506": 1
+              }
+            }
+          }
+        },
+        "1402201": {
+          "id": 1402201,
+          "name": "Bônus de Dano: Raio",
+          "description": null,
+          "pointType": "Attribute",
+          "pointPosition": "Point09",
+          "maxLevel": 1,
+          "avatarLevelLimit": 1,
+          "avatarPromotionLimit": null,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": [
+            {
+              "name": "Aumenta o Dano de Raio em \u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E",
+              "value": 0.032,
+              "icon": "IconThunderAddedRatio"
+            }
+          ],
+          "icon": "IconThunderAddedRatio",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 2500,
+                "115001": 2
+              }
+            }
+          }
+        },
+        "1402202": {
+          "id": 1402202,
+          "name": "Bônus de Chance de CRIT",
+          "description": null,
+          "pointType": "Attribute",
+          "pointPosition": "Point10",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": 2,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": [
+            {
+              "name": "Aumenta a Chance de CRIT em \u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E",
+              "value": 0.026999999,
+              "icon": "IconCriticalChance"
+            }
+          ],
+          "icon": "IconCriticalChance",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 4000,
+                "110251": 3,
+                "115001": 6
+              }
+            }
+          }
+        },
+        "1402203": {
+          "id": 1402203,
+          "name": "Bônus de Dano: Raio",
+          "description": null,
+          "pointType": "Attribute",
+          "pointPosition": "Point11",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": 3,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": [
+            {
+              "name": "Aumenta o Dano de Raio em \u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E",
+              "value": 0.032,
+              "icon": "IconThunderAddedRatio"
+            }
+          ],
+          "icon": "IconThunderAddedRatio",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 9000,
+                "110252": 3,
+                "115002": 2
+              }
+            }
+          }
+        },
+        "1402204": {
+          "id": 1402204,
+          "name": "Bônus de DEF",
+          "description": null,
+          "pointType": "Attribute",
+          "pointPosition": "Point12",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": 3,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": [
+            {
+              "name": "Aumenta a DEF em \u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E",
+              "value": 0.05,
+              "icon": "IconDefence"
+            }
+          ],
+          "icon": "IconDefence",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 9000,
+                "110252": 3,
+                "115002": 2
+              }
+            }
+          }
+        },
+        "1402205": {
+          "id": 1402205,
+          "name": "Bônus de Dano: Raio",
+          "description": null,
+          "pointType": "Attribute",
+          "pointPosition": "Point13",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": 4,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": [
+            {
+              "name": "Aumenta o Dano de Raio em \u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E",
+              "value": 0.048,
+              "icon": "IconThunderAddedRatio"
+            }
+          ],
+          "icon": "IconThunderAddedRatio",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 19000,
+                "110252": 4,
+                "115002": 4
+              }
+            }
+          }
+        },
+        "1402206": {
+          "id": 1402206,
+          "name": "Bônus de Chance de CRIT",
+          "description": null,
+          "pointType": "Attribute",
+          "pointPosition": "Point14",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": 5,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": [
+            {
+              "name": "Aumenta a Chance de CRIT em \u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E",
+              "value": 0.04,
+              "icon": "IconCriticalChance"
+            }
+          ],
+          "icon": "IconCriticalChance",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 45000,
+                "110253": 3,
+                "115003": 3
+              }
+            }
+          }
+        },
+        "1402207": {
+          "id": 1402207,
+          "name": "Bônus de Dano: Raio",
+          "description": null,
+          "pointType": "Attribute",
+          "pointPosition": "Point15",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": 5,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": [
+            {
+              "name": "Aumenta o Dano de Raio em \u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E",
+              "value": 0.048,
+              "icon": "IconThunderAddedRatio"
+            }
+          ],
+          "icon": "IconThunderAddedRatio",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 45000,
+                "110253": 3,
+                "115003": 3
+              }
+            }
+          }
+        },
+        "1402208": {
+          "id": 1402208,
+          "name": "Bônus de DEF",
+          "description": null,
+          "pointType": "Attribute",
+          "pointPosition": "Point16",
+          "maxLevel": 1,
+          "avatarLevelLimit": null,
+          "avatarPromotionLimit": 6,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": [
+            {
+              "name": "Aumenta a DEF em \u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E",
+              "value": 0.075,
+              "icon": "IconDefence"
+            }
+          ],
+          "icon": "IconDefence",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 140000,
+                "110253": 7,
+                "115003": 6
+              }
+            }
+          }
+        },
+        "1402209": {
+          "id": 1402209,
+          "name": "Bônus de Chance de CRIT",
+          "description": null,
+          "pointType": "Attribute",
+          "pointPosition": "Point17",
+          "maxLevel": 1,
+          "avatarLevelLimit": 75,
+          "avatarPromotionLimit": null,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": [
+            {
+              "name": "Aumenta a Chance de CRIT em \u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E",
+              "value": 0.053,
+              "icon": "IconCriticalChance"
+            }
+          ],
+          "icon": "IconCriticalChance",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 160000,
+                "110253": 8,
+                "115003": 8
+              }
+            }
+          }
+        },
+        "1402210": {
+          "id": 1402210,
+          "name": "Bônus de Dano: Raio",
+          "description": null,
+          "pointType": "Attribute",
+          "pointPosition": "Point18",
+          "maxLevel": 1,
+          "avatarLevelLimit": 80,
+          "avatarPromotionLimit": null,
+          "isDefault": false,
+          "skillList": null,
+          "statusList": [
+            {
+              "name": "Aumenta o Dano de Raio em \u003Cunbreak\u003E#1[f1]%\u003C/unbreak\u003E",
+              "value": 0.064,
+              "icon": "IconThunderAddedRatio"
+            }
+          ],
+          "icon": "IconThunderAddedRatio",
+          "params": null,
+          "promote": {
+            "1": {
+              "costItems": {
+                "2": 160000,
+                "110253": 8,
+                "115003": 8
+              }
+            }
+          }
+        }
+      },
+      "skillsTree": {
+        "1402101": {
+          "id": 1402101,
+          "type": "multiple",
+          "tree": {
+            "1402204": {
+              "id": 1402204,
+              "pointsDirection": null,
+              "points": null
+            },
+            "1402205": {
+              "id": 1402205,
+              "pointsDirection": null,
+              "points": null
+            }
+          }
+        },
+        "1402102": {
+          "id": 1402102,
+          "type": "multiple",
+          "tree": {
+            "1402206": {
+              "id": 1402206,
+              "pointsDirection": null,
+              "points": null
+            },
+            "1402207": {
+              "id": 1402207,
+              "pointsDirection": null,
+              "points": null
+            }
+          }
+        },
+        "1402103": {
+          "id": 1402103,
+          "type": "multiple",
+          "tree": {
+            "1402208": {
+              "id": 1402208,
+              "pointsDirection": "single",
+              "points": [1402209, 1402210]
+            }
+          }
+        },
+        "1402201": {
+          "id": 1402201,
+          "type": "multiple",
+          "tree": {
+            "1402202": {
+              "id": 1402202,
+              "pointsDirection": null,
+              "points": null
+            },
+            "1402203": {
+              "id": 1402203,
+              "pointsDirection": null,
+              "points": null
+            }
+          }
+        }
+      }
+    },
+    "eidolons": {
+      ,
+
+      "140202": {
+        "id": 140202,
+        "rank": 2,
+        "name": "Navegue na Jangada das Pálpebras",
+        "description": "Quando Aglaea ou a \"Confeccionadora\" agem, o Dano causado por elas ignora \u003Cunbreak\u003E#1[i]%\u003C/unbreak\u003E da DEF do alvo. Este efeito acumula até \u003Cunbreak\u003E#2[i]\u003C/unbreak\u003E vez(es) e dura até que qualquer unidade, exceto Aglaea ou a \"Confeccionadora\", utilize ativamente uma habilidade.",
+        "skillAddLevelList": null,
+        "icon": "SkillIcon_1402_Rank2",
+        "params": [0.14, 3]
+      },
+      "140203": {
+        "id": 140203,
+        "rank": 3,
+        "name": "Legado na Coalescência do Orvalho",
+        "description": "Nv. da Perícia +2, até um máximo de Nv. \u003Cunbreak\u003E15\u003C/unbreak\u003E.\\nNv. do ATQ Básico +1, até um máximo de Nv. \u003Cunbreak\u003E10\u003C/unbreak\u003E.\\nNv. do Talento do Memoespírito +1, até um máximo de Nv. \u003Cunbreak\u003E10\u003C/unbreak\u003E.",
+        "skillAddLevelList": {
+          "140201": 1,
+          "140202": 2,
+          "140208": 1,
+          "140209": 2,
+          "1140203": 1,
+          "1140205": 1,
+          "1140206": 1
+        },
+        "icon": "SkillIcon_1402_BP",
+        "params": null
+      },
+      "140204": {
+        "id": 140204,
+        "rank": 4,
+        "name": "Cintilação Abaixo da Superfície do Mármore",
+        "description": "O efeito de Bônus de VEL do Talento do Memoespírito tem seu limite máximo de acúmulos aumentado em \u003Cunbreak\u003E#1[i]\u003C/unbreak\u003E. Após Aglaea realizar um ataque, também pode fazer a \"Confeccionadora\" receber o efeito de Bônus de VEL do Talento do Memoespírito.",
+        "skillAddLevelList": null,
+        "icon": "SkillIcon_1402_Rank4",
+        "params": [1, 2]
+      },
+      "140205": {
+        "id": 140205,
+        "rank": 5,
+        "name": "Tecer sob o Sudário do Infortúnio",
+        "description": "Nv. da Perícia Suprema +2, até um máximo de Nv. \u003Cunbreak\u003E15\u003C/unbreak\u003E.\\nNv. do Talento +2, até um máximo de Nv. \u003Cunbreak\u003E15\u003C/unbreak\u003E.\\nNv. da Perícia do Memoespírito +1, até um máximo de Nv. \u003Cunbreak\u003E10\u003C/unbreak\u003E.",
+        "skillAddLevelList": {
+          "140203": 2,
+          "140204": 2,
+          "1140201": 1
+        },
+        "icon": "SkillIcon_1402_Ultra",
+        "params": null
+      },
+      "140206": {
+        "id": 140206,
+        "rank": 6,
+        "name": "Flutuar na Tapeçaria dos Destinos",
+        "description": "Enquanto Aglaea estiver em \"Postura Suprema\", aumenta a PEN de RES a Raio dela e da \"Confeccionadora\" em \u003Cunbreak\u003E#1[i]%\u003C/unbreak\u003E. Quando a VEL de Aglaea ou da \"Confeccionadora\" for maior que \u003Cunbreak\u003E160\u003C/unbreak\u003E/\u003Cunbreak\u003E240\u003C/unbreak\u003E/\u003Cunbreak\u003E320\u003C/unbreak\u003E, o Dano causado pelo \u003Cu\u003EAtaque Conjunto\u003C/u\u003E aumenta em \u003Cunbreak\u003E#2[i]%\u003C/unbreak\u003E/\u003Cunbreak\u003E#3[i]%\u003C/unbreak\u003E/\u003Cunbreak\u003E#4[i]%\u003C/unbreak\u003E.",
+        "skillAddLevelList": null,
+        "icon": "SkillIcon_1402_Rank6",
+        "params": [0.2, 0.1, 0.3, 0.6]
+      }
+    },
+    "servant": {
+      "id": 11402,
+      "name": "Confeccionadora",
+      "servantSkills": [1140201, 1140203, 1140205, 1140206]
+    },
+    "ascension": {
+      "2": 3,
+      "241": 5,
+      "110251": 2,
+      "110252": 3,
+      "110253": 4,
+      "110424": 4,
+      "110506": 4,
+      "115001": 2,
+      "115002": 3,
+      "115003": 4
+    },
+    "script": {
+      "story": [
+        {
+          "title": "Detalhes de Personagem",
+          "text": "Naquela pólis sagrada beijada pelo amanhecer, a tecelã acaricia os fios dourados, tecendo destinos.\\nA Herdeira de Chrysos que porta a Chama Primordial do \"Romance\" reuniu os heróis do mundo, liderando-os em uma longa jornada uma vez mais\\n- superar as divindades, reconquistar a chama divina e conceder o renascimento à Amphoreus quase caída."
+        },
+        {
+          "title": "História de Personagem: Parte I",
+          "text": "Anos depois, quando ela repentinamente encontra um traje que costurara na juventude, a seda derrama afeto, abalando delicadamente seu coração há muito endurecido.\\n\\nNa família, ao longo de gerações dedicadas a Mnestia, cada membro aprende uma \"bela\" arte desde cedo. Retratos dos grandes mestres estão pendurados na parede de honra da casa de banho particular, sempre zelando por sua prole.\\nEnquanto muitos ficam mudos diante do escrutínio intenso desses mestres, ela avança com uma graça simples sob seu olhar.\\n\"A pintura sucumbe à simulação; a música, à abstração; a escultura, ao tamanho; e o drama, ao mundano...\"\\nOs anciões exibem sinais claros de derrota, mas a voz dela, jovem e resoluta, silencia qualquer objeção.\\n\"Pequena Agy, com certeza não há nada mais bonito do que eles.\"\\nSaindo do banho, ela dança nas pontas dos pés até o espelho, os cabelos loiro-claros caindo sobre os ombros como uma cachoeira.\\n\"Não.\"\\nDiante do espelho embaçado pelo vapor, seus olhos dourados chamam a atenção de vários olhares...\\n\"Eu vou encontrá-la... a existência que supera todas as outras em beleza.\"\\n\\n\"Foi por um motivo simples assim que, mais tarde...\" O calor do traje toca as pontas dos dedos dela, despertando lembranças.\\nEla vai, num impulso travesso, até o Bosque, e admira as casas de banho, tudo por uma folha dourada, uma onda de inspiração.\\nEla correu pelos telhados e parou nos prados, só para costurar a liberdade da brisa e a fragrância distante das flores em seus fios.\\nO templo fluía. O tear nunca parava. Suas criações geram tendências em Okhema, uma atrás da outra.\\nVestida com seu melhor tecido, ela visita o templo, mas se pergunta: \"Isto é beleza?\"\\n\\nA sacerdotisa de Mnestia chegara ao crepúsculo de sua vida, a visão estava mais fraca, mas o brilho da moça conseguia quebrar sua melancolia.\\n\\n\"Pequena Agy, quando assumir o manto de 'Tecelã Dourada', você estará destinada a criar obras que até as divindades invejariam.\"\\n\"Estas vestes, e você com estas vestes, são realmente coisas lindas... mas isso não é 'beleza'.\"\\n\"Mas... 'lindo' e 'beleza' não são a mesma coisa?\"\\n\"Você ainda não entende... e não entender é uma coisa boa, de verdade...\"",
+          "required": {
+            "type": "avatarLevel",
+            "param": 20
+          }
+        },
+        {
+          "title": "História de Personagem: Parte II",
+          "text": "Com o passar do tempo, as roupas que ela cria se multiplicam, alcançando a magnitude do céu estrelado.\\nEntretanto, curiosamente, dentro daquele guarda-roupa grande e ornado, muitos tecidos antigos rasgados são cuidadosamente preservados.\\n\\nEm terras tomadas pelo conflito, jovens guerreiros partem usando trajes vibrantes. Entretanto, com frequência, seus uniformes se transformam em mortalhas, e às vezes, apenas restos de tecido voltam em seu lugar. Quando ninguém aparece para recolher esses restos, ela os recolhe.\\nEm sua fúria, certa vez, ela destruiu belíssimas roupas. Os nobres corruptos e mimados não mereciam desfilar com as roupas que ela criava... mesmo que ela mesma, outrora, tivesse caminhado entre eles.\\nE então... há essas outras roupas humildes, uma após outra...\\n\\nEles haviam crescido com ela ao longo dos anos, compartilhando canções do passado, sonhos com o futuro\\n– Só depois de testemunhar tanta feiura é que ela entende o verdadeiro peso daquelas palavras inocentes.\\n\"Como costureira de Okhema e sacerdotisa de Mnestia, meus deveres estão alinhados aos seus.\"\\n\"Mas o preço da salvação...\"\\n\"... é igual ao seu?\"\\n\"Igual ao \u003Cb\u003Enosso\u003C/b\u003E.\"\\n\\nNo lugar mais visível, encontra-se a túnica sem adornos de uma sacerdotisa. Ela frequentemente a pega para limpar e remover a poeira, sempre se lembrando do voto que fez à divindade.\\n\"Por favor, me perdoe, em nome da criação mais bela do mundo...\"\\nMuito tempo atrás, no momento em que obteve a Chama Primordial, ela de repente \"viu\" na escuridão uma paisagem de tirar o fôlego com a qual nunca havia se deparado...\\nNaquele futuro dourado, não há mais conflitos nem morte.",
+          "required": {
+            "type": "avatarLevel",
+            "param": 40
+          }
+        },
+        {
+          "title": "História de Personagem: Parte III",
+          "text": "Eles dizem que é a Jornada de Perseguição às Chamas. Mas também dizem que é uma jornada de perda.\\n\\nEla tem a sensação distante de algo precioso lhe escorrendo por entre os dedos, mas não tem tempo para pensar nisso, já que a pessoa que caminha diante dela está carregando uma perda muito maior do que a sua própria perda.\\n\"Deixarei este lugar nas suas mãos, Aglaea.\"\\n\"Faça sempre o melhor que puder.\"\\n\"A gente se vê!\"\\nEla não entende por que a despedida delas sempre é daquele jeito.\\nSó restam as melodias fracas ecoando das profundezas do mar, passos varridos pelo vento que atravessa a terra e um tabuleiro de xadrez sem solução abandonado.\\n\\n\"Como fios delicados podem suportar o grande peso do destino?\"\\nSua única companhia é a Confeccionadora, mas seu guarda-roupa, outrora grandioso, agora está sombriamente vazio.\\nA nobre entra no conflito político, produzindo debates acalorados no Conselho dos Anciões. Em meio ao desprezo contínuo dos observadores, ela começa a traçar seus planos.\\nOs fios dourados nas pontas de seus dedos costuram uma rede por toda Okhema. As ninfas repousam nas esquinas da pólis, capturando todos os sussurros e respirações.\\n\\nAté os fios dourados tornam-se letais, manchados pela primeira vez pelo cheiro do sangue.",
+          "required": {
+            "type": "avatarLevel",
+            "param": 60
+          }
+        },
+        {
+          "title": "História de Personagem: Parte IV",
+          "text": "Até hoje, esse tear divino gira incansavelmente, com inúmeros Confeccionadores pairando no ar. Nenhum sabe por que dança ou por que descansa.\\n\"Confeccionadora, por favor, vá até a praça. Temos visitantes que vieram de longe...\"\\n\\nEssa cena já transcorreu várias vezes. No passado, era sempre ela quem entrava em contato. E, agora, eram os outros que a buscavam.\\nNaquele momento, há um jovem de armadura branca-prateada ali de pé, seu rosto juvenil marcado pelo ódio e por manchas de sangue.\\nA moça de vestido roxo permanece em silêncio, deixando um rastro arrepiante de morte com a fragrância profunda de flores aonde quer que vá.\\nUm ladrão furtivo como um gato desaparece de Okhema, mas ela não dá atenção a isso, acreditando que não passa de uma pegadinha.\\nA moça, calorosa como uma luz suave, já havia curado suas cicatrizes.\\nE, agora, lá está o príncipe herdeiro das terras distantes, o orgulhoso erudito...\\n\"Se um fio não basta, que uma miríade de fios se ergam até o céu...\"\\nEla procura diversos fios do destino, costurando-os numa rede resiliente. Esta rede rumaria para as Chamas Primordiais dos Titãs, reacendendo-a num novo mundo.\\n\"Junto, os Herdeiros de Chrysos tecerão um futuro promissor e deslumbrante.\"\\n\\nDurante uma breve pausa, ela vai até a janela e contempla a movimentada pólis de Okhema lá embaixo.\\n\"Confeccionadora, prepare outra xícara de chá para mim, por favor.\"\\nEla treme um pouco, mas seu coração não é mais afetado pelas tristezas do passado.\\nFios dourados invisíveis se derramam das pontas dos seus dedos, entremeando-se na pulsação da pólis-estado, no sussurro do vento e no barulho da chuva – tudo ressoando com o toque dela, como uma inspiração conjurada pela divindade do romance, pulsando com a promessa de vida nova.\\nApós muita reflexão, ela guarda as vestes ornadas que criara na juventude.\\n\"Mesmo que, no final, eu não deva usar nada além de roupas simples...\"\\n\\nReza a lenda que todo discípulo de Mnestia devota a vida inteira a produzir o que considera a Beleza Suprema para presentear sua divindade.\\nFaz muito tempo que ela não faz mais belas roupas.\\nNo entanto, ela nunca deixou de tecer os fios do destino.",
+          "required": {
+            "type": "avatarLevel",
+            "param": 80
+          }
+        }
+      ],
+      "voice": [
+        {
+          "title": "Primeiro Encontro",
+          "text": "Ó, nobre {M#convidado}{F#convidada} de longe. O vento me trouxe notícias suas pelos fios dourados. Meu nome é Aglaea, a mestra costureira de Okhema e uma dos Herdeiros de Chrysos de Amphoreus. Espero que nos tratemos com honestidade.",
+          "audio": 71402001
+        },
+        {
+          "title": "Cumprimento",
+          "text": "Seu tempo em Okhema foi agradável? Se você tiver algum desejo, por favor, deixe esta \"Confeccionadora\" saber. A pólis sagrada certamente oferecerá a mais esplêndida hospitalidade para seus aliados.",
+          "audio": 71402002
+        },
+        {
+          "title": "Despedida",
+          "text": "Nós nos encontraremos novamente, {M#amigo}{F#amiga}. Não importa onde sua jornada te leve, os portões de Okhema estarão sempre abertos para os heróis.",
+          "audio": 71402003
+        },
+        {
+          "title": "Sobre Si: Identidade",
+          "text": "O mundo está quase destruído após a Guerra de Chrysos, e agora Okhema permanece como a única pólis da humanidade. Meu dever é proteger este refúgio restante... A qualquer custo.",
+          "audio": 71402004
+        },
+        {
+          "title": "Bate-Papo: Costurar Vestidos",
+          "text": "Mnestia concedeu a este mundo milhares de romances, e a costura é meu favorito. Fios e tecidos brilham através dos meus dedos, como os destinos de todos os seres vivos se conectam e se entrelaçam no ser.",
+          "audio": 71402005
+        },
+        {
+          "title": "Hobbies",
+          "text": "As roupas são as barreiras entre corpos e corações. Remover as roupas também removeria tais obstáculos. Você e eu retiraremos nossas barreiras {M#um para o outro}{F#uma para a outra} nos banhos sagrados, como as águas que escorrem por nossos dedos se entrelaçam e fluem em direção ao futuro.",
+          "audio": 71402007
+        },
+        {
+          "title": "Irritações",
+          "text": "A alegria de ouvir o canto dos pássaros, o prazer de respirar os aromas das folhas, o toque suave da água... Quanto mais adoro a felicidade deste mundo, mais temo que essas visões sejam reduzidas a ecos do passado, capazes de serem reproduzidos apenas nas pontas dos meus dedos.",
+          "audio": 71402008
+        },
+        {
+          "title": "Uma Curiosidade",
+          "text": "Quando eu ainda era uma mestra costureira, meu trabalho já era quebrar os moldes antiquados da moda. Agora, como parte dos Herdeiros de Chrysos, também tenho a responsabilidade de remover erros antigos e criar uma \"beleza\" totalmente nova.",
+          "audio": 71402006
+        },
+        {
+          "title": "Conhecimento",
+          "text": "Poesia, esportes, teatro, escultura... Todas as coisas são a manifestação da beleza e têm nutrido as almas do povo de Okhema por milênios. As pessoas cantarão nos banhos mesmo se enfrentarem o fim do mundo. Essa é a vida que vivemos.",
+          "audio": 71402009
+        },
+        {
+          "title": "Sobre a Tribbie, Trianne e Trinnon",
+          "text": "Muitas pessoas nascidas nesta era veem a fé como a única coisa em suas vidas, e as profecias das três são capazes de acalmar esse mundo ansioso e inquieto como uma chuva suave.",
+          "audio": 71402010
+        },
+        {
+          "title": "Sobre o Phainon",
+          "text": "Aceitar os desejos dos outros e transformá-los em seus próprios desejos. Nem todos os heróis são telas em branco como ele, e é por isso que o mundo deposita tantas esperanças nele.",
+          "audio": 71402011
+        },
+        {
+          "title": "Sobre o Mydei",
+          "text": "Ele é como uma fornalha, sempre acesa com fogo infindável. Esse fogo ou será completamente apagado em uma tempestade, ou levará sua própria existência às cinzas com ele.",
+          "audio": 71402012
+        },
+        {
+          "title": "Sobre a Castorice",
+          "text": "Aquele que está mais próximo da morte geralmente sabe mais sobre quão preciosa é a vida. Seu abraço traz sono eterno, mas tais despedidas são sempre calorosas.",
+          "audio": 71402013
+        },
+        {
+          "title": "Ativação de Eidolon",
+          "text": "Você não pode apagar o fogo, pois sua herança nunca será extinta.",
+          "audio": null
+        },
+        {
+          "title": "Ascensão de Personagem",
+          "text": "Até os épicos mais majestosos são tecidos a partir de palavras individuais.",
+          "audio": null
+        },
+        {
+          "title": "Nível Máximo Alcançado",
+          "text": "Por que meu coração apaixonado bate assim?",
+          "audio": null
+        },
+        {
+          "title": "Ativação de Rastro",
+          "text": "Que todos possamos sair ilesos desta jornada sem fim.",
+          "audio": null
+        },
+        {
+          "title": "Entrou na Equipe com {NICKNAME}",
+          "text": "Vamos tecer o futuro juntos.",
+          "audio": null
+        },
+        {
+          "title": "Entrou na Equipe com Tribbie",
+          "text": "Professora, por favor, continue nos guiando.",
+          "audio": null
+        },
+        {
+          "title": "Entrou na Equipe com Mydei",
+          "text": "Pelo menos nesse momento, temos o mesmo objetivo.",
+          "audio": null
+        },
+        {
+          "title": "Início da Batalha: Quebra de Fraqueza",
+          "text": "Ser direto é sempre preferível.",
+          "audio": null
+        },
+        {
+          "title": "Início da Batalha: Alerta de Perigo",
+          "text": "Um pouco de agitação demais para o meu gosto.",
+          "audio": null
+        },
+        {
+          "title": "Começo de Rodada - 1",
+          "text": "Isso é medo que estou percebendo? Sua respiração está irregular.",
+          "audio": null
+        },
+        {
+          "title": "Começo de Rodada - 2",
+          "text": "Um pouco de honestidade faria bem a nós.",
+          "audio": null
+        },
+        {
+          "title": "Rodada Ociosa",
+          "text": "Encontre a quietude e a iluminação surgirá.",
+          "audio": null
+        },
+        {
+          "title": "ATQ Básico",
+          "text": "Não passa de uma farsa.",
+          "audio": null
+        },
+        {
+          "title": "ATQ Básico: Ataque Conjunto - 1",
+          "text": "Todas as mentiras serão reveladas com perfeita clareza.",
+          "audio": null
+        },
+        {
+          "title": "ATQ Básico: Ataque Conjunto - 2",
+          "text": "A vida, tão frágil, como um fio de seda.",
+          "audio": null
+        },
+        {
+          "title": "Perícia: Invocação de Confeccionador - 1",
+          "text": "Hora de se ter firmeza.",
+          "audio": null
+        },
+        {
+          "title": "Perícia: Invocação de Confeccionador - 2",
+          "text": "Quer dançar?",
+          "audio": null
+        },
+        {
+          "title": "Perícia: Cura de Confeccionador - 1",
+          "text": "Banhe-se em ouro.",
+          "audio": null
+        },
+        {
+          "title": "Perícia: Cura de Confeccionador - 2",
+          "text": "Adorne-se em esplendor.",
+          "audio": null
+        },
+        {
+          "title": "Ao Receber um Ataque Leve",
+          "text": "Não me preocupa.",
+          "audio": null
+        },
+        {
+          "title": "Ao Receber um Ataque Pesado",
+          "text": "O caminho é pavimentado nas dificuldades.",
+          "audio": null
+        },
+        {
+          "title": "Perícia Suprema: Ativar",
+          "text": "Incontáveis fios, todos ao meu alcance.",
+          "audio": null
+        },
+        {
+          "title": "Perícia Suprema: Liberar",
+          "text": "Então, nossos destinos se tornam um só.",
+          "audio": null
+        },
+        {
+          "title": "Ao Ficar Fora de Combate",
+          "text": "Presos... pelos fios da morte...",
+          "audio": null
+        },
+        {
+          "title": "Ao Voltar à Batalha",
+          "text": "Parece que o fim ainda não chegou.",
+          "audio": null
+        },
+        {
+          "title": "Ao Recuperar PV",
+          "text": "Obrigada, {F#amiga}{M#amigo}.",
+          "audio": null
+        },
+        {
+          "title": "Técnica",
+          "text": "Rompa o coração do conflito.",
+          "audio": null
+        },
+        {
+          "title": "Ao Vencer uma Batalha",
+          "text": "O triunfo previsto se aproxima.",
+          "audio": null
+        },
+        {
+          "title": "Abrindo Tesouro - 1",
+          "text": "Uma textura suave, de uma artesania fina.",
+          "audio": null
+        },
+        {
+          "title": "Abrindo Tesouro - 2",
+          "text": "Uma fragrância abundante, digna de reconhecimento.",
+          "audio": null
+        },
+        {
+          "title": "Abrindo Tesouro Precioso",
+          "text": "Casualidade e surpresa, ambas misturadas com beleza.",
+          "audio": null
+        },
+        {
+          "title": "Enigma Solucionado - 1",
+          "text": "Tecelagem complexa, nada deixado ao acaso.",
+          "audio": null
+        },
+        {
+          "title": "Enigma Solucionado - 2",
+          "text": "Uma abordagem inovadora, verdadeiramente única.",
+          "audio": null
+        },
+        {
+          "title": "Alvo Inimigo Encontrado",
+          "text": "Em espaços enclausurados, um choque entre as vontades é inevitável.",
+          "audio": null
+        },
+        {
+          "title": "Voltando à Cidade",
+          "text": "Se tiver uma folga, tire um tempo para tomar um banho.",
+          "audio": null
+        }
+      ]
+    }
+  }
+}
