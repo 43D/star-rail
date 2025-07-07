@@ -4,7 +4,7 @@ import { NotFound } from "../../../NotFound";
 import { CSSProperties, useEffect, useState } from "react";
 import { iHakushStarRailApi, iYattaStarRailApi, LCByIdItensYattaResponse, pathType } from "../../../../infra/api/iStarRailApi";
 import useWindowDimensions from "../../../../core/util/getWindowsDimension";
-import { getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
+import { CoverCharTheme, getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
 import { getRankImg } from "../../../../core/util/getRankURLImage";
 import { LightConeStats } from "./componets/LightConeStats";
 import { iLcBetaAdapter } from "../../../../core/adapter/LcBetaAdapter";
@@ -30,15 +30,15 @@ export const LCItemIndex = ({ _observer, apiYatta, apiBeta, lcBetaAdapter }: pro
     const [path, setPath] = useState<pathType | "">(``);
     const [lcData, setLCData] = useState<LCByIdItensYattaResponse>();
     const { height, width } = useWindowDimensions();
-    const themeCover = getCoverCharTheme();
-
-
-    const mainImage = _isBetaContent ? `https://api.hakush.in/hsr/UI/lightconemaxfigures/${id}.webp` : `https://api.yatta.top/hsr/assets/UI/equipment/large/${id}.png`;
-    const ratio = (height / width);
-    const DrRatio = 0.77;
-    const DrEscala = 1.65;
-
-    const style: CSSProperties = {
+    const [themeCover, _] = useState<CoverCharTheme>(getCoverCharTheme());
+    const [mainImage, __] = useState<string>(_isBetaContent ?
+        `https://api.hakush.in/hsr/UI/lightconemaxfigures/${id}.webp` :
+        `https://api.yatta.top/hsr/assets/UI/equipment/large/${id}.png`
+    );
+    const [ratio, ___] = useState<number>(height / width);
+    const [DrRatio, ____] = useState<number>(0.77);
+    const [DrEscala, _____] = useState<number>(1.65);
+    const [style, ______] = useState<CSSProperties>({
         backgroundImage: `url("${mainImage}")`,
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
@@ -51,25 +51,22 @@ export const LCItemIndex = ({ _observer, apiYatta, apiBeta, lcBetaAdapter }: pro
         overflow: "hidden",
         position: "fixed",
         transform: ratio < DrRatio ? "rotate(15deg)" : "",
-    }
+    });
 
     useEffect(() => {
+        setLCData(undefined);
         (_isBetaContent) ? getBetaData() : getData();
     }, [_observer, id]);
 
-    const getBetaData = async () => {
-        setLCData(undefined);
-        const res = await apiBeta.getBetaLCById(id);
+    const getBetaData = () => apiBeta.getBetaLCById(id).then((res) => {
         setPath(res.BaseType);
         setLCData(lcBetaAdapter.HakushToYatta(res));
-    }
+    });
 
-    const getData = async () => {
-        setLCData(undefined);
-        const res = await apiYatta.getReleaseLCById(id);
+    const getData = () => apiYatta.getReleaseLCById(id).then((res) => {
         setPath(res.data.types.pathType.id);
         setLCData(res.data);
-    }
+    });
 
     const getBackgroundCoverTheme = () => {
         const background = {

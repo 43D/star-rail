@@ -4,45 +4,42 @@ import { setChars, setCharsBeta, setLCs, setLCsBeta, setRelics, setRelicsBeta } 
 
 
 export const getAllDataApi = (api: ApiInject) => {
-    const getCharData = async () => {
-        const res = await api.starRailApi.getReleaseChar();
+    const getCharData = () => api.starRailApi.getReleaseChar().then(res => {
         setChars(Object.values(res.data.items));
-    }
+    });
 
-    const getRelicData = async () => {
-        const res = await api.starRailApi.getReleaseRelics();
+    const getRelicData = () => api.starRailApi.getReleaseRelics().then(res => {
         setRelics(Object.values(res.data.items));
-    }
+    });
 
-    const getLCData = async () => {
-        const res = await api.starRailApi.getReleaseLC();
+    const getLCData = () => api.starRailApi.getReleaseLC().then(res => {
         setLCs(Object.values(res.data.items));
-    }
+    });
 
     const getBetaIds = async () => {
         const res = await api.starRailApiBeta.getBetaIds();
-        const chars = await api.starRailApiBeta.getCharList();
-        const lcs = await api.starRailApiBeta.getLCList();
-        const relics = await api.starRailApiBeta.getRelicList();
+        api.starRailApiBeta.getCharList().then(chars => {
+            const filteredIChars = res.character.reduce((obj, key) => {
+                obj[Number(key)] = chars[Number(key)];
+                return obj;
+            }, {} as CharHakushResponse);
+            setCharsBeta(res.character, filteredIChars);
+        });
+        api.starRailApiBeta.getLCList().then(lcs => {
+            const filteredILCs = res.lightcone.reduce((obj, key) => {
+                obj[Number(key)] = lcs[Number(key)];
+                return obj;
+            }, {} as LCHakusResponse);
+            setLCsBeta(res.lightcone, filteredILCs);
+        });
 
-        const filteredIChars = res.character.reduce((obj, key) => {
-            obj[Number(key)] = chars[Number(key)];
-            return obj;
-        }, {} as CharHakushResponse);
-
-        const filteredILCs = res.lightcone.reduce((obj, key) => {
-            obj[Number(key)] = lcs[Number(key)];
-            return obj;
-        }, {} as LCHakusResponse);
-
-        const filteredIRelics = res.relicset.reduce((obj, key) => {
-            obj[Number(key)] = relics[Number(key)];
-            return obj;
-        }, {} as RelicHakusResponse);
-
-        setCharsBeta(res.character, filteredIChars);
-        setLCsBeta(res.lightcone, filteredILCs);
-        setRelicsBeta(res.relicset, filteredIRelics);
+        api.starRailApiBeta.getRelicList().then(relics => {
+            const filteredIRelics = res.relicset.reduce((obj, key) => {
+                obj[Number(key)] = relics[Number(key)];
+                return obj;
+            }, {} as RelicHakusResponse);
+            setRelicsBeta(res.relicset, filteredIRelics);
+        });
     }
 
     const init = async () => {

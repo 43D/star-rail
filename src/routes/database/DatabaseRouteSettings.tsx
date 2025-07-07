@@ -24,7 +24,7 @@ export const DatabaseRouteSettings = ({ injectAPI, nav, footer, _observable, inj
         },
         {
             path: '/character/:id',
-            element: defaultTemplate(<CharacterItemIndex apiBeta={injectAPI.starRailApiBeta} apiYatta={injectAPI.starRailApi} key={4} _observer={_observable} />, nav, footer),
+            element: defaultTemplate(<CharacterItemIndex charBetaAdapter={injectAdapter.charBetaAdapter} apiBeta={injectAPI.starRailApiBeta} apiYatta={injectAPI.starRailApi} key={4} _observer={_observable} />, nav, footer),
         },
         {
             path: '/lc/:id',

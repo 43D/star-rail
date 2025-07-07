@@ -99,8 +99,6 @@ export const CharBetaAdapter = (): iCharBetaAdapter => {
 
     }
 
-
-
     const HakushToYatta = (data: CharItemHakushData) => {
         data.Memosprite
 

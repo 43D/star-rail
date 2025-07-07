@@ -3,7 +3,7 @@ import { getCharsBetaIds, getCharsIds } from "../../../../core/localStorage/loca
 import { NotFound } from "../../../NotFound";
 import { CSSProperties, useEffect, useState } from "react";
 import useWindowDimensions from "../../../../core/util/getWindowsDimension";
-import { getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
+import { CoverCharTheme, getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
 import { CharByIdItensYattaResponse, combatType, iHakushStarRailApi, iYattaStarRailApi, pathType } from "../../../../infra/api/iStarRailApi";
 import { CharacterStats } from "./components/CharacterStats";
 import { CharacterTraces } from "./components/CharacterTraces";
@@ -12,19 +12,22 @@ import { HTMLParagraphConvertEidolons } from "../../../../core/util/HTMLManipula
 import { getRankImg } from "../../../../core/util/getRankURLImage";
 import { TraceSkill } from "./components/TraceSkill";
 import { getStringGender } from "../../../../core/util/GenderManipulator";
+import { iCharBetaAdapter } from "../../../../core/adapter/CharBetaAdapter";
 
 type props = {
     _observer: number;
     apiYatta: iYattaStarRailApi;
     apiBeta: iHakushStarRailApi;
+    charBetaAdapter: iCharBetaAdapter;
 }
 
-export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
+export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta, charBetaAdapter }: props) => {
     apiBeta;
     const { id } = useParams<string>();
     const ids = getCharsIds();
     const betaIds = getCharsBetaIds();
     const _isBetaContent = betaIds.includes(Number(id));
+
     if (!id)
         return <NotFound />;
     if (!(ids.includes(Number(id)) || _isBetaContent))
@@ -41,21 +44,49 @@ export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
     const [ServantTalentId, setServantTalentId] = useState<string[]>([]);
     const [charData, setCharData] = useState<CharByIdItensYattaResponse>();
     const { height, width } = useWindowDimensions();
-    const themeCover = getCoverCharTheme();
-    const mainImage = `https://api.yatta.top/hsr/assets/UI/avatar/large/${id}.png`;
+    const [themeCover, ___] = useState<CoverCharTheme>(getCoverCharTheme());
+    const [mainImage, ____] = useState<string>(_isBetaContent ?
+        `https://api.hakush.in/hsr/UI/avatardrawcard/${id}.webp` :
+        `https://api.yatta.top/hsr/assets/UI/avatar/large/${id}.png`
+    );
+    const [style, _______] = useState<CSSProperties>({
+        paddingTop: (height / width) > 0.77 ? `100vw` : `calc( 90vh - ${(profileOpen) ? alturaMax : alturaMin}px)`,
+        backgroundImage: `url("${mainImage}")`,
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        backgroundSize: `contain`,
+        backgroundPositionX: `right`,
+        backgroundPositionY: `64px`,
+        zIndex: `999`
+    });
 
     useEffect(() => {
+        setCharData(undefined);
         (_isBetaContent) ? getBetaData() : getData();
     }, [_observer, id]);
 
-    const getBetaData = async () => {
-        setCharData(undefined);
-
+    const getBetaData = () => {
+        apiBeta.getBetaCharById(id).then((res) => {
+            const res_ad = charBetaAdapter.HakushToYatta(res);
+            setPath(res.BaseType);
+            setCombat(res.DamageType);
+            setCharData(res_ad);
+            setMainSkillsId(Object.keys(res_ad.traces.mainSkills));
+            setTraceSkillsId(
+                Object.keys(res_ad.traces.subSkills)
+                    .filter((id) => res_ad.traces.subSkills[id].pointType === "Special")
+                    .map((id) => id)
+            );
+            if (res_ad.traces.servantSkills) {
+                setServantSkillsId(Object.keys(res_ad.traces.servantSkills.skills));
+                setServantTalentId(Object.keys(res_ad.traces.servantSkills.talents));
+            }
+            setAlturaMax(137 + (res_ad.fetter.description ? 190 : 0) + (res_ad.fetter.cv ? 180 : 0));
+            setAlturaMin((!res_ad.fetter.description && !res_ad.fetter.cv) ? 137 : 190)
+        });
     }
 
-    const getData = async () => {
-        setCharData(undefined);
-        const res = await apiYatta.getReleaseCharById(id);
+    const getData = () => apiYatta.getReleaseCharById(id).then(res => {
         setPath(res.data.types.pathType.id);
         setCombat(res.data.types.combatType.id);
         setCharData(res.data);
@@ -71,18 +102,7 @@ export const CharacterItemIndex = ({ _observer, apiYatta, apiBeta }: props) => {
         }
         setAlturaMax(137 + (res.data.fetter.description ? 190 : 0) + (res.data.fetter.cv ? 180 : 0));
         setAlturaMin((!res.data.fetter.description && !res.data.fetter.cv) ? 137 : 190)
-    }
-
-    const style: CSSProperties = {
-        paddingTop: (height / width) > 0.77 ? `100vw` : `calc( 90vh - ${(profileOpen) ? alturaMax : alturaMin}px)`,
-        backgroundImage: `url("${mainImage}")`,
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        backgroundSize: `contain`,
-        backgroundPositionX: `right`,
-        backgroundPositionY: `64px`,
-        zIndex: `999`
-    }
+    });
 
     const getBackgroundCoverTheme = () => {
         const styleMain: CSSProperties = {

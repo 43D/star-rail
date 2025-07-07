@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { getRelicsBetaIds, getRelicsIds } from "../../../../core/localStorage/localStorageDataManager";
 import { NotFound } from "../../../NotFound";
 import useWindowDimensions from "../../../../core/util/getWindowsDimension";
-import { getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
+import { CoverCharTheme, getCoverCharTheme } from "../../../../core/localStorage/localStorageManager";
 import { iHakushStarRailApi, iYattaStarRailApi, RelicByIdItensYattaResponse, relictCavernaPiece, relictPlanPiece } from "../../../../infra/api/iStarRailApi";
 import { CSSProperties, useEffect, useState } from "react";
 import { HTMLParagraphConvertEidolons } from "../../../../core/util/HTMLManipulator/HTMLParagraphConvertEidolons";
@@ -52,24 +52,35 @@ export const RelicItemIndex = ({ _observer, apiYatta, apiBeta, relicBetaAdapter 
     const [relic, setRelic] = useState<RelicByIdItensYattaResponse>();
     const [rank, setRank] = useState<number>(5);
     const [atualType, setActualType] = useState<relictCavernaPiece | relictPlanPiece>("HEAD");
-    const relicListCaverna: relictCavernaPiece[] = ["HEAD", "HAND", "BODY", "FOOT"];
-    const relicListPlan: relictPlanPiece[] = ["NECK", "OBJECT"];
+    const [relicListCaverna, _] = useState<relictCavernaPiece[]>(["HEAD", "HAND", "BODY", "FOOT"]);
+    const [relicListPlan, __] = useState<relictPlanPiece[]>(["NECK", "OBJECT"]);
     const [lvl, setLvl] = useState<number>(20);
     const [maxLvl, setMaxLvl] = useState<number>(20);
-
     const { height, width } = useWindowDimensions();
-    const themeCover = getCoverCharTheme();
+    const [themeCover, ___] = useState<CoverCharTheme>(getCoverCharTheme());
     const [mainImage, setMainImage] = useState<string>("https://api.hakush.in/hsr/UI/itemfigures/${id}.webp");
-    const ratio = (height / width);
-    const DrRatio = 0.77;
+    const [ratio, _____] = useState<number>(height / width);
+    const [DrRatio, ____] = useState<number>(0.77);
+    const [style, _______] = useState<CSSProperties>({
+        backgroundImage: `url("${mainImage}")`,
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        backgroundSize: ratio < DrRatio ? `auto 40%` : "auto 40vh",
+        backgroundPositionY: ratio < DrRatio ? `center` : "100px",
+        backgroundPositionX: ratio < DrRatio ? `80%` : `center`,
+        zIndex: `-1`,
+        height: `100vh`,
+        width: `100vw`,
+        overflow: "hidden",
+        position: "fixed",
+    });
 
     useEffect(() => {
+        setRelic(undefined);
         (_isBetaContent) ? getBetaData() : getData();
     }, [_observer, id]);
 
-    const getBetaData = async () => {
-        setRelic(undefined);
-        const data = await apiBeta.getBetaRelicsById(id);
+    const getBetaData = () => apiBeta.getBetaRelicsById(id).then((data) => {
         const res = relicBetaAdapter.HakushToYatta(data, Number(id))
         res.isPlanarSuit ? setActualType("NECK") : setActualType("HEAD");
         const maxRank = Math.max.apply(null, res.levelList);
@@ -81,11 +92,9 @@ export const RelicItemIndex = ({ _observer, apiYatta, apiBeta, relicBetaAdapter 
         setMaxLvl(level);
         setLvl(level);
         setRelic(res);
-    }
+    });
 
-    const getData = async () => {
-        setRelic(undefined);
-        const res = await apiYatta.getReleaseRelicsById(id);
+    const getData = () => apiYatta.getReleaseRelicsById(id).then((res) => {
         res.data.isPlanarSuit ? setActualType("NECK") : setActualType("HEAD");
         const maxRank = Math.max.apply(null, res.data.levelList);
         const level = (res.data.isPlanarSuit) ?
@@ -97,7 +106,7 @@ export const RelicItemIndex = ({ _observer, apiYatta, apiBeta, relicBetaAdapter 
         setMaxLvl(level);
         setLvl(level);
         setRelic(res.data);
-    }
+    });
 
     const onChangeLvl = (event: React.ChangeEvent<HTMLInputElement>) => setLvl(Number(event.target.value));
     const onChangeRank = (event: React.ChangeEvent<HTMLSelectElement>) => setRank(Number(event.target.value));
@@ -115,20 +124,6 @@ export const RelicItemIndex = ({ _observer, apiYatta, apiBeta, relicBetaAdapter 
     const getCalcs = (base: number, add: number, ratio: boolean) => {
         const num = base + (add * lvl);
         return ratio ? (num * 100).toFixed(2) + "%" : num.toFixed(1)
-    }
-
-    const style: CSSProperties = {
-        backgroundImage: `url("${mainImage}")`,
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        backgroundSize: ratio < DrRatio ? `auto 40%` : "auto 40vh",
-        backgroundPositionY: ratio < DrRatio ? `center` : "100px",
-        backgroundPositionX: ratio < DrRatio ? `80%` : `center`,
-        zIndex: `-1`,
-        height: `100vh`,
-        width: `100vw`,
-        overflow: "hidden",
-        position: "fixed",
     }
 
     const getBackgroundCoverTheme = () => {

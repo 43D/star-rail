@@ -6,6 +6,7 @@ import { HashRouter } from "react-router-dom";
 import RoutesApp from "./routes/routes";
 import { iLcBetaAdapter, LcBetaAdapter } from "./core/adapter/LcBetaAdapter";
 import { iRelicBetaAdapter, RelicBetaAdapter } from "./core/adapter/RelicBetaAdapter";
+import { CharBetaAdapter, iCharBetaAdapter } from "./core/adapter/CharBetaAdapter";
 
 export type ApiInject = {
   starRailApi: iYattaStarRailApi;
@@ -15,6 +16,7 @@ export type ApiInject = {
 export type AdapterInject = {
   lcBetaAdapter: iLcBetaAdapter;
   relicBetaAdapter: iRelicBetaAdapter;
+  charBetaAdapter: iCharBetaAdapter;
 }
 
 export const App = () => {
@@ -27,18 +29,18 @@ export const App = () => {
 
   const adapters: AdapterInject = {
     lcBetaAdapter: LcBetaAdapter(),
-    relicBetaAdapter: RelicBetaAdapter()
+    relicBetaAdapter: RelicBetaAdapter(),
+    charBetaAdapter: CharBetaAdapter()
   }
 
   const getDataApi = getAllDataApi(apis);
 
-  const init = async () => {
-    await getDataApi.init();
-    _setObservable(prev => prev += 1);
-  }
-
+  // Initialize the data collection API
   useEffect(() => {
-    init();
+    getDataApi.init().finally(() => {
+      _setObservable(prev => prev += 1);
+      console.log("All data loaded");
+    });
   }, []);
 
   return (
